@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get CRUD</title>
+</head>
+<style>
+    table,
+    th,
+    td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        text-align: center;
+    }
+
+    button.btn-exit {
+        outline: none;
+        background: greenyellow;
+        height: 25px;
+        width: 50px;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+
+    button.btn-delete {
+        outline: none;
+        background: #ff372f;
+        height: 25px;
+        width: 50px;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+</style>
+
+<body>
+    <h1>TÀI KHOẢN</h1>
+
+    <table style="width:100%">
+        <tr>
+            <th>Username</th>
+            <th>Password</th>
+            <th>Họ Tên</th>
+            <th>Vai Trò</th>
+            <th>Action</th>
+        </tr>
+        <% for(let i=0;i<dataTable.length; i++){%>
+            <tr>
+                <td>
+                    <%=dataTable[i].username %>
+                </td>
+                <td>
+                    <%=dataTable[i].password %>
+                </td>
+                <td>
+                    <%=dataTable[i].hoTen %>
+                </td>
+                <% if(dataTable[i].vaiTro==1){ %>
+                    <td>Admin</td>
+                    <% } else if (dataTable[i].vaiTro==2){ %>
+                        <td>Thủ Kho</td>
+                        <% } else { %>
+                            <td>Nhân Viên Bán Hàng</td>
+                            <% } %>
+                                <td>
+                                    <a href="/edit-crud?id=<%= dataTable[i].id %>">
+                                        <button  class='btn-exit' type='button'>Sửa</button></a>
+                                    <a href="/delete-crud?id=<%= dataTable[i].id %>">
+                                        <button  class='btn-delete' type='button'>Xóa</button></a>
+                                </td>
+            </tr>
+            <%} %>
+
+    </table>
+
+
+</body>
+
+</html>

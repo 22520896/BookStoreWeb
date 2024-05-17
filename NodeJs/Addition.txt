@@ -1,0 +1,2 @@
+Tên các Table: Viết hoa các chữ cái đầu của từ: TaiKhoan
+Thuộc tính: viết thường từ đầu, các từ sau viết hoa: hoTen
