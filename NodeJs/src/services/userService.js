@@ -19,7 +19,7 @@ let handleUserLogin = (username, password) => {
         try {
             let userData = {}
             let user = await db.TaiKhoan.findOne({
-                attributes: ['username', 'password', 'vaiTro'],
+                attributes: ['username', 'password', 'vaiTro', 'hoTen'],
                 where: { username: username },
                 raw: true
             })
@@ -156,7 +156,9 @@ let editUser = (data) => {
                 raw: false
             })
             if (user) {
+                // let hashPasswordFromBcrypt = await hashUserPassword(data.password)
                 await user.update({
+                    // password: hashPasswordFromBcrypt,
                     hoTen: data.hoTen,
                     diaChi: data.diaChi,
                     sdt: data.sdt,

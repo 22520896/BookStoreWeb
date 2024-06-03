@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { emitter } from '../../utils/emitter'
 
-class ModalUser extends Component {
+class ModalCreateUser extends Component {
 
   constructor(props) {
     super(props) //props = properties - truyền prop từ cha xuống con
@@ -20,25 +20,8 @@ class ModalUser extends Component {
       }
     }
 
-    // this.listenToEmitter()
-  }
 
-  // listenToEmitter() {
-  //   emitter.on('EVENT_CLEAR_MODAL_DATA', () => {
-  //     console.log("HELLO")
-  //     this.setState({
-  //       errMessage: "",
-  //       user: {
-  //         username: "",
-  //         password: "",
-  //         vaiTro: "",
-  //         hoTen: "",
-  //         diaChi: "",
-  //         sdt: ""
-  //       }
-  //     })
-  //   })
-  // }
+  }
 
   componentDidMount() {
   }
@@ -47,7 +30,7 @@ class ModalUser extends Component {
     this.setState({
       errMessage: ""
     })
-    this.props.toggleModalUser()
+    this.props.toggleModalCreateUser()
   }
 
   handleOnChange = (event, id) => {
@@ -76,10 +59,10 @@ class ModalUser extends Component {
     return true
   }
 
-  handleAddNewUser = () => {
+  handleCreateNewUser = () => {
     let isValid = this.checklValidInput()
     if (isValid) {
-      this.props.addNewUser(this.state.user) //Định nghĩa ở cha, gọi ở con
+      this.props.createNewUser(this.state.user) //Định nghĩa ở cha, gọi ở con
     }
   }
 
@@ -138,7 +121,7 @@ class ModalUser extends Component {
           </div>
         </ModalBody>
         <ModalFooter>
-          <Button type="submit" color="primary" className="px-2" onClick={() => { this.handleAddNewUser() }}>
+          <Button type="submit" color="primary" className="px-2" onClick={() => { this.handleCreateNewUser() }}>
             Thêm
           </Button>{' '}
           <Button color="secondary" className='px-2' onClick={() => { this.toggle() }}>
@@ -161,4 +144,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ModalUser);
+export default connect(mapStateToProps, mapDispatchToProps)(ModalCreateUser);
