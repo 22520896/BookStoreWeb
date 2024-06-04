@@ -13,10 +13,15 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      HoaDon.belongsTo(models.KhachHang, {foreignKey:'sdt', targetKey: 'sdt'})
+      HoaDon.hasMany(models.CTHD, {foreignKey:'idHD', targetKey: 'idHD'})
     }
   }
   HoaDon.init({
+    idHD: {
+      type: DataTypes.INTEGER, 
+      primaryKey: true,
+    },
     ngayLap: DataTypes.DATE,
     sdt: DataTypes.STRING,
     hoTen: DataTypes.STRING,

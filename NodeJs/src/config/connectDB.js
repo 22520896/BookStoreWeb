@@ -5,6 +5,7 @@ const sequelize = new Sequelize('QLNhaSach', 'root', null, {
   dialect: 'mysql',
   define: {
     timestamps: true,
+    freezeTableName: true
   },
   logging: false
 });

@@ -10,10 +10,15 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Sach.hasMany(models.CTHD, {foreignKey: 'idSach', targetKey:'idSach'})
+      Sach.hasMany(models.CTPN, {foreignKey: 'idSach', targetKey:'idSach'})
     }
   }
   Sach.init({
+    idSach: {
+      type: DataTypes.INTEGER, 
+      primaryKey: true,
+    },
     tenSach: DataTypes.STRING,
     tacGia: DataTypes.STRING,
     theLoai: DataTypes.STRING,

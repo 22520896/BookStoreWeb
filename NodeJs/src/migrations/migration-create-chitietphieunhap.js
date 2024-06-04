@@ -2,23 +2,18 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('CTPhieuNhaps', 
+    await queryInterface.createTable('CTPN', 
     {
-      id: {
+      idPN: {
         allowNull: false,
-        autoIncrement: true,
+        type: Sequelize.INTEGER,
         primaryKey: true,
-        type: Sequelize.INTEGER
-      },
-
-      idPhieuNhap: {
-        allowNull: false,
-        type: Sequelize.INTEGER
       },
       idSach: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        primaryKey: true,
       },
-      Sach: {
+      sach: {
         type: Sequelize.STRING,
       },
       theLoai: {
@@ -36,6 +31,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('CTPhieuNhaps');
+    await queryInterface.dropTable('CTPN');
   }
 };

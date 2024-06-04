@@ -3,18 +3,21 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class PhieuThuTien extends Model {
+  class PhieuThu extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      PhieuThu.belongsTo(models.KhachHang, {foreignKey:'sdt', targetKey: 'sdt'})
     }
   }
-  PhieuThuTien.init({
-    idKhachHang: DataTypes.INTEGER,
+  PhieuThu.init({
+    idPT: {
+      type: DataTypes.INTEGER, 
+      primaryKey: true,
+    },
     sdt: DataTypes.STRING,
     hoTen: DataTypes.STRING,
     email: DataTypes.STRING,
@@ -22,8 +25,8 @@ module.exports = (sequelize, DataTypes) => {
     ngayThuTien: DataTypes.DATE,
   }, {
     sequelize,
-    modelName: 'PhieuThuTien',
+    modelName: 'PhieuThu',
     // timestamps: false
   });
-  return PhieuThuTien;
+  return PhieuThu;
 };

@@ -3,7 +3,7 @@ require('dotenv').config()
 var cors = require('cors')
 
 const configViewEngine = require('./config/viewEngine')
-const webRoutes = require('./routes/web')
+const api = require('./routes/api')
 const connectDB = require('./config/connectDB')
 
 const corsOptions = {
@@ -22,7 +22,7 @@ app.use(cors(corsOptions));
 configViewEngine(app)
 
 //khai báo route
-app.use('/', webRoutes)
+app.use('/', api)
 
 connectDB()
 

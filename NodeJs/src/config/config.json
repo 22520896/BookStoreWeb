@@ -9,6 +9,9 @@
     "query": {
       "raw": true
     },
+    "define":{
+      "freezeTableName": true
+    },
     "timezone": "+07:00"
   },
   "test": {

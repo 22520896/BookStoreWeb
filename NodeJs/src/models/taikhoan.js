@@ -14,6 +14,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   TaiKhoan.init({
+    idTK: {
+      type: DataTypes.INTEGER, 
+      primaryKey: true,
+    },
     username: DataTypes.STRING,
     password: DataTypes.STRING,
     vaiTro: DataTypes.STRING,
