@@ -10,6 +10,7 @@ const baoCaoController = require("../controllers/baoCaoController")
 //QUẢN LÝ TÀI KHOẢN
 router.post('/login', taiKhoanController.handleLogin) //Login
 router.get('/get-ds-taikhoan', taiKhoanController.handleGetDSTaiKhoan) //Lấy danh sách tài khoản
+router.get('/search-taikhoan', taiKhoanController.handleSearchTaiKhoan) //Tìm kiếm tài khoản
 router.post('/create-taikhoan', taiKhoanController.handleCreateTaiKhoan) //Thêm tài khoản mới
 router.put('/edit-taikhoan', taiKhoanController.handleEditTaiKhoan) //Chỉnh sửa thông tin tài khoản
 router.delete('/delete-taikhoan', taiKhoanController.handleDeleteTaiKhoan) //Xóa tài khoản

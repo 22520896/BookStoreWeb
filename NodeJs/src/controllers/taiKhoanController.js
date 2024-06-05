@@ -38,6 +38,25 @@ handleCreateTaiKhoan = async (req, res) => {
     return res.status(200).json(message)
 }
 
+//TÌM KIẾM TÀI KHOẢN
+handleSearchTaiKhoan = async (req, res) => {
+    let type = req.body.type
+    let keyword = req.body.keyword
+    if (!type) {
+        return res.status(500).json({
+            errCode: 1,
+            message: "Vui lòng chọn mục tìm kiểm!"
+        })
+    }
+    if (!keyword) {
+        return res.status(500).json({
+            errCode: 1,
+            message: "Vui lòng nhập từ khóa tìm kiếm!"
+        })
+    }
+    let data = await taiKhoanService.searchTaiKhoan(type, keyword)
+    return res.status(200).json(data)
+}
 
 //CHỈNH SỬA THÔNG TIN TÀI KHOẢN
 handleEditTaiKhoan = async (req, res) => {
@@ -58,6 +77,7 @@ handleDeleteTaiKhoan = async (req, res) => {
 module.exports = {
     handleLogin,
     handleGetDSTaiKhoan,
+    handleSearchTaiKhoan,
     handleCreateTaiKhoan,
     handleEditTaiKhoan,
     handleDeleteTaiKhoan,

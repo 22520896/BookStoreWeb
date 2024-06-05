@@ -1,5 +1,6 @@
 const db = require('../models/index');
 const bcrypt = require('bcrypt');
+const { Op } = require('sequelize')
 
 const salt = bcrypt.genSaltSync(10)
 
@@ -58,7 +59,6 @@ let handleLogin = (username, password) => {
                 data.errCode = 2
                 data.message = "Username không tồn tại!"
             }
-
             resolve(data)
         } catch (e) {
             reject(e)
@@ -110,6 +110,37 @@ let createTaiKhoan = (data) => {
                     message: "Username đã tồn tại, vui lòng nhập lại username khác!"
                 })
             }
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
+
+
+//TÌM KIẾM TÀI KHOẢN
+let searchTaiKhoan = (type, keyword) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            DSTaiKhoan = await db.TaiKhoan.findAll({
+                where: {
+                    [type]:{
+                        [Op.like]: `%${keyword}%`
+                    }
+                }
+            })
+            data ={}
+
+            if (!DSTaiKhoan.length){
+                data.errCode = 0
+                data.message = 'OK'
+                data.DSTaiKhoan = DSTaiKhoan
+            }
+            else{
+                data.errCode = 2
+                data.message = 'Không tìm thấy tài khoản có thông tin khớp với từ khóa!'
+                data.DSTaiKhoan = DSTaiKhoan
+            }
+            resolve(data)
         } catch (e) {
             reject(e)
         }
@@ -185,6 +216,7 @@ let deleteTaiKhoan = (idTK) => {
 module.exports = {
     handleLogin,
     getDSTaiKhoan,
+    searchTaiKhoan,
     createTaiKhoan,
     editTaiKhoan,
     deleteTaiKhoan,    
