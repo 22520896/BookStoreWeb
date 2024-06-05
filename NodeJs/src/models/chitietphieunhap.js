@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
    {
     sequelize,
     modelName: 'CTPN',
-    // timestamps: false
+    timestamps: false
   });
   return CTPN;
 };

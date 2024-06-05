@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'PhieuNhap',
-    // timestamps: false
+    timestamps: false
   });
   return PhieuNhap;
 };
