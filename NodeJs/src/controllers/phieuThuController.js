@@ -10,6 +10,19 @@ handleGetDSPhieuThu = async (req, res) => {
     })
 }
 
+//XEM CHI TIẾT PHIẾU THU
+handleGetCTPT = async (req, res) => {
+    let CTPT = await phieuNhapService.getCTPT(req.body.idPT);
+    return res.status(200).json(CTPT)
+}
+
+//THÊM PHIẾU THU
+handleCreatePhieuThu = async (req, res) => {
+    let message = await phieuThuService.createPhieuThu(req.body)
+    return res.status(200).json(message)
+}
 module.exports = {
     handleGetDSPhieuThu,
+    handleGetCTPT,
+    handleCreatePhieuThu,
 }
