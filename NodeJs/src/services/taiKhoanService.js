@@ -8,7 +8,7 @@ const salt = bcrypt.genSaltSync(10)
 let hashPassword = (password) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let hashPassword = await bcrypt.hashSync(password, salt)
+            let hashPassword = bcrypt.hashSync(password, salt)
             resolve(hashPassword)
         } catch (e) {
             reject(e)
@@ -71,11 +71,11 @@ let handleLogin = (username, password) => {
 let getDSTaiKhoan = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            DSTaiKhoan = await db.TaiKhoan.findAll({
-                    attributes: {
-                        exclude: ['password']
-                    }
-                })
+            let DSTaiKhoan = await db.TaiKhoan.findAll({
+                attributes: {
+                    exclude: ['password']
+                }
+            })
             resolve(DSTaiKhoan)
         } catch (e) {
             reject(e)
@@ -88,7 +88,7 @@ let getDSTaiKhoan = () => {
 let createTaiKhoan = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            check = await checkUsername(data.username)
+            let check = await checkUsername(data.username)
             if (!check) {
                 let hashPasswordFromBcrypt = await hashPassword(data.password)
                 await db.TaiKhoan.create({
@@ -121,21 +121,24 @@ let createTaiKhoan = (data) => {
 let searchTaiKhoan = (type, keyword) => {
     return new Promise(async (resolve, reject) => {
         try {
-            DSTaiKhoan = await db.TaiKhoan.findAll({
-                where: {
-                    [type]:{
+            let DSTaiKhoan = await db.TaiKhoan.findAll({
+                where: { 
+                    [type]: {
                         [Op.like]: `%${keyword}%`
                     }
+                },
+                attributes: {
+                    exclude: ['password']
                 }
             })
-            data ={}
+            data = {}
 
-            if (!DSTaiKhoan.length){
+            if (DSTaiKhoan.length!==0) {
                 data.errCode = 0
                 data.message = 'OK'
                 data.DSTaiKhoan = DSTaiKhoan
             }
-            else{
+            else {
                 data.errCode = 2
                 data.message = 'Không tìm thấy tài khoản có thông tin khớp với từ khóa!'
                 data.DSTaiKhoan = DSTaiKhoan
@@ -189,9 +192,9 @@ let deleteTaiKhoan = (idTK) => {
                 where: { idTK: idTK },
                 raw: false
             })
-            
+
             if (taiKhoan) {
-                await taiKhoan.destroy() 
+                await taiKhoan.destroy()
                 resolve({
                     errCode: 0,
                     message: "Xóa tài khoản thành công!"
@@ -219,5 +222,5 @@ module.exports = {
     searchTaiKhoan,
     createTaiKhoan,
     editTaiKhoan,
-    deleteTaiKhoan,    
+    deleteTaiKhoan,
 }

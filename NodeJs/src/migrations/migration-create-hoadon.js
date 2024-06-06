@@ -24,7 +24,7 @@ module.exports = {
         tongTien: {
           type: Sequelize.BIGINT
         },
-        soTienTraLai: {
+        soTienTra: {
           type: Sequelize.BIGINT
         },
         tienTraLai: {

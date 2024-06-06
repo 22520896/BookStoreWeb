@@ -22,7 +22,7 @@ let handleLogin = async (req, res) => {
 
 
 //LẤY DANH SÁCH TÀI KHOẢN
-handleGetDSTaiKhoan = async (req, res) => {
+let handleGetDSTaiKhoan = async (req, res) => {
     let DSTaiKhoan = await taiKhoanService.getDSTaiKhoan();
     return res.status(200).json({
         errCode: 0,
@@ -33,19 +33,35 @@ handleGetDSTaiKhoan = async (req, res) => {
 
 
 //THÊM TÀI KHOẢN MỚI
-handleCreateTaiKhoan = async (req, res) => {
+let handleCreateTaiKhoan = async (req, res) => {
     let message = await taiKhoanService.createTaiKhoan(req.body)
     return res.status(200).json(message)
 }
 
+
+//CHỈNH SỬA THÔNG TIN TÀI KHOẢN
+let handleEditTaiKhoan = async (req, res) => {
+    let data = req.body
+    let message = await taiKhoanService.editTaiKhoan(data)
+    return res.status(200).json(message)
+}
+
+
+//XÓA TÀI KHOẢN
+let handleDeleteTaiKhoan = async (req, res) => {
+    let message = await taiKhoanService.deleteTaiKhoan(req.body.idTK)
+    return res.status(200).json(message)
+}
+
+
 //TÌM KIẾM TÀI KHOẢN
-handleSearchTaiKhoan = async (req, res) => {
+let handleSearchTaiKhoan = async (req, res) => {
     let type = req.body.type
     let keyword = req.body.keyword
     if (!type) {
         return res.status(500).json({
             errCode: 1,
-            message: "Vui lòng chọn mục tìm kiểm!"
+            message: "Vui lòng chọn mục tìm kiếm!"
         })
     }
     if (!keyword) {
@@ -58,27 +74,11 @@ handleSearchTaiKhoan = async (req, res) => {
     return res.status(200).json(data)
 }
 
-//CHỈNH SỬA THÔNG TIN TÀI KHOẢN
-handleEditTaiKhoan = async (req, res) => {
-    let data = req.body
-    let message = await taiKhoanService.editTaiKhoan(data)
-    return res.status(200).json(message)
-}
-
-
-//XÓA TÀI KHOẢN
-handleDeleteTaiKhoan = async (req, res) => {
-    let message = await taiKhoanService.deleteTaiKhoan(req.body.idTK)
-    return res.status(200).json(message)
-}
-
-
-
 module.exports = {
     handleLogin,
     handleGetDSTaiKhoan,
-    handleSearchTaiKhoan,
     handleCreateTaiKhoan,
     handleEditTaiKhoan,
     handleDeleteTaiKhoan,
+    handleSearchTaiKhoan,
 }

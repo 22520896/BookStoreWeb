@@ -10,7 +10,9 @@
       "raw": true
     },
     "define":{
-      "freezeTableName": true
+      "freezeTableName": true,
+      "timestamps": false
+
     },
     "timezone": "+07:00"
   },

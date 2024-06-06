@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       KhachHang.hasMany(models.HoaDon, {foreignKey:'sdt', targetKey: 'sdt'})
       KhachHang.hasMany(models.PhieuThu, {foreignKey:'sdt', targetKey: 'sdt'})
+      KhachHang.hasMany(models.CongNo, {foreignKey:'sdt', targetKey: 'sdt'})
     }
   }
   KhachHang.init({

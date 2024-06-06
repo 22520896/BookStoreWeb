@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Sach.hasMany(models.CTHD, {foreignKey: 'idSach', targetKey:'idSach'})
       Sach.hasMany(models.CTPN, {foreignKey: 'idSach', targetKey:'idSach'})
+      Sach.hasMany(models.TonSach, {foreignKey: 'idSach', targetKey:'idSach'})
     }
   }
   Sach.init({
