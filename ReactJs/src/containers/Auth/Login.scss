@@ -1,55 +1,118 @@
+//background
 .login-background {
-    background: linear-gradient(to top, #c9c9ff 50%, #9090fa 90%) no-repeat;
+    background: #355353 url('../../assets/images/background_login.png') no-repeat center center;
+    background-size: cover;
     height: 100vh;
+    
+    //background_people
+    .login-background2{
+    position: absolute;
+    width: 510px;
+    height: 510px;
+    left: 885px;
+    top: 300px;
+    background: url('../../assets/images/Bookshop-bro2.png');
+    }
 
-
+    //khung login
     .login-container {
-        width: 400px;
-        margin: auto;
-        border-radius: 10px;
-        background-color: white;
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        right: 0;
-        left: 0;
-        height: 300px;
+        position: relative;
+        width: 533px;
+        height: 550px;
+        left: 462px;
+        top: 50px;
 
+        background: rgba(255, 255, 255, 0.93);
+        mix-blend-mode: normal;
+        box-shadow: 20px 10px 20px rgba(0, 0, 0, 0.25);
+        border-radius: 60px;
+
+        //WELCOME!
         .login-content {
             padding: 20px;
-
             .text-login {
+                position: relative;
+                font-family: 'Inika';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 50px;
+                line-height: 65px;
+                letter-spacing: 0.04em;
+                color: #856A32;
+                top: 40px;
                 text-align: center;
-                font-size: 25px;
-                font-weight: bold;
-                padding-top: 10px;
-                font-family: 'Times New Roman', Times, serif
             }
 
             .login-input {
-                margin: 7px 0;
+                margin: 15px 0;
 
+                //Khung nhập username_password
+                .form-control
+                {
+                    box-sizing: border-box;
+
+                    position: relative;
+                    margin: auto;
+                    width: 435px;
+                    height: 78px;
+                    top: 60px;
+
+                    background: rgba(159, 138, 93, 0.38);
+                    border: 2px solid #856A32;
+                    border-radius: 29px;
+
+                }
+                //Chữ username trong khung nhập
+                .form-control::placeholder{
+                    position: relative;
+
+                    font-family: 'Inter';
+                    font-style: normal;
+                    font-weight: 600;
+                    font-size: 32px;
+                    line-height: 39px;
+                    text-align: center;
+
+                    color: rgba(133, 106, 50, 0.58);
+
+
+                }
+
+                //con mắt
                 .custom-input-password {
                     position: relative;
 
                     i {
-                        position: absolute;
-                        right: 10px;
-                        top: 10px;
+                        position: relative;
+                        right: -430px;
+                        top: 7px;
                         cursor: pointer
                     }
                 }
             }
 
+            //khung login + chữ login
             .btn-login {
-                width: 100%;
-                margin: 10px 0;
-                height: 30px;
-                border: none;
-                border-radius: 15px;
-                outline: none;
-                color: white;
-                background: blue
+
+                position: relative;
+                width: 296px;
+                height: 59px;
+                top: 80px;
+                left: 100px;
+                background: #856A32;
+                border-radius: 29.5px;
+
+                /* LOGIN */
+                position: relative;
+
+                font-family : 'Inter';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 30px;
+                line-height: 36px;
+
+                color: rgba(255, 254, 254, 0.98);
+
             }
         }
     }
