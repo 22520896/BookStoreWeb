@@ -13,8 +13,8 @@ let handleGetDSSach = async (req, res) => {
 
 //TÌM KIẾM SÁCH 
 let handleSearchSach = async (req, res) => {
-    let type = req.body.type
-    let keyword = req.body.keyword
+    let type = req.query.type
+    let keyword = req.query.keyword
     if (!type) {
         return res.status(500).json({
             errCode: 1,

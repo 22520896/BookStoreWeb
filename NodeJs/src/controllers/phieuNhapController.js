@@ -48,7 +48,7 @@ let handleCreatePhieuNhap = async (req, res) => {
 
 //TÌM KIẾM PHIẾU NHẬP
 let handleSearchPhieuNhap = async (req, res) => {
-    let keyword = req.body.keyword
+    let keyword = req.query.keyword
     if (!keyword) {
         return res.status(500).json({
             errCode: 1,

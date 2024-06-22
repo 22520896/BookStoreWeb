@@ -1,15 +1,14 @@
 export const path = {
     HOME: '/',
-    HOMEPAGE: '/home',
     LOGIN: '/login',
-    LOG_OUT: '/logout',
-    SYSTEM: '/system',
-    RECEIPT: '/receipt',
-    SELL: '/sell',
-    CUSTOMER: '/customer',
-    USER: '/user',
-    COLLECTION: '/collection',
-    BOOK: '/book'
+    LOGOUT: '/logout',
+    PHIEUNHAP: '/ql-nhapsach',
+    HOADON: '/ql-bansach',
+    KHACHHANG: '/ql-khachhang',
+    TAIKHOAN: '/ql-taikhoan',
+    PHIEUTHU: '/ql-thutien',
+    SACH: '/tracuu-sach',
+    BAOCAO: '/baocao'
 };
 
 export const languages = {

@@ -1,0 +1,127 @@
+#customers {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#customers td,
+#customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#customers tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#customers tr:hover {
+    background-color: #ddd;
+}
+
+#customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #04AA6D;
+    color: white;
+}
+
+.btn-edit {
+    width: 50px;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: orange;
+
+    &:hover {
+        background-color: transparent !important;
+        color: orange !important
+    }
+}
+
+.btn-del {
+    width: 50px;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: rgb(255, 0, 0);
+
+    &:hover {
+        background-color: transparent !important;
+        color: rgb(255, 0, 0) !important
+    }
+}
+
+
+
+.modal-user-container {
+    .modal-content {
+        .modal-header {
+            height: 45px !important;
+
+            .modal-title {
+                font-size: 18px !important;
+                width: 100%;
+                text-align: center;
+                font-weight: bold !important;
+            }
+
+            button {
+                background-color: transparent;
+                color: white;
+                border: none;
+                font-size: 30px
+            }
+        }
+    }
+
+}
+
+.search-container{
+    padding: 5px;
+    background-color: #dedede;
+    margin: 15px;
+    padding-bottom: 15px;
+    border-radius: 13px;
+    .search-div {
+        display: flex;
+        justify-content: space-between;
+        padding: 5px 20px 5px 20px;
+        background: #f4eeee;
+        border-radius: 20px;
+        margin: 0 25px;
+    
+        .search {
+            display: flex;
+            width: 98%;
+            justify-content: left;
+    
+            span {
+                width: 10%;
+                border-right: 1px solid #ddd
+            }
+    
+            .type {
+                width: 100%;
+                border: none;
+                background-color: #f4eeee;
+            }
+    
+            .keyword {
+                border: none;
+                background: none;
+            }
+        }
+    }
+}
+
+.custom-toast {
+    width: 110% !important; /* Thay đổi chiều rộng của toast */
+    height: auto !important; /* Điều chỉnh chiều cao nếu cần */
+    justify-content: center;
+}
+
+.custom-toast-body {
+    font-size: 16px; /* Điều chỉnh kích thước chữ của toast body */
+    text-align: center; /* Canh giữa nội dung */
+}

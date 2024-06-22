@@ -1,10 +1,10 @@
 baoCaoService = require("../services/baoCaoService")
 
 //XUẤT BÁO CÁO
-handleGetBaoCao = async (req, res) => {
-    let type = req.body.type
-    let month = req.body.month
-    let year = req.body.year
+let handleGetBaoCao = async (req, res) => {
+    let type = req.query.type
+    let month = req.query.month
+    let year = req.query.year
     if(!type || !month || !year){
         return res.status(500).json({
             errCode: 1,

@@ -45,7 +45,7 @@ router.get('/search-hoadon',hoaDonController.handleSearchHoaDon) //Tìm kiếm h
 //QUẢN LÝ THU TIỀN
 router.get('/get-ds-phieuthu', phieuThuController.handleGetDSPhieuThu) //Lấy danh sách phiếu thu
 router.get('/get-chitietphieuthu', phieuThuController.handleGetCTPT) //Xem chi tiết phiếu thu
-router.post('/check-chitiethoadon',phieuThuController.handleCheckCTPT) //Check chi tiết phiếu thu
+router.post('/check-chitietphieuthu',phieuThuController.handleCheckCTPT) //Check chi tiết phiếu thu
 router.post('/create-phieuthu',phieuThuController.handleCreatePhieuThu) // Thêm phiếu thu mới
 router.get('/search-phieuthu',phieuThuController.handleSearchPhieuThu) //Tìm kiếm phiếu thu
 

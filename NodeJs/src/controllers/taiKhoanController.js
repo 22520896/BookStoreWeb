@@ -13,6 +13,7 @@ let handleLogin = async (req, res) => {
     }
 
     let data = await taiKhoanService.handleLogin(username, password)
+    console.log (data)
     return res.status(200).json({
         errCode: data.errCode,
         message: data.message,
@@ -56,8 +57,8 @@ let handleDeleteTaiKhoan = async (req, res) => {
 
 //TÌM KIẾM TÀI KHOẢN
 let handleSearchTaiKhoan = async (req, res) => {
-    let type = req.body.type
-    let keyword = req.body.keyword
+    let type = req.query.type
+    let keyword = req.query.keyword
     if (!type) {
         return res.status(500).json({
             errCode: 1,

@@ -5,23 +5,23 @@ import { ConnectedRouter as Router } from 'connected-react-router';
 import { history } from '../redux'
 import { ToastContainer } from 'react-toastify';
 
-
 import { userIsAuthenticated, userIsNotAuthenticated } from '../hoc/authentication';
 
 import { path } from '../utils'
 
-import Home from '../routes/Home';
-import Login from './Auth/Login';
+import Login from './Login/Login.js';
 import Header from './Header/Header';
-import System from '../routes/System';
-import HomePage from './HomePage/HomePage'
-import Navbar from './HomePage/Navbar';
-import Book from './Book/Book.js';
-import Collection from './Collection/Collection.js';
-import Customer from './Customer/Customer.js';
-import Receipt from './Receipt/Receipt.js';
-import Sell from './Sell/Sell.js';
-import User from './User/User.js';
+import Home from './Home/Home'
+
+import Sach from './Sach/Sach.js';
+import TaiKhoan from './TaiKhoan/TaiKhoan.js';
+import PhieuThu from './PhieuThu/PhieuThu.js';
+import KhachHang from './KhachHang/KhachHang.js';
+import PhieuNhap from './PhieuNhap/PhieuNhap.js';
+import HoaDon from './HoaDon/HoaDon.js';
+
+
+import BaoCao from './BaoCao/BaoCao.js';
 
 import { CustomToastCloseButton } from '../components/CustomToast';
 import ConfirmModal from '../components/ConfirmModal';
@@ -50,22 +50,18 @@ class App extends Component {
         return (
             <Fragment>
                 <Router history={history}>
-                    {/* <div className="main-container">
-                        <ConfirmModal /> */}
-                    {/* {this.props.isLoggedIn && <Header />} */}
-                    {this.props.isLoggedIn && <Navbar />}
+                    {this.props.isLoggedIn && <Header />}
                     <span className="content-container">
                         <Switch>
                             <Route path={path.HOME} exact component={(Home)} />
                             <Route path={path.LOGIN} component={userIsNotAuthenticated(Login)} />
-                            <Route path={path.SYSTEM} component={userIsAuthenticated(System)} />
-                            <Route path={path.HOMEPAGE} component={userIsAuthenticated(HomePage)} />
-                            <Route path={path.CUSTOMER} component={userIsAuthenticated(Customer)} />
-                            <Route path={path.USER} component={userIsAuthenticated(User)} />
-                            <Route path={path.RECEIPT} component={userIsAuthenticated(Receipt)} />
-                            <Route path={path.SELL} component={userIsAuthenticated(Sell)} />
-                            <Route path={path.COLLECTION} component={userIsAuthenticated(Collection)} />
-                            <Route path={path.BOOK} component={userIsAuthenticated(Book)} />
+                            <Route path={path.KHACHHANG} component={userIsAuthenticated(KhachHang)} />
+                            <Route path={path.TAIKHOAN} component={userIsAuthenticated(TaiKhoan)} />
+                            <Route path={path.PHIEUTHU} component={userIsAuthenticated(PhieuThu)} />
+                            <Route path={path.HOADON} component={userIsAuthenticated(HoaDon)} />
+                            <Route path={path.PHIEUNHAP} component={userIsAuthenticated(PhieuNhap)} />
+                            <Route path={path.SACH} component={userIsAuthenticated(Sach)} />
+                            <Route path={path.BAOCAO} component={userIsAuthenticated(BaoCao)} />
 
                         </Switch>
                     </span>

@@ -20,8 +20,8 @@ let handleGetCTPT = async (req, res) => {
 
 //TÌM KIẾM PHIẾU THU
 let handleSearchPhieuThu = async (req, res) => {
-    let type = req.body.type
-    let keyword = req.body.keyword
+    let type = req.query.type
+    let keyword = req.query.keyword
     if (!keyword || !type) {
         return res.status(500).json({
             errCode: 1,
