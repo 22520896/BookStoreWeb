@@ -12,7 +12,7 @@ class ModalEditTaiKhoan extends Component {
         this.state = {
             message: "",
             taiKhoan: {
-                id: "",
+                idTK: "",
                 username: "",
                 vaiTro: "",
                 hoTen: "",

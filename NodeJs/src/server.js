@@ -27,7 +27,6 @@ app.use('/', api)
 connectDB()
 
 
-
 //chạy server
 //nạp các thông tin khai báo ở trên rồi chạy
 app.listen(port, hostname, () => {

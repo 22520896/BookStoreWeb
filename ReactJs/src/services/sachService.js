@@ -15,7 +15,7 @@ const searchSach = (type, keyword) => {
     })
 }
 
-export {
+export default{
     getDSSach,
     searchSach,
 }

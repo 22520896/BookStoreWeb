@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './TaiKhoan.scss'
 import taiKhoanService from '../../services/taiKhoanService.js';
 import ModalCreateTaiKhoan from './ModalCreateTaiKhoan';
 import ModalEditTaiKhoan from "./ModalEditTaiKhoan"
 import ModalDeleteTaiKhoan from "./ModalDeleteTaiKhoan"
-import { toast, Slide, Zoom, Flip, Bounce } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 // import { chain } from 'lodash';
 import { emitter } from '../../utils/emitter'
@@ -54,7 +53,6 @@ class TaiKhoan extends Component {
         this.setState({
             ...copyState
         })
-        console.log(this.state[id])
     }
 
 
@@ -200,7 +198,7 @@ class TaiKhoan extends Component {
             this.searchTaiKhoan(this.state.type, this.state.keyword)
           }
         }
-      }
+    }
 
     //----------------------------------------------------------------------------------------------
     //RENDER

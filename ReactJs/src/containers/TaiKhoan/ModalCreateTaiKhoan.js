@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import { emitter } from '../../utils/emitter';
 
 class ModalCreateTaiKhoan extends Component {
   constructor(props) {
@@ -11,7 +9,7 @@ class ModalCreateTaiKhoan extends Component {
       message: "",
       taiKhoan: {
         username: "",
-        password: "", // Added password field
+        password: "",
         vaiTro: "",
         hoTen: "",
         diaChi: "",
@@ -27,7 +25,7 @@ class ModalCreateTaiKhoan extends Component {
       message: "",
       taiKhoan: {
         username: "",
-        password: "", // Added password field
+        password: "",
         vaiTro: "",
         hoTen: "",
         diaChi: "",
@@ -49,6 +47,7 @@ class ModalCreateTaiKhoan extends Component {
     if (event.key === 'Enter') {
       const inputElements = document.querySelectorAll('.modal-user-container input, .modal-user-container select');
       const currentIndex = Array.from(inputElements).indexOf(event.target);
+      console.log(currentIndex)
       if (currentIndex < inputElements.length - 1) {
         inputElements[currentIndex + 1].focus(); // Move focus to next input
       } else {

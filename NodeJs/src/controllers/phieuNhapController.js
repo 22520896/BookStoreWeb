@@ -48,14 +48,15 @@ let handleCreatePhieuNhap = async (req, res) => {
 
 //TÌM KIẾM PHIẾU NHẬP
 let handleSearchPhieuNhap = async (req, res) => {
+    let type = req.query.type
     let keyword = req.query.keyword
-    if (!keyword) {
+    if (!keyword || !type) {
         return res.status(500).json({
             errCode: 1,
-            message: "Vui lòng nhập ngày tìm kiếm!"
+            message: "Vui lòng nhập đầy đủ thông tin!"
         })
     }
-    let data = await phieuNhapService.searchPhieuNhap(keyword)
+    let data = await phieuNhapService.searchPhieuNhap(type, keyword)
     return res.status(200).json(data)
 }
 module.exports = {

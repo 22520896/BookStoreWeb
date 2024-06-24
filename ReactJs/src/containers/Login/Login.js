@@ -81,38 +81,30 @@ class Login extends Component {
         return (
             <div className='login-background'>
                 <div className='login-container'>
-                    <div className='login-content row'>
-                        <div className='col-12 text-center text-login'>ĐĂNG NHẬP</div>
-                        <div className='col-12 form-group login-input'>
-                            <label>Username</label>
-                            <input type="text" className='form-control'
-                                placeholder='Nhập username' value={this.state.username}
-                                onChange={(event) => this.handleOnChangeUsername(event)}
-                                onKeyDown={this.handleKeyDown} />
-                        </div>
-                        <div className='col-12 form-group login-input'>
-                            <label>Password</label>
-                            <div className='custom-input-password'>
-                                <input type={this.state.isShowPassword ? 'text' : "password"} className='form-control'
-                                    placeholder='Nhập password' value={this.state.password}
-                                    onChange={(event) => this.handleOnChangePassword(event)}
-                                    onKeyDown={this.handleKeyDown} />
-                                <span onClick={() => { this.handleShowHidePassword() }}>
-                                    <i className={this.state.isShowPassword ? "far fa-eye-slash" : "far fa-eye"}></i>
-                                </span>
+                    <div className='col-12 text-center text-login'>WELCOME!</div>
+                    <input type="text" className='form-control_username'
+                        placeholder='Username' value={this.state.username}
+                        onChange={(event) => this.handleOnChangeUsername(event)}
+                        onKeyDown={this.handleKeyDown} />
 
-                            </div>
-                        </div>
-
-                        <div className='col-12' style={{ color: "red" }}>
-                            {this.state.message}
-                        </div>
-
-                        <div className='col-12'>
-                            <button className='btn-login' onClick={() => { this.handleLogin() }}>Đăng nhập</button>
-                        </div>
+                    <input type={this.state.isShowPassword ? 'text' : "password"} className='form-control_password'
+                        placeholder='Password' value={this.state.password}
+                        onChange={(event) => this.handleOnChangePassword(event)}
+                        onKeyDown={this.handleKeyDown} />
+                    <span onClick={() => { this.handleShowHidePassword() }}>
+                        <i className={this.state.isShowPassword ? "far fa-eye-slash" : "far fa-eye"}></i>
+                    </span>
+                    <div className='col-12 text-center message' style={{ color: "red" }}>
+                        {this.state.message}
                     </div>
+                    <div className='col-12'>
+                        <button className='btn-login' onClick={() => { this.handleLogin() }}>LOGIN</button>
+                    </div>
+                    <div className='col-12 text-center forgot-password'>Forgot password?</div>
+
                 </div>
+                <div className='login-background2'> </div>
+                <div className='col-12 text-center title'>NHÀ SÁCH ABC</div>
             </div>
         )
     }
