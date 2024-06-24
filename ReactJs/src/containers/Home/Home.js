@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-
+import './Home.scss'
 class Home extends Component {
 
     render() {
@@ -9,7 +9,15 @@ class Home extends Component {
         let linkToRedirect = isLoggedIn ? '/' : '/login';
 
         return (
-            <Redirect to={linkToRedirect} />
+            <>
+                <Redirect to={linkToRedirect} />
+                <div className='home-body-container'>
+                    <div className='img'></div>
+                    <div className='background_1'></div>
+                    <div className='background_2'></div>
+                </div>
+            </>
+
         );
     }
 

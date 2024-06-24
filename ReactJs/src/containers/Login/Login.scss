@@ -1,56 +1,144 @@
+//background
+
 .login-background {
-    background: linear-gradient(to top, #c9c9ff 50%, #9090fa 90%) no-repeat;
+    background: #355353 url('../../assets/images/background_login.png') no-repeat center center;
+    background-size:cover;
     height: 100vh;
+    width: 100vw;
+    position: relative;
+    
+    //background_people
+    .login-background2{
+    background: url('../../assets/images/Bookshop-bro2.png');
 
-
-    .login-container {
-        width: 400px;
-        margin: auto;
-        border-radius: 10px;
-        background-color: white;
         position: absolute;
-        top: 0;
-        bottom: 0;
-        right: 0;
-        left: 0;
-        height: 300px;
+        width: 510px;
+        height: 510px;
+        top: 30%;
+        right: 5%;
+    }
 
-        .login-content {
-            padding: 20px;
+    //khung login
+    .login-container {
+        position: absolute;
+        width: 533px;
+        height: 550px;
 
-            .text-login {
-                text-align: center;
-                font-size: 25px;
-                font-weight: bold;
-                padding-top: 10px;
-                font-family: 'Times New Roman', Times, serif
-            }
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
 
-            .login-input {
-                margin: 7px 0;
+        display: flex;
+        justify-content: center;
 
-                .custom-input-password {
-                    position: relative;
+        background: rgba(255, 255, 255, 0.93);
+        mix-blend-mode: normal;
+        box-shadow: 20px 10px 20px rgba(0, 0, 0, 0.25);
+        border-radius: 60px;
 
-                    i {
-                        position: absolute;
-                        right: 10px;
-                        top: 10px;
-                        cursor: pointer
-                    }
-                }
-            }
+        //WELCOME!
+        .text-login {
+            position: absolute;
 
-            .btn-login {
-                width: 100%;
-                margin: 10px 0;
-                height: 30px;
-                border: none;
-                border-radius: 15px;
-                outline: none;
-                color: white;
-                background: blue
-            }
+            top: 10%;
+
+            font-family: 'Inika';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 50px;
+            line-height: 65px;
+            letter-spacing: 0.04em;
+            color: #856A32;
+            text-align: center;
         }
+        //Khung username
+        .form-control_username{
+            position: absolute;
+            width: 435px;
+            height: 78px;
+
+            top: 25%;
+            align-items: center;
+
+            background: rgba(159, 138, 93, 0.38);
+            border: 2px solid #856A32;
+            border-radius: 29px;    
+
+            }        
+        //Chữ username trong khung nhập
+        .form-control_username::placeholder{
+
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 32px;
+            line-height: 39px;
+            text-align: center;
+
+            color: rgba(133, 106, 50, 0.58);
+        }    
+
+        .form-control_password{
+
+            position: absolute;
+            width: 435px;
+            height: 78px;
+
+            top: 45%;
+            align-items: center;
+
+            background: rgba(159, 138, 93, 0.38);
+            border: 2px solid #856A32;
+            border-radius: 29px; 
+            
+        }
+        .form-control_password::placeholder{
+
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 32px;
+            line-height: 39px;
+            text-align: center;
+
+            color: rgba(133, 106, 50, 0.58);
+
+        }
+        i {
+            position: absolute;
+            top: 50%;
+            right: 12%;
+            cursor: pointer;
+            color: rgba(133, 106, 50, 0.58);
+        }
+
+        //khung login + chữ login
+        .col-12{
+            .btn-login {
+                position: absolute;
+                width: 296px;
+                height: 59px;
+    
+                top: 70%;
+                left: 23%;
+    
+                background: #856A32;
+                border-radius: 29.5px;
+                    /* LOGIN */
+    
+                    font-family : 'Inter';
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 30px;
+                    line-height: 36px;
+    
+                    color: rgba(255, 254, 254, 0.98);
+        }
+            
+
+            }
+
+            
+        
     }
 }

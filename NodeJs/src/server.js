@@ -7,8 +7,8 @@ const api = require('./routes/api')
 const connectDB = require('./config/connectDB')
 
 const corsOptions = {
-  origin: true,
-  credentials: true,
+  origin: 'http://localhost:3000', // Thay đổi địa chỉ này phù hợp với địa chỉ frontend của bạn
+  credentials: true, // Cho phép gửi cookie
 };
 
 
