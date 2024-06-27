@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './TaiKhoan.scss'
 import taiKhoanService from '../../services/taiKhoanService.js';
 import ModalCreateTaiKhoan from './ModalCreateTaiKhoan';
 import ModalEditTaiKhoan from "./ModalEditTaiKhoan"
 import ModalDeleteTaiKhoan from "./ModalDeleteTaiKhoan"
-import { toast, Slide, Zoom, Flip, Bounce } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 // import { chain } from 'lodash';
 import { emitter } from '../../utils/emitter'
@@ -54,7 +53,6 @@ class TaiKhoan extends Component {
         this.setState({
             ...copyState
         })
-        console.log(this.state[id])
     }
 
 
@@ -200,7 +198,7 @@ class TaiKhoan extends Component {
             this.searchTaiKhoan(this.state.type, this.state.keyword)
           }
         }
-      }
+    }
 
     //----------------------------------------------------------------------------------------------
     //RENDER
@@ -299,12 +297,12 @@ class TaiKhoan extends Component {
                     <table class="table table-striped mt-3">
                         <thead>
                             <tr>
-                                <th>STT</th>
+                                <th className='stt'>STT</th>
                                 <th>Username</th>
                                 <th>Họ Tên</th>
                                 <th>Số Điện Thoại</th>
                                 <th>Địa Chỉ</th>
-                                <th>Vai Trò</th>
+                                <th className='vaitro'>Vai Trò</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -313,12 +311,12 @@ class TaiKhoan extends Component {
                                 return (
                                     <>
                                         <tr key={index}>
-                                            <th>{index + 1}</th>
+                                            <td className='stt'>{index + 1}</td>
                                             <td>{item.username}</td>
                                             <td>{item.hoTen}</td>
                                             <td>{item.sdt}</td>
                                             <td>{item.diaChi}</td>
-                                            <td>{item.vaiTro}</td>
+                                            <td className='vaitro'>{item.vaiTro}</td>
                                             <td style={{ textAlign: 'center' }}>
                                                 <button className='btn-edit'
                                                     onClick={() => this.openEditTaiKhoan(item)}><i class="fas fa-pencil-alt"></i></button>

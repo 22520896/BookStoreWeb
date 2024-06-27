@@ -2,6 +2,7 @@
     width: 100vw;
     height: 100vh;
     background-color: #EFF1E6;
+    overflow: none !important;
     display: flex; 
     //align-items: center; 
     justify-content: center;
@@ -30,5 +31,7 @@
         position: relative; 
         z-index: 2;
     }
-    
+}
+body{
+    overflow: none !important;
 }

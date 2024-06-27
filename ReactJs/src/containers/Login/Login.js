@@ -6,8 +6,7 @@ import * as actions from "../../store/actions";
 
 import './Login.scss';
 
-import taiKhoanService from '../../services/taiKhoanService.js'
-
+import taiKhoanService from '../../services/taiKhoanService.js';
 
 class Login extends Component {
     constructor(props) {
@@ -39,12 +38,11 @@ class Login extends Component {
 
         try {
             let data = await taiKhoanService.handleLogin(this.state.username, this.state.password)
-            if (data && data.errCode != 0) {
+            if (data && data.errCode !== 0) {
                 this.setState({
                     message: data.message
                 })
-            }
-            else if (data && data.errCode == 0) {
+            } else if (data && data.errCode === 0) {
                 this.props.userLoginSuccess(data.taiKhoan)
                 console.log('Đăng nhập thành công!')
             }
@@ -84,25 +82,27 @@ class Login extends Component {
                     <div className='col-12 text-center text-login'>WELCOME!</div>
                     <input type="text" className='form-control_username'
                         placeholder='Username' value={this.state.username}
-                        onChange={(event) => this.handleOnChangeUsername(event)}
+                        onChange={this.handleOnChangeUsername}
                         onKeyDown={this.handleKeyDown} />
 
                     <input type={this.state.isShowPassword ? 'text' : "password"} className='form-control_password'
                         placeholder='Password' value={this.state.password}
-                        onChange={(event) => this.handleOnChangePassword(event)}
+                        onChange={this.handleOnChangePassword}
                         onKeyDown={this.handleKeyDown} />
-                    <span onClick={() => { this.handleShowHidePassword() }}>
+                    <span onClick={this.handleShowHidePassword}>
                         <i className={this.state.isShowPassword ? "far fa-eye-slash" : "far fa-eye"}></i>
                     </span>
-                    <div className='col-12' style={{ color: "red" }}>
+                    <div className='col-12 text-center message' style={{ color: "red" }}>
                         {this.state.message}
-
-                    <div className='col-12'>
-                            <button className='btn-login' onClick={() => { this.handleLogin() }}>Đăng nhập</button>
-                        </div>
                     </div>
+                    <div className='col-12'>
+                        <button className='btn-login' onClick={this.handleLogin}>LOGIN</button>
+                    </div>
+                    <div className='col-12 text-center forgot-password'>Forgot password?</div>
                 </div>
-                <div className='login-background2'> </div>
+                <div className='login-background2'></div>
+                <div className='col-12 text-center title'>NHÀ SÁCH ABC</div>
+                <div className='login-background2'></div>
             </div>
         )
     }
@@ -110,7 +110,7 @@ class Login extends Component {
 
 const mapStateToProps = state => {
     return {
-        languge: state.app.language
+        language: state.app.language
     };
 };
 

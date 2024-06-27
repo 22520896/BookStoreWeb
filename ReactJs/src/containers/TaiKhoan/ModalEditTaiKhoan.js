@@ -12,7 +12,7 @@ class ModalEditTaiKhoan extends Component {
         this.state = {
             message: "",
             taiKhoan: {
-                id: "",
+                idTK: "",
                 username: "",
                 vaiTro: "",
                 hoTen: "",
@@ -141,10 +141,10 @@ class ModalEditTaiKhoan extends Component {
                     </div>
                 </ModalBody>
                 <ModalFooter>
-                    <Button type="submit" color="primary" className="px-2" onClick={() => { this.editTaiKhoan() }}>
+                    <Button type="submit" color="primary" className="submit px-2" onClick={() => { this.editTaiKhoan() }}>
                         Lưu
                     </Button>{' '}
-                    <Button color="secondary" className='px-2' onClick={() => { this.toggle() }}>
+                    <Button color="secondary" className='exit px-2' onClick={() => { this.toggle() }}>
                         Thoát
                     </Button>
                 </ModalFooter>

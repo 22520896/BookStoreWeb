@@ -3,19 +3,23 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './KhachHang.scss'
 import khachHangService from '../../services/khachHangService'
+import ModalCreateKhachHang from './ModalCreateKhachHang';
+import ModalEditKhachHang from "./ModalEditKhachHang"
+import ModalDeleteKhachHang from "./ModalDeleteKhachHang"
+import { toast, Slide, Zoom, Flip, Bounce } from 'react-toastify';
 class KhachHang extends Component {
 
     constructor(props) {
         super(props)
         this.state = {
             DSKhachHang: [],
-            // isOpenModalCreateKhachHang: false,
-            // isOpenModalEditKhachHang: false,
-            // isOpenModalDeleteKhachHang: false,
-            // KhachHangEdit: {}, 
-            // type: "",
-            // keyword: "",
-            // idDelete: ""
+            isOpenModalCreateKhachHang: false,
+            isOpenModalEditKhachHang: false,
+            isOpenModalDeleteKhachHang: false,
+            khachHangEdit: {},
+            type: "",
+            keyword: "",
+            idDelete: ""
         }
     }
 
@@ -23,14 +27,31 @@ class KhachHang extends Component {
         await this.getDSKhachHang()
     }
 
-    // handleOnChange = (event, id) => {
-    //     let copyState = { ...this.state }
-    //     copyState[id] = event.target.value
-    //     this.setState({
-    //         ...copyState
-    //     })
-    //     console.log(this.state[id])
-    // }
+    thongBao = (errCode, message) => {
+        let prop = {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 2000,
+            closeButton: false,
+            className: 'custom-toast', // Thêm class tùy chỉnh
+            bodyClassName: 'custom-toast-body' // Thêm class body tùy chỉnh
+        }
+        if (errCode === 0) {
+            toast.success(message, prop)
+        }
+        else {
+            toast.error(message, prop)
+        }
+    }
+
+
+    handleOnChange = (event, id) => {
+        let copyState = { ...this.state }
+        copyState[id] = event.target.value
+        this.setState({
+            ...copyState
+        })
+        console.log(this.state[id])
+    }
 
 
     //GỌI API LẤY DANH SÁCH TÀI KHOẢN
@@ -43,125 +64,148 @@ class KhachHang extends Component {
         }
     }
 
-    // //------------------------------------------------------------------------
-    // //ĐÓNG/MỞ MODAL THÊM TÀI KHOẢN MỚI
-    // openCreateKhachHang = () => {
-    //     this.setState(
-    //         { isOpenModalCreateKhachHang: true }
-    //     )
-    // }
+    //------------------------------------------------------------------------
+    //ĐÓNG/MỞ MODAL THÊM TÀI KHOẢN MỚI
+    openCreateKhachHang = () => {
+        this.setState(
+            { isOpenModalCreateKhachHang: true }
+        )
+    }
 
-    // toggleModalCreateKhachHang = () => {
-    //     this.setState(
-    //         { isOpenModalCreateKhachHang: !this.state.isOpenModalCreateKhachHang }
-    //     )
-    // }
+    toggleModalCreateKhachHang = () => {
+        this.setState(
+            { isOpenModalCreateKhachHang: !this.state.isOpenModalCreateKhachHang }
+        )
+    }
 
-    // //GỌI API THÊM TÀI KHOẢN MỚI
-    // createKhachHang = async (data) => {
-    //     try {
-    //         let response = await KhachHangService.createKhachHang(data)
-    //         if (!response || response.errCode === 0) {
-    //             await this.getDSKhachHang()
-    //             this.setState({
-    //                 isOpenModalCreateKhachHang: false
-    //             })
-    //         } else {
-    //             alert(response.message)
-    //         }
-    //     } catch (e) {
-    //         console.log(e)
-    //     }
+    //GỌI API THÊM TÀI KHOẢN MỚI
+    createKhachHang = async (data) => {
+        try {
+            let response = await khachHangService.createKhachHang(data)
+            if (!response || response.errCode === 0) {
+                await this.getDSKhachHang()
+                this.setState({
+                    isOpenModalCreateKhachHang: false
+                })
 
-    // }
-    // //-------------------------------------------------------------------------------------------------------
+            }
+            this.thongBao(response.errCode, response.message)
+        } catch (e) {
+            console.log(e)
+        }
 
-    // //ĐÓNG/MỞ MODAL CHỈNH SỬA TÀI KHOẢN
-    // openEditKhachHang = async (data) => {
-    //     this.setState(
-    //         {
-    //             isOpenModalEditKhachHang: true,
-    //             KhachHangEdit: data
-    //         }
-    //     )
-    // }
+    }
+    //-------------------------------------------------------------------------------------------------------
 
-    // toggleModalEditKhachHang = () => {
-    //     this.setState(
-    //         { isOpenModalEditKhachHang: !this.state.isOpenModalEditKhachHang }
-    //     )
-    // }
+    //ĐÓNG/MỞ MODAL CHỈNH SỬA TÀI KHOẢN
+    openEditKhachHang = async (data) => {
+        this.setState(
+            {
+                isOpenModalEditKhachHang: true,
+                khachHangEdit: data
+            }
+        )
+    }
 
-    // //GỌI API CẬP NHẬT THÔNG TIN TÀI KHOẢN
-    // editKhachHang = async (KhachHang) => {
-    //     try {
-    //         let response = await KhachHangService.editKhachHang(KhachHang)
-    //         if (!response || response.errCode === 0) {
-    //             await this.getDSKhachHang()
-    //             this.setState({
-    //                 isOpenModalEditKhachHang: false
-    //             })
-    //         } else {
-    //             alert(response.message)
-    //         }
-    //     } catch (e) {
-    //         console.log(e)
-    //     }
-    // }
-    // //-------------------------------------------------------------------------------------------------------
-    // openDeleteKhachHang = async (id) => {
-    //     this.setState(
-    //         {
-    //             isOpenModalDeleteKhachHang: true,
-    //             idDelete: id
-    //         }
-    //     )
-    // }
+    toggleModalEditKhachHang = () => {
+        this.setState(
+            { isOpenModalEditKhachHang: !this.state.isOpenModalEditKhachHang }
+        )
+    }
 
-    // toggleModalDeleteKhachHang = () => {
-    //     this.setState(
-    //         { isOpenModalDeleteKhachHang: !this.state.isOpenModalDeleteKhachHang }
-    //     )
-    // }
-    // //GỌI API XÓA TÀI KHOẢN
-    // deleteKhachHang = async (id) => {
-    //     try {
-    //         let response = await KhachHangService.deleteKhachHang(id)
-    //         if (response && response.errCode === 0) {
-    //             await this.getDSKhachHang()
-    //             this.setState({
-    //                 isOpenModalDeleteKhachHang: false
-    //             })
-    //         } else {
-    //             alert(response.message)
-    //         }
-    //     } catch (e) {
-    //         console.log(e)
-    //     }
-    // }
+    //GỌI API CẬP NHẬT THÔNG TIN TÀI KHOẢN
+    editKhachHang = async (khachHang) => {
+        try {
+            let response = await khachHangService.editKhachHang(khachHang)
+            if (!response || response.errCode === 0) {
+                await this.getDSKhachHang()
+                this.setState({
+                    isOpenModalEditKhachHang: false
+                })
 
-    // //----------------------------------------------------------------------------------------------
-    // //GỌI API TÌM KIẾM TÀI KHOẢN
-    // searchKhachHang = async (type, keyword) => {
-    //     try {
-    //         let response = await KhachHangService.searchKhachHang(type, keyword)
-    //         if (response && response.errCode === 0) {
-    //             this.setState({
-    //                 DSKhachHang: response.DSKhachHang
-    //             })
-    //         }
-    //     } catch (e) {
-    //         console.log(e)
-    //     }
-    // }
+            }
+            this.thongBao(response.errCode, response.message)
+        } catch (e) {
+            console.log(e)
+        }
+    }
+    //-------------------------------------------------------------------------------------------------------
+    openDeleteKhachHang = async (id) => {
+        this.setState(
+            {
+                isOpenModalDeleteKhachHang: true,
+                idDelete: id
+            }
+        )
+    }
 
+    toggleModalDeleteKhachHang = () => {
+        this.setState(
+            { isOpenModalDeleteKhachHang: !this.state.isOpenModalDeleteKhachHang }
+        )
+    }
+    //GỌI API XÓA TÀI KHOẢN
+    deleteKhachHang = async (id) => {
+        try {
+            let response = await khachHangService.deleteKhachHang(id)
+            if (response && response.errCode === 0) {
+                await this.getDSKhachHang()
+                this.setState({
+                    isOpenModalDeleteKhachHang: false
+                })
+            }
+            this.thongBao(response.errCode, response.message)
+        } catch (e) {
+            console.log(e)
+        }
+    }
 
+    //----------------------------------------------------------------------------------------------
+    //GỌI API TÌM KIẾM TÀI KHOẢN
+    searchKhachHang = async (type, keyword) => {
+        try {
+            if (!type) {
+                this.thongBao(-1, "Vui lòng chọn mục tìm kiếm!")
+            }
+            else {
+                if (!keyword) {
+                    this.thongBao(-1, "Vui lòng nhập từ khóa tìm kiếm!")
+                }
+                else {
+                    let response = await khachHangService.searchKhachHang(type, keyword)
+                    if (response && response.errCode === 0) {
+                        this.setState({
+                            DSKhachHang: response.DSKhachHang
+                        })
+                    }
+                    else { this.thongBao(response.errCode, response.message) }
+                }
+            }
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+    handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+          const inputElements = document.querySelectorAll('.search input, .search select');
+          const currentIndex = Array.from(inputElements).indexOf(event.target);
+          if (currentIndex < inputElements.length - 1) {
+            inputElements[currentIndex + 1].focus();
+          } else {
+            this.searchKhachHang(this.state.type, this.state.keyword)
+          }
+        }
+      }
+
+    //----------------------------------------------------------------------------------------------
+    //RENDER
     render() {
         let DSKhachHang = this.state.DSKhachHang
         return (
             <div className="kh-container">
                 <div className="title text-center">Quản Lí Khách Hàng</div>
-                {/* <ModalCreateKhachHang
+                <ModalCreateKhachHang
                     isOpen={this.state.isOpenModalCreateKhachHang}
                     toggleModalCreateKhachHang={this.toggleModalCreateKhachHang}
                     createKhachHang={this.createKhachHang}
@@ -170,7 +214,7 @@ class KhachHang extends Component {
                     <ModalEditKhachHang
                         isOpen={this.state.isOpenModalEditKhachHang}
                         toggleModalEditKhachHang={this.toggleModalEditKhachHang}
-                        KhachHang={this.state.KhachHangEdit}
+                        khachHang={this.state.khachHangEdit}
                         editKhachHang={this.editKhachHang}
                     />}
                 {this.state.isOpenModalDeleteKhachHang &&
@@ -179,13 +223,13 @@ class KhachHang extends Component {
                         toggleModalDeleteKhachHang={this.toggleModalDeleteKhachHang}
                         id={this.state.idDelete}
                         deleteKhachHang={this.deleteKhachHang}
-                    />} */}
-                {/* <div className='mt-1 mx-3'>
+                    />}
+                <div className='mt-1 mx-3'>
                     <button className='btn btn-primary px-2'
                         onClick={() => this.openCreateKhachHang()}>
                         <i className='fas fa-plus'></i> Thêm Khách Hàng</button>
-                </div> */}
-                {/* <div class="col-12">
+                </div>
+                <div class="col-12">
                     <div class="search-container">
                         <div className='mt-1 mx-3'>
                             <button className='btn px-3'
@@ -194,16 +238,16 @@ class KhachHang extends Component {
                         <div class="form-group search-div">
                             <div class="search">
                                 <span>
-                                    <select className='form-select type' onChange={(event) => { this.handleOnChange(event, "type") }}>
+                                    <select className='form-select type' onChange={(event) => { this.handleOnChange(event, "type") }} onKeyDown={this.handleKeyDown}>
                                         <option value="">Chọn mục</option>
-                                        <option value="username">Username</option>
                                         <option value="hoTen">Họ Tên</option>
                                         <option value="sdt">Số điện thoại</option>
                                         <option value="diaChi">Địa chỉ</option>
-                                        <option value="vaiTro">Vai Trò</option>
+                                        <option value="email">Email</option>
                                     </select>
                                 </span>
-                                <input type="text" placeholder="Nhập từ khóa tìm kiếm" class="form-control keyword" onChange={(event) => { this.handleOnChange(event, "keyword") }} />
+                                <input type="text" placeholder="Nhập từ khóa tìm kiếm" class="form-control keyword" onChange={(event) => { this.handleOnChange(event, "keyword") }}
+                                onKeyDown={this.handleKeyDown} />
                             </div>
                             <div class="search-btn">
                                 <button type="submit" class="btn btn-base" onClick={() => { this.searchKhachHang(this.state.type, this.state.keyword) }}> <i class="fas fa-search"></i> </button>
@@ -211,51 +255,17 @@ class KhachHang extends Component {
                         </div>
                     </div>
                 </div>
-                <div className='user-table mt-4 mx-3'> */}
-                    {/* <table id="customers">
-                        <tbody>
-                            <tr>
-                                <th>STT</th>
-                                <th>Username</th>
-                                <th>Họ Tên</th>
-                                <th>Số Điện Thoại</th>
-                                <th>Địa Chỉ</th>
-                                <th>Vai Trò</th>
-                                <th></th>
-                            </tr>
-
-                            {DSKhachHang && DSKhachHang.map((item, index) => {
-                                return (
-                                    <>
-                                        <tr key={index}>
-                                            <td style={{ textAlign: 'center' }}>{index + 1}</td>
-                                            <td>{item.username}</td>
-                                            <td>{item.hoTen}</td>
-                                            <td>{item.sdt}</td>
-                                            <td>{item.diaChi}</td>
-                                            <td>{item.vaiTro}</td>
-                                            <td style={{ textAlign: 'center' }}>
-                                                <button className='btn-edit'
-                                                    onClick={() => this.openEditKhachHang(item)}><i class="fas fa-pencil-alt"></i></button>
-                                                <button className='btn-del'
-                                                    onClick={() => this.openDeleteKhachHang(item.idTK)}><i class="fas fa-trash"></i></button>
-                                            </td>
-                                        </tr>
-                                    </>
-                                )
-                            })
-                            }
-                        </tbody>
-                    </table> */}
+                <div className='kh-table mt-4 mx-3'>
                     <table class="table table-striped mt-3">
                         <thead>
                             <tr>
-                                <th>STT</th>
+                                <th className='stt'>STT</th>
                                 <th>Họ Tên</th>
                                 <th>Số Điện Thoại</th>
                                 <th>Địa Chỉ</th>
                                 <th>Email</th>
-                                <th>Tiền Nợ</th>
+                                <th className='tienno'>Tiền Nợ</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -263,20 +273,17 @@ class KhachHang extends Component {
                                 return (
                                     <>
                                         <tr key={index}>
-                                            <th>{index + 1}</th>
+                                            <td className='stt'>{index + 1}</td>
                                             <td>{item.ten}</td>
                                             <td>{item.sdt}</td>
-                                            <td>{item.email}</td>
                                             <td>{item.diaChi}</td>
-                                            <td>{item.tienNo}</td>
+                                            <td>{item.email}</td>
+                                            <td className='tienno'>{item.tienNo}</td>
                                             <td style={{ textAlign: 'center' }}>
                                                 <button className='btn-edit'
-                                                    //onClick={() => this.openEditKhachHang(item)}
-                                                    >
-                                                    <i class="fas fa-pencil-alt"></i></button>
+                                                    onClick={() => this.openEditKhachHang(item)}><i class="fas fa-pencil-alt"></i></button>
                                                 <button className='btn-del'
-                                                    //onClick={() => this.openDeleteKhachHang(item.idTK)}
-                                                    ><i class="fas fa-trash"></i></button>
+                                                    onClick={() => this.openDeleteKhachHang(item.sdt)}><i class="fas fa-trash"></i></button>
                                             </td>
                                         </tr>
                                     </>
@@ -286,7 +293,7 @@ class KhachHang extends Component {
                         </tbody>
                     </table>
                 </div>
-            //</div>
+            </div>
         );
     }
 
@@ -294,7 +301,6 @@ class KhachHang extends Component {
 
 const mapStateToProps = state => {
     return {
-
     };
 };
 

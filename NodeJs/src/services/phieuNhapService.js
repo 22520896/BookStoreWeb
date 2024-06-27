@@ -1,4 +1,5 @@
 const db = require('../models/index');
+const { Op } = require('sequelize')
 
 //LẤY DANH SÁCH PHIẾU NHẬP
 let getDSPhieuNhap = () => {
@@ -190,11 +191,15 @@ let createPhieuNhap = (data) => {
 
 
 //TÌM KIẾN PHIẾU NHẬP
-let searchPhieuNhap = (keyword) => {
+let searchPhieuNhap = (type, keyword) => {
     return new Promise(async (resolve, reject) => {
         try {
             let DSPhieuNhap = await db.PhieuNhap.findAll({
-                where: { ngayLap: keyword }
+                where: {
+                    [type]: {
+                        [Op.like]: `%${keyword}%`
+                    }
+                }
             })
             data = {}
 
@@ -205,7 +210,7 @@ let searchPhieuNhap = (keyword) => {
             }
             else {
                 data.errCode = 2
-                data.message = `Không tìm thấy phiếu nhập được lập vào ngày ${keyword}!`
+                data.message = `Không tìm thấy phiếu thu có thông tin khớp với từ khóa!`
                 data.DSPhieuNhap = []
             }
             resolve(data)

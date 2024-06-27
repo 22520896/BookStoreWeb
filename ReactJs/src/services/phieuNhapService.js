@@ -28,15 +28,16 @@ const createPhieuNhap = (data) => {
 
 
 //TÌM KIẾM PHIẾU NHẬP
-const searchPhieuNhap = (keyword) => {
+const searchPhieuNhap = (type, keyword) => {
     return axios.get('/search-phieunhap',{
         params:{
+            type: type,
             keyword: keyword
         }
     })
 }
 
-export {
+export default {
     getDSPhieuNhap,
     getCTPN,
     searchPhieuNhap,

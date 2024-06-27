@@ -5,10 +5,10 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { emitter } from '../../utils/emitter'
 import _ from 'lodash'
 
-class ModalDeleteTaiKhoan extends Component {
+class ModalDeleteKhachHang extends Component {
 
     constructor(props) {
-        super(props) //props = properties - truyền prop từ cha xuống con
+        super(props) 
         this.state = {
             message: "",
             id:""
@@ -28,29 +28,29 @@ class ModalDeleteTaiKhoan extends Component {
         this.setState({
             message: ""
         })
-        this.props.toggleModalDeleteTaiKhoan()
+        this.props.toggleModalDeleteKhachHang()
     }
 
 
     //GỌI API XÓA TÀI KHOẢN
-    deleteTaiKhoan = () => {
-            this.props.deleteTaiKhoan(this.state.id) //Định nghĩa ở cha, gọi ở con
+    deleteKhachHang = () => {
+            this.props.deleteKhachHang(this.state.id) //Định nghĩa ở cha, gọi ở con
     }
 
 
     render() {
         return (
             <Modal isOpen={this.props.isOpen} toggle={() => { this.toggle() }}
-                className="modal-user-container" size='lg' centered>
+                className="modal-delete-kh" size='lg' centered>
                 <ModalHeader toggle={() => { this.toggle() }}>
-                    XÓA TÀI KHOẢN?</ModalHeader>
+                    XÓA KHÁCH HÀNG?</ModalHeader>
                 <ModalBody>
                     <div className='container'>
-                        <h5>Bạn có chắc chắn muốn xóa tài khoản này?</h5>
+                        <h5>Bạn có chắc chắn muốn xóa khách hàng này?</h5>
                     </div>
                 </ModalBody>
                 <ModalFooter>
-                    <Button type="submit" color="danger" className="delete px-2" onClick={() => { this.deleteTaiKhoan() }}>
+                    <Button type="submit" color="danger" className="delete px-2" onClick={() => { this.deleteKhachHang() }}>
                         Xóa
                     </Button>{' '}
                     <Button color="secondary" className='exit px-2' onClick={() => { this.toggle() }}>
@@ -73,4 +73,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ModalDeleteTaiKhoan);
+export default connect(mapStateToProps, mapDispatchToProps)(ModalDeleteKhachHang);
