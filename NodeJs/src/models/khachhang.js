@@ -19,6 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     sdt: {
       type: DataTypes.STRING,
       primaryKey: true,
+      autoIncrement: true,
     },
     ten: DataTypes.STRING,
     diaChi: DataTypes.STRING,

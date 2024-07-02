@@ -45,21 +45,22 @@ let getCTPN = (idPN) => {
 let checkCTPN = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let sach = await db.Sach.findOne({
-                where: { tenSach: data.sach },
-            })
-            if (data.soLuong < process.env.MIN_SLNHAP) {
+            let soLuong = Number(data.soLuong)
+            if (soLuong < process.env.MIN_SLNHAP) {
                 resolve({
-                    errCode: 1,
+                    errCode: 2,
                     message: `Số lượng nhập ít nhất là ${process.env.MIN_SLNHAP}!`
                 })
             }
             else {
+                let sach = await db.Sach.findOne({
+                    where: { tenSach: data.sach },
+                })
                 if (sach) {
                     if (sach.soLuong >= process.env.MAX_SLTON_TRUOC_NHAP) {
                         resolve({
-                            errCode: 2,
-                            message: `Số lượng tồn của sách này là ${sach.soLuong}, chỉ được nhập sách có lượng tồn ít hơn ${process.env.MIN_SLTON}!`
+                            errCode: 3,
+                            message: `Số lượng tồn của sách này là ${sach.soLuong}, chỉ được nhập sách có lượng tồn ít hơn ${process.env.MAX_SLTON_TRUOC_NHAP}!`
                         })
                     }
                     else {
@@ -67,7 +68,7 @@ let checkCTPN = (data) => {
                             {
                                 errCode: 0,
                                 message: 'OK',
-                                sach
+
                             }
                         )
                     }
@@ -76,20 +77,18 @@ let checkCTPN = (data) => {
                 {
                     if (data.tacGia && data.theLoai && data.donGiaNhap) {
                         resolve({
-                            errCode: 4,
+                            errCode: 0,
                             message: 'Bạn vừa nhập 1 loại sách mới!'
                         })
                     }
                     else {
                         resolve({
-                            errCode: 5,
-                            message: 'Sách này không tồn tại trong kho. Vui lòng nhập đầy đủ thông tin!'
+                            errCode: 4,
+                            message: `Sách ${data.sach} không tồn tại trong kho. Vui lòng nhập đầy đủ thông tin!`
                         })
                     }
-
                 }
             }
-
         }
         catch (e) { reject(e) }
     })
@@ -103,13 +102,14 @@ let createPhieuNhap = (data) => {
             let phieuNhap = await db.PhieuNhap.create({
                 ngayLap: data.ngayLap,
             })
+
             ngay = new Date(data.ngayLap)
             let thangLap = ngay.getMonth() + 1
             let namLap = ngay.getFullYear()
 
             for (let ct of data.CTPN) {
                 let sach = await db.Sach.findOne({
-                    where: { idSach: ct.idSach },
+                    where: { tenSach: ct.sach },
                     raw: false
                 })
 
@@ -119,24 +119,24 @@ let createPhieuNhap = (data) => {
                         tenSach: ct.sach,
                         tacGia: ct.tacGia,
                         theLoai: ct.theLoai,
-                        soLuong: ct.soLuong,
-                        donGiaBan: ct.donGiaNhap * process.env.DG_BAN,
+                        soLuong: Number(ct.soLuong),
+                        donGiaBan: Number(ct.donGiaNhap) * process.env.DG_BAN,
                     })
 
                     //Cập nhật TonSach
-                    await db.tonSach.create({
+                    await db.TonSach.create({
                         idSach: sach.idSach,
                         thang: thangLap,
                         nam: namLap,
                         tonDau: 0,
-                        phatSinh: ct.soLuong,
+                        phatSinh: Number(ct.soLuong),
                     })
                 }
                 else {
                     //Cập nhật TonSach
                     let tonSach = await db.TonSach.findOne({
                         where: {
-                            idSach: ct.idSach,
+                            idSach: sach.idSach,
                             thang: thangLap,
                             nam: namLap
                         },
@@ -144,27 +144,26 @@ let createPhieuNhap = (data) => {
                     })
 
                     if (tonSach) {
-                        await db.tonSach.update({
-                            phatSinh: tonSach.phatSinh + ct.soLuong,
+                        await tonSach.update({
+                            phatSinh: tonSach.phatSinh + Number(ct.soLuong),
                         })
                     }
 
                     else {
-                        await db.tonSach.create({
-                            idSach: ct.idSach,
+                        await db.TonSach.create({
+                            idSach: sach.idSach,
                             thang: thangLap,
                             nam: namLap,
                             tonDau: sach.soLuong,
-                            phatSinh: ct.soLuong,
+                            phatSinh: Number(ct.soLuong),
                         })
                     }
 
                     //Cập nhật sách 
                     await sach.update({
-                        soLuong: sach.soLuong + ct.soLuong,
-                        donGiaBan: ct.donGiaNhap * process.env.DG_BAN
+                        soLuong: sach.soLuong + Number(ct.soLuong),
+                        donGiaBan: Number(ct.donGiaNhap) * process.env.DG_BAN
                     })
-
                 }
 
                 await db.CTPN.create({
@@ -173,8 +172,8 @@ let createPhieuNhap = (data) => {
                     sach: ct.sach,
                     theLoai: ct.theLoai,
                     tacGia: ct.tacGia,
-                    soLuong: ct.soLuong,
-                    donGiaNhap: ct.donGiaNhap
+                    soLuong: Number(ct.soLuong),
+                    donGiaNhap: Number(ct.donGiaNhap)
                 })
             }
 
@@ -194,13 +193,25 @@ let createPhieuNhap = (data) => {
 let searchPhieuNhap = (type, keyword) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let DSPhieuNhap = await db.PhieuNhap.findAll({
-                where: {
-                    [type]: {
-                        [Op.like]: `%${keyword}%`
+            let DSPhieuNhap = ""
+            if (type == 'ngayLap') {
+                DSPhieuNhap = await db.PhieuNhap.findAll({
+                    where: {
+                        ngayLap: {
+                            [Op.eq]: new Date(keyword)
+                        }
                     }
-                }
-            })
+                })
+            }
+            else {
+                DSPhieuNhap = await db.PhieuNhap.findAll({
+                    where: {
+                        [type]: {
+                            [Op.like]: `%${keyword}%`
+                        }
+                    }
+                })
+            }
             data = {}
 
             if (DSPhieuNhap.length != 0) {
@@ -210,7 +221,7 @@ let searchPhieuNhap = (type, keyword) => {
             }
             else {
                 data.errCode = 2
-                data.message = `Không tìm thấy phiếu thu có thông tin khớp với từ khóa!`
+                data.message = `Không tìm thấy phiếu nhập có thông tin khớp với từ khóa!`
                 data.DSPhieuNhap = []
             }
             resolve(data)
@@ -221,10 +232,51 @@ let searchPhieuNhap = (type, keyword) => {
 }
 
 
+//THAM CHIẾU SÁCH
+let referSach = (tenSach) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let sach = await db.Sach.findOne({
+                where: { tenSach: tenSach },
+            })
+            if (sach) {
+                if (sach.soLuong >= process.env.MAX_SLTON_TRUOC_NHAP) {
+                    resolve({
+                        errCode: 2,
+                        message: `Số lượng tồn của sách này là ${sach.soLuong}, chỉ được nhập sách có lượng tồn ít hơn ${process.env.MAX_SLTON_TRUOC_NHAP}!`
+                    })
+                }
+                else {
+                    let ct = {
+                        sach: sach.tenSach,
+                        theLoai: sach.theLoai,
+                        tacGia: sach.tacGia,
+                        donGiaNhap: sach.donGiaBan / process.env.DG_BAN
+                    }
+                    resolve(
+                        {
+                            errCode: 0,
+                            message: 'OK',
+                            ct
+                        })
+                }
+            }
+            else {
+                resolve({
+                    errCode: 3,
+                    message: `Sách ${tenSach} không tồn tại trong kho. Vui lòng nhập đầy đủ thông tin!`
+                })
+            }
+        }
+        catch (e) { reject(e) }
+    })
+}
+
 module.exports = {
     getDSPhieuNhap,
     getCTPN,
     searchPhieuNhap,
     checkCTPN,
-    createPhieuNhap
+    createPhieuNhap,
+    referSach
 }

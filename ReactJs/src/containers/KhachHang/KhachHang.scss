@@ -1,9 +1,10 @@
 .btn-edit {
+    font-size: 110%;
     width: 50px;
     border: none;
     outline: none;
-    background: transparent;
-    color: orange;
+    background: transparent;   
+    color: black;
 
     &:hover {
         background-color: transparent !important;
@@ -12,6 +13,7 @@
 }
 
 .btn-del {
+    font-size: 110%;
     width: 50px;
     border: none;
     outline: none;

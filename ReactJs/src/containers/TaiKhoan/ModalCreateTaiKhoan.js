@@ -47,7 +47,6 @@ class ModalCreateTaiKhoan extends Component {
     if (event.key === 'Enter') {
       const inputElements = document.querySelectorAll('.modal-user-container input, .modal-user-container select');
       const currentIndex = Array.from(inputElements).indexOf(event.target);
-      console.log(currentIndex)
       if (currentIndex < inputElements.length - 1) {
         inputElements[currentIndex + 1].focus(); // Move focus to next input
       } else {

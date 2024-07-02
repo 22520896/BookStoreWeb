@@ -6,9 +6,9 @@ import ModalCreateTaiKhoan from './ModalCreateTaiKhoan';
 import ModalEditTaiKhoan from "./ModalEditTaiKhoan"
 import ModalDeleteTaiKhoan from "./ModalDeleteTaiKhoan"
 import { toast } from 'react-toastify';
+import { LuTrash2 } from "react-icons/lu";
+import { FiEdit } from "react-icons/fi";
 
-// import { chain } from 'lodash';
-import { emitter } from '../../utils/emitter'
 
 class TaiKhoan extends Component {
 
@@ -259,42 +259,7 @@ class TaiKhoan extends Component {
                     </div>
                 </div>
                 <div className='user-table mt-4 mx-3'>
-                    {/* <table id="customers">
-                        <tbody>
-                            <tr>
-                                <th>STT</th>
-                                <th>Username</th>
-                                <th>Họ Tên</th>
-                                <th>Số Điện Thoại</th>
-                                <th>Địa Chỉ</th>
-                                <th>Vai Trò</th>
-                                <th></th>
-                            </tr>
-
-                            {DSTaiKhoan && DSTaiKhoan.map((item, index) => {
-                                return (
-                                    <>
-                                        <tr key={index}>
-                                            <td style={{ textAlign: 'center' }}>{index + 1}</td>
-                                            <td>{item.username}</td>
-                                            <td>{item.hoTen}</td>
-                                            <td>{item.sdt}</td>
-                                            <td>{item.diaChi}</td>
-                                            <td>{item.vaiTro}</td>
-                                            <td style={{ textAlign: 'center' }}>
-                                                <button className='btn-edit'
-                                                    onClick={() => this.openEditTaiKhoan(item)}><i class="fas fa-pencil-alt"></i></button>
-                                                <button className='btn-del'
-                                                    onClick={() => this.openDeleteTaiKhoan(item.idTK)}><i class="fas fa-trash"></i></button>
-                                            </td>
-                                        </tr>
-                                    </>
-                                )
-                            })
-                            }
-                        </tbody>
-                    </table> */}
-                    <table class="table table-striped mt-3">
+                    <table class="table table-striped mt-3 ">
                         <thead>
                             <tr>
                                 <th>STT</th>
@@ -319,9 +284,9 @@ class TaiKhoan extends Component {
                                             <td>{item.vaiTro}</td>
                                             <td style={{ textAlign: 'center' }}>
                                                 <button className='btn-edit'
-                                                    onClick={() => this.openEditTaiKhoan(item)}><i class="fas fa-pencil-alt"></i></button>
+                                                    onClick={() => this.openEditTaiKhoan(item)}><FiEdit /></button>
                                                 <button className='btn-del'
-                                                    onClick={() => this.openDeleteTaiKhoan(item.idTK)}><i class="fas fa-trash"></i></button>
+                                                    onClick={() => this.openDeleteTaiKhoan(item.idTK)}><LuTrash2 /></button>
                                             </td>
                                         </tr>
                                     </>

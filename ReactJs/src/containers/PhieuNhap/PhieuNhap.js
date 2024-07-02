@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
-import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './PhieuNhap.scss'
 import phieuNhapService from '../../services/phieuNhapService'
 import { toast } from 'react-toastify';
+import ModalCreatePhieuNhap from './ModalCreatePhieuNhap';
+import moment from 'moment';
+import { GoPaste } from "react-icons/go";
+import ModalViewPhieuNhap from './ModalViewPhieuNhap';
+
 
 class PhieuNhap extends Component {
     constructor(props) {
@@ -11,12 +15,17 @@ class PhieuNhap extends Component {
         this.state = {
             DSPhieuNhap: [],
             isOpenModalCreatePhieuNhap: false,
-            isOpenModalCTPN: false,
-            CTPN: {},
+            isOpenModalViewPhieuNhap: false,
+            PN: "",
             type: "",
             keyword: "",
+            date: new Date().toISOString().slice(0, 10)
         }
     }
+    async componentDidMount() {
+        await this.getDSPhieuNhap()
+    }
+
     handleOnChange = (event, id) => {
         let copyState = { ...this.state }
         copyState[id] = event.target.value
@@ -31,8 +40,8 @@ class PhieuNhap extends Component {
             position: toast.POSITION.TOP_CENTER,
             autoClose: 2000,
             closeButton: false,
-            className: 'custom-toast', 
-            bodyClassName: 'custom-toast-body' 
+            className: 'custom-toast',
+            bodyClassName: 'custom-toast-body'
         }
         if (errCode === 0) {
             toast.success(message, prop)
@@ -52,25 +61,31 @@ class PhieuNhap extends Component {
         }
     }
 
-        
+
     //GỌI API TÌM KIẾM TÀI KHOẢN
-    searchTaiKhoan = async (type, keyword) => {
+    searchPhieuNhap = async (type) => {
         try {
             if (!type) {
                 this.thongBao(-1, "Vui lòng chọn mục tìm kiếm!")
-            }
-            else {
-                if (!keyword) {
-                    this.thongBao(-1, "Vui lòng nhập từ khóa tìm kiếm!")
+            }            
+            else {       
+                let keyword = type == 'ngayLap' ? this.state.date : this.state.keyword
+                if (type == 'ngayLap' && !this.state.date){
+                    this.thongBao(-1, "Ngày lập không hợp lệ!")
                 }
-                else {
-                    let response = await phieuNhapService.searchPhieuNhap(type, keyword)
-                    if (response && response.errCode === 0) {
-                        this.setState({
-                            DSPhieuNhap: response.DSPhieuNhap
-                        })
+                else{
+                    if (!keyword) {
+                        this.thongBao(-1, "Vui lòng nhập từ khóa tìm kiếm!")
                     }
-                    else { this.thongBao(response.errCode, response.message) }
+                    else {
+                        let response = await phieuNhapService.searchPhieuNhap(type, keyword)
+                        if (response && response.errCode === 0) {
+                            this.setState({
+                                DSPhieuNhap: response.DSPhieuNhap
+                            })
+                        }
+                        else { this.thongBao(response.errCode, response.message) }
+                    }
                 }
             }
         } catch (e) {
@@ -78,48 +93,84 @@ class PhieuNhap extends Component {
         }
     }
 
-    handleKeyDown = (event) => {
+    handleKeyDown = (event, id) => {
         if (event.key === 'Enter') {
-          const inputElements = document.querySelectorAll('.search input, .search select');
-          const currentIndex = Array.from(inputElements).indexOf(event.target);
-          if (currentIndex < inputElements.length - 1) {
-            inputElements[currentIndex + 1].focus();
-          } else {
-            this.searchTaiKhoan(this.state.type, this.state.keyword)
-          }
+            const inputElements = document.querySelectorAll('.search input, .search select');
+            if (id < inputElements.length - 1) {
+                inputElements[id+ 1].focus();
+            } else {
+                this.searchPhieuNhap(this.state.type)
+            }
         }
     }
 
+    openCreatePhieuNhap = () => {
+        this.setState(
+            { isOpenModalCreatePhieuNhap: true }
+        )
+    }
+
+    toggleModalCreatePhieuNhap = () => {
+        this.setState(
+            { isOpenModalCreatePhieuNhap: !this.state.isOpenModalCreatePhieuNhap }
+        )
+    }
+
+    createPhieuNhap = async (data) => {
+        try {
+            let response = await phieuNhapService.createPhieuNhap(data)
+            if (response && response.errCode === 0) {
+                await this.getDSPhieuNhap()
+                this.setState({
+                    isOpenModalCreatePhieuNhap: false
+                })
+            }
+            this.thongBao(response.errCode, response.message)
+        } catch (e) {
+            console.log(e)
+        }
+    }
+    toggleModalViewPhieuNhap = () => {
+        this.setState(
+            { isOpenModalViewPhieuNhap: !this.state.isOpenModalViewPhieuNhap }
+        )
+    }
+
+    openModalViewPhieuNhap = async (PN) => {
+        let response = await phieuNhapService.getCTPN(PN.idPN)
+        if (response.errCode == 0) {
+            this.setState({
+                PN: {
+                    ngayLap: PN.ngayLap,
+                    CTPN: response.CTPN,
+                }, 
+
+                isOpenModalViewPhieuNhap: true
+            })            
+        }
+        else this.thongBao (-1, response.message)
+    }
     //----------------------------------------------------------------------------------------------
     //RENDER
     render() {
         let DSPhieuNhap = this.state.DSPhieuNhap
-        let date = new Date().toISOString().slice(0, 10)
         return (
             <div className="pn-container">
                 <div className="title text-center">Quản Lí Nhập Sách</div>
-                {/* <ModalCreatePhieuNhap
-                    isOpen={this.state.isOpenModalCreateKhachHang}
-                    toggleModalCreateKhachHang={this.toggleModalCreateKhachHang}
-                    createKhachHang={this.createKhachHang}
+                <ModalCreatePhieuNhap
+                    isOpen={this.state.isOpenModalCreatePhieuNhap}
+                    toggleModalCreatePhieuNhap={this.toggleModalCreatePhieuNhap}
+                    createPhieuNhap={this.createPhieuNhap}
                 />
-                {this.state.isOpenModalEditKhachHang &&
-                    <ModalEditKhachHang
-                        isOpen={this.state.isOpenModalEditKhachHang}
-                        toggleModalEditKhachHang={this.toggleModalEditKhachHang}
-                        khachHang={this.state.khachHangEdit}
-                        editKhachHang={this.editKhachHang}
-                    />}
-                {this.state.isOpenModalDeleteKhachHang &&
-                    <ModalDeleteKhachHang
-                        isOpen={this.state.isOpenModalDeleteKhachHang}
-                        toggleModalDeleteKhachHang={this.toggleModalDeleteKhachHang}
-                        id={this.state.idDelete}
-                        deleteKhachHang={this.deleteKhachHang}
-                    />} */}
+                <ModalViewPhieuNhap
+                    isOpen={this.state.isOpenModalViewPhieuNhap}
+                    toggleModalViewPhieuNhap={this.toggleModalViewPhieuNhap}
+                    PN={this.state.PN}
+                />
+
                 <div className='mt-1 mx-3'>
                     <button className='btn btn-primary px-2'
-                    >
+                        onClick={() => this.openCreatePhieuNhap()}>
                         <i className='fas fa-plus'></i> Thêm Phiếu Nhập</button>
                 </div>
                 <div class="col-12">
@@ -131,17 +182,17 @@ class PhieuNhap extends Component {
                         <div class="form-group search-div">
                             <div class="search">
                                 <span>
-                                    <select className='form-select type' onChange={(event) => { this.handleOnChange(event, "type") }}>
+                                    <select className='form-select type' onChange={(event) => { this.handleOnChange(event, "type") }} onKeyDown={(event) => { this.handleKeyDown(event, 0) }}>
                                         <option value="">Chọn mục</option>
                                         <option value="idPN">Mã Phiếu</option>
                                         <option value="ngayLap">Ngày Lập</option>
                                     </select>
                                 </span>
-                                <input type={this.state.type == 'ngayLap' ? 'date' : 'text'} placeholder="Nhập từ khóa tìm kiếm" class="form-control keyword" value={this.state.keyword}
-                                    onChange={(event) => { this.handleOnChange(event, "keyword") }} />
+                                <input type={this.state.type == 'ngayLap' ? 'date' : 'text'} placeholder="Nhập từ khóa tìm kiếm" class="form-control keyword" value={this.state.type == 'ngayLap' ? this.state.date : this.state.keyword}
+                                    onChange={(event) => { this.handleOnChange(event, this.state.type == 'ngayLap' ? 'date' : "keyword") }} onKeyDown={(event) => { this.handleKeyDown(event, 1) }}/>
                             </div>
                             <div class="search-btn">
-                                <button type="submit" class="btn btn-base" onClick={() => { this.searchTaiKhoan(this.state.type, this.state.keyword) }} > <i class="fas fa-search"></i> </button>
+                                <button type="submit" class="btn btn-base" onClick={() => { this.searchPhieuNhap(this.state.type) }} > <i class="fas fa-search"></i> </button>
                             </div>
                         </div>
                     </div>
@@ -163,10 +214,9 @@ class PhieuNhap extends Component {
                                         <tr key={index}>
                                             <th>{index + 1}</th>
                                             <td>{item.idPN}</td>
-                                            <td>{item.ngayLap}</td>
+                                            <td>{moment(item.ngayLap).format("DD/MM/YYYY")}</td>
                                             <td style={{ textAlign: 'center' }}>
-                                                <button className='btn-detail'>
-                                                    <i class="fa-regular fa-clipboard"></i></button>
+                                                <button className='btn-detail' onClick={() => { this.openModalViewPhieuNhap(item) }} title='Chi tiết phiếu nhập'> <GoPaste /></button>
                                             </td>
                                         </tr>
                                     </>

@@ -13,17 +13,17 @@ let handleGetDSPhieuNhap = async (req, res) => {
 
 //XEM CHI TIẾT PHIẾU NHẬP
 let handleGetCTPN = async (req, res) => {
-    let data = await phieuNhapService.getCTPN(req.body.idPN);
+    let data = await phieuNhapService.getCTPN(req.query.idPN);
     return res.status(200).json(data)
 }
 
 
 //CHECK CHI TIẾT PHIẾU NHẬP MỚI
 let handleCheckCTPN = async (req, res) => {
-    if (!req.body.tenSach || !req.body.soLuong) {
+    if (!req.body.sach || !req.body.soLuong) {
         return res.status(500).json({
-            errCode: 6,
-            message: 'Vui lòng nhập đầy đủ thông tin về tên sách và số lượng nhập!'
+            errCode: 1,
+            message: 'Vui lòng nhập đầy đủ tên sách và số lượng!'
         })
     }
     else {
@@ -59,10 +59,26 @@ let handleSearchPhieuNhap = async (req, res) => {
     let data = await phieuNhapService.searchPhieuNhap(type, keyword)
     return res.status(200).json(data)
 }
+
+//THAM CHIẾU SÁCH
+let handleReferSach = async (req, res) => {
+    let sach = req.query.sach 
+    if (!sach) {
+        return res.status(500).json({
+            errCode: 1,
+            message: "Vui lòng nhập tên sách!"
+        })
+    }
+    let data = await phieuNhapService.referSach(sach)
+    return res.status(200).json(data)
+}
+
+
 module.exports = {
     handleGetDSPhieuNhap,
     handleGetCTPN,
     handleSearchPhieuNhap,
     handleCheckCTPN,
-    handleCreatePhieuNhap
+    handleReferSach,
+    handleCreatePhieuNhap,
 }

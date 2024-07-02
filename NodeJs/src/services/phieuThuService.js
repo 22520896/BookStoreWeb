@@ -45,7 +45,7 @@ let searchPhieuThu = (type, keyword) => {
 //CHECK CHI TIẾT PHIẾU THU 
 let checkCTPT = (data) => {
     return new Promise(async (resolve, reject) => {
-        try {
+        try { 
             let khachHang = await db.KhachHang.findOne({
                 where: { sdt: data.sdt },
             })
