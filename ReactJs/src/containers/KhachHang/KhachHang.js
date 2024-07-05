@@ -236,7 +236,7 @@ class KhachHang extends Component {
                     <div class="search-container">
                         <div className='mt-1 mx-3'>
                             <button className='btn px-3'
-                                onClick={() => this.getDSKhachHang()}>Tất cả khách hàng</button>
+                                onClick={() => this.getDSKhachHang()}><u>Tất cả khách hàng</u></button>
                         </div>
                         <div class="form-group search-div">
                             <div class="search">

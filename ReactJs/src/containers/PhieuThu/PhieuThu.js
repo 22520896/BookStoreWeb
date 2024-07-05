@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
-import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './PhieuThu.scss'
 import phieuThuService from '../../services/phieuThuService'
-class PhieuThu extends Component {
+import { toast } from 'react-toastify';
+import ModalCreatePhieuThu from './ModalCreatePhieuThu';
+import moment from 'moment';
+import { GoPaste } from "react-icons/go";
+import ModalViewPhieuThu from './ModalViewPhieuThu';
 
+class PhieuThu extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -64,9 +68,9 @@ class PhieuThu extends Component {
                 this.thongBao(-1, "Vui lòng chọn mục tìm kiếm!")
             }            
             else {       
-                let keyword = type == 'ngayLap' ? this.state.date : this.state.keyword
-                if (type == 'ngayLap' && !this.state.date){
-                    this.thongBao(-1, "Ngày lập không hợp lệ!")
+                let keyword = type == 'ngayThuTien' ? this.state.date : this.state.keyword
+                if (type == 'ngayThuTien' && !this.state.date){
+                    this.thongBao(-1, "Ngày thu tiền không hợp lệ!")
                 }
                 else{
                     if (!keyword) {
@@ -125,54 +129,52 @@ class PhieuThu extends Component {
             console.log(e)
         }
     }
+
     toggleModalViewPhieuThu = () => {
         this.setState(
             { isOpenModalViewPhieuThu: !this.state.isOpenModalViewPhieuThu }
         )
     }
 
-    openModalViewPhieuThu = async (PT) => {
-        let response = await phieuThuService.getCTPT(PT.idPT)
+    openModalViewPhieuThu = async (idPT) => {
+        let response = await phieuThuService.getCTPT(idPT)
         if (response.errCode == 0) {
             this.setState({
-                PT: {
-                    ngayLap: PT.ngayLap,
-                    CTPT: response.CTPT,
-                }, 
-
+                PT: response.PT,
                 isOpenModalViewPhieuThu: true
             })            
         }
         else this.thongBao (-1, response.message)
     }
+
     //----------------------------------------------------------------------------------------------
     //RENDER
     render() {
         let DSPhieuThu = this.state.DSPhieuThu
         return (
-            <div className="PT-container">
+            <div className="pt-container">
                 <div className="title text-center">Quản Lí Thu Tiền</div>
                 <ModalCreatePhieuThu
                     isOpen={this.state.isOpenModalCreatePhieuThu}
                     toggleModalCreatePhieuThu={this.toggleModalCreatePhieuThu}
                     createPhieuThu={this.createPhieuThu}
-                />
+                /> 
                 <ModalViewPhieuThu
                     isOpen={this.state.isOpenModalViewPhieuThu}
                     toggleModalViewPhieuThu={this.toggleModalViewPhieuThu}
                     PT={this.state.PT}
-                />
+                /> 
 
                 <div className='mt-1 mx-3'>
                     <button className='btn btn-primary px-2'
                         onClick={() => this.openCreatePhieuThu()}>
-                        <i className='fas fa-plus'></i> Thêm Phiếu Nhập</button>
+                        <i className='fas fa-plus'></i> Lập Phiếu Thu</button>
                 </div>
                 <div class="col-12">
                     <div class="search-container">
                         <div className='mt-1 mx-3'>
                             <button className='btn px-3'
-                                onClick={() => this.getDSPhieuThu()}>Tất cả phiếu nhập</button>
+                                onClick={() => this.getDSPhieuThu()}><u>Tất cả phiếu thu</u></button>
                         </div>
                         <div class="form-group search-div">
                             <div class="search">
@@ -180,11 +182,13 @@ class PhieuThu extends Component {
                                     <select className='form-select type' onChange={(event) => { this.handleOnChange(event, "type") }} onKeyDown={(event) => { this.handleKeyDown(event, 0) }}>
                                         <option value="">Chọn mục</option>
                                         <option value="idPT">Mã Phiếu</option>
-                                        <option value="ngayLap">Ngày Lập</option>
+                                        <option value="ngayThuTien">Ngày Thu Tiền</option>
+                                        <option value="hoTen">Họ Tên</option>
+                                        <option value="sdt">Số Điện Thoại</option>
                                     </select>
                                 </span>
-                                <input type={this.state.type == 'ngayLap' ? 'date' : 'text'} placeholder="Nhập từ khóa tìm kiếm" class="form-control keyword" value={this.state.type == 'ngayLap' ? this.state.date : this.state.keyword}
-                                    onChange={(event) => { this.handleOnChange(event, this.state.type == 'ngayLap' ? 'date' : "keyword") }} onKeyDown={(event) => { this.handleKeyDown(event, 1) }}/>
+                                <input type={this.state.type == 'ngayThuTien' ? 'date' : 'text'} placeholder="Nhập từ khóa tìm kiếm" class="form-control keyword" value={this.state.type == 'ngayThuTien' ? this.state.date : this.state.keyword}
+                                    onChange={(event) => { this.handleOnChange(event, this.state.type == 'ngayThuTien' ? 'date' : "keyword") }} onKeyDown={(event) => { this.handleKeyDown(event, 1) }}/>
                             </div>
                             <div class="search-btn">
                                 <button type="submit" class="btn btn-base" onClick={() => { this.searchPhieuThu(this.state.type) }} > <i class="fas fa-search"></i> </button>
@@ -192,13 +196,16 @@ class PhieuThu extends Component {
                         </div>
                     </div>
                 </div>
-                <div className='PT-table mt-4 mx-3'>
+                <div className='pt-table mt-4 mx-3'>
                     <table class="table table-striped mt-3">
                         <thead>
                             <tr>
                                 <th>STT</th>
                                 <th>Mã Phiếu</th>
-                                <th>Ngày Lập</th>
+                                <th>Ngày Thu Tiền</th>
+                                <th>Khách Hàng</th>
+                                <th>Số Điện Thoại</th>
+                                <th>Số Tiền Thu</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -209,9 +216,13 @@ class PhieuThu extends Component {
                                         <tr key={index}>
                                             <th>{index + 1}</th>
                                             <td>{item.idPT}</td>
-                                            <td>{moment(item.ngayLap).format("DD/MM/YYYY")}</td>
+                                            <td>{moment(item.ngayThuTien).format("DD/MM/YYYY")}</td>
+                                            <td>{item.hoTen}</td>
+                                            <td>{item.sdt}</td>
+                                            <td>{item.soTienThu}</td>
+                                        
                                             <td style={{ textAlign: 'center' }}>
-                                                <button className='btn-detail' onClick={() => { this.openModalViewPhieuThu(item) }} title='Chi tiết phiếu nhập'> <GoPaste /></button>
+                                                <button className='btn-detail' onClick={() => { this.openModalViewPhieuThu(item.idPT) }} title='Chi tiết phiếu thu'> <GoPaste /></button>
                                             </td>
                                         </tr>
                                     </>

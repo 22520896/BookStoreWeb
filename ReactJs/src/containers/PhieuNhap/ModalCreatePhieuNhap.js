@@ -103,7 +103,6 @@ class ModalCreatePhieuNhap extends Component {
             if (response && (response.errCode == 0)) {
                 this.setState({
                     CTPN: [...this.state.CTPN, this.state.CT],
-                    message: '',
                     CT: {
                         sach: "",
                         theLoai: "",
@@ -111,7 +110,6 @@ class ModalCreatePhieuNhap extends Component {
                         donGiaNhap: "",
                         soLuong: "",
                     },
-                    isOpenModalShowPhieuNhap: false
                 })
                 inputElements[1].focus()
             }
@@ -171,8 +169,8 @@ class ModalCreatePhieuNhap extends Component {
 
     openShowPhieuNhap = () => {
         const inputElements = document.querySelectorAll('.modal-pn-container input')
-        if (!this.state.ngayLap) {
-            this.thongBao(-1, 'Vui lòng chọn ngày lập!')
+        if (!this.state.ngayLap || new Date(this.state.ngayLap).getTime()>new Date().getTime()) {
+            this.thongBao(-1, 'Ngày lập không hợp lệ!')
             inputElements[0].focus()
         }
         else {

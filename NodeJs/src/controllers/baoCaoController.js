@@ -1,32 +1,37 @@
+const { json } = require("sequelize")
+
 baoCaoService = require("../services/baoCaoService")
 
 //XUẤT BÁO CÁO
 let handleGetBaoCao = async (req, res) => {
     let type = req.query.type
-    let month = req.query.month
-    let year = req.query.year
+    let month = Number(req.query.month)
+    let year = Number(req.query.year)
     if(!type || !month || !year){
         return res.status(500).json({
             errCode: 1,
             message: 'Vui lòng nhập đầy đủ thông tin!'
         })
     }
-
     let now = new Date()
     if (year > now.getFullYear() || (year == now.getFullYear() && month >= now.getMonth()+1)){                
-        return res.status(200)({
+        return res.status(200).json({
             errCode: 2,
-            message: "Năm hoặc tháng không hợp lệ!"
+            message: "Năm Tháng không hợp lệ!"
         })
     }
 
-    let baoCao = []
+    let baoCao = {
+        loai: type,
+        thang: month,
+        nam: year,
+    }
 
     if (type == 'ton'){
-        baoCao = await sachService.getBaoCaoTon(month, year);
+        baoCao.baoCao = await baoCaoService.getBaoCaoTon(month, year);
     }
     else if (type == 'congNo'){
-        baoCao = await sachService.getBaoCaoCongNo(month, year);
+        baoCao.baoCao = await baoCaoService.getBaoCaoCongNo(month, year);
     }    
     return res.status(200).json({
         errCode: 0,
