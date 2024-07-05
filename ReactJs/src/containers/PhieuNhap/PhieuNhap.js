@@ -62,7 +62,7 @@ class PhieuNhap extends Component {
     }
 
 
-    //GỌI API TÌM KIẾM TÀI KHOẢN
+    //GỌI API TÌM KIẾM PHIẾU NHẬP
     searchPhieuNhap = async (type) => {
         try {
             if (!type) {
@@ -229,7 +229,6 @@ class PhieuNhap extends Component {
             </div>
         );
     }
-
 }
 
 

@@ -24,7 +24,7 @@ class ModalCreatePhieuNhap extends Component {
         };
     }
 
-    componentDidMount() {}
+    componentDidMount() { }
 
     toggle = () => {
         this.setState({
@@ -130,7 +130,8 @@ class ModalCreatePhieuNhap extends Component {
                 }
                 else {
                     if (errCode === 3) {
-                        inputElements[id + 1].focus()}
+                        inputElements[id + 1].focus()
+                    }
                     else inputElements[id].focus()
                 }
             }
@@ -169,13 +170,20 @@ class ModalCreatePhieuNhap extends Component {
     }
 
     openShowPhieuNhap = () => {
-        if (this.state.CTPN.length == 0) {
-            this.thongBao(-1, 'Phiếu nhập sách phải có ít nhất một chi tiết!')
+        const inputElements = document.querySelectorAll('.modal-pn-container input')
+        if (!this.state.ngayLap) {
+            this.thongBao(-1, 'Vui lòng chọn ngày lập!')
+            inputElements[0].focus()
         }
         else {
-            this.setState(
-                { isOpenModalShowPhieuNhap: true }
-            )
+            if (this.state.CTPN.length == 0) {
+                this.thongBao(-1, 'Phiếu nhập sách phải có ít nhất một chi tiết!')
+            }
+            else {
+                this.setState(
+                    { isOpenModalShowPhieuNhap: true }
+                )
+            }
         }
     }
 
@@ -185,15 +193,15 @@ class ModalCreatePhieuNhap extends Component {
         )
     }
 
-    createPhieuNhap = async () => {     
+    createPhieuNhap = async () => {
         let data = {
             ngayLap: this.state.ngayLap,
             CTPN: this.state.CTPN
-        }  
+        }
 
         await this.props.createPhieuNhap(data)
-            this.setState({
-            isOpenModalShowPhieuNhap:false
+        this.setState({
+            isOpenModalShowPhieuNhap: false
         })
         this.setState({
             ngayLap: new Date().toISOString().slice(0, 10),
