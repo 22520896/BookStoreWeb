@@ -20,7 +20,6 @@ const checkCTPN = (data) => {
     return axios.post('/check-chitietphieunhap', data)
 }
 
-
 //THÊM PHIẾU NHẬP MỚI
 const createPhieuNhap = (data) => {
     return axios.post('/create-phieunhap', data)
@@ -37,11 +36,21 @@ const searchPhieuNhap = (type, keyword) => {
     })
 }
 
+//THAM CHIẾU SÁCH
+const referSach = (sach) => {
+    return axios.get('/refer-sach',{
+        params:{
+            sach: sach,
+        }
+    })
+}
+
 export default {
     getDSPhieuNhap,
     getCTPN,
     searchPhieuNhap,
     checkCTPN,
-    createPhieuNhap
+    createPhieuNhap,
+    referSach    
 }
 

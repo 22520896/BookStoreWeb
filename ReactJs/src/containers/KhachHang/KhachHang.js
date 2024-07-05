@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
-import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './KhachHang.scss'
 import khachHangService from '../../services/khachHangService'
 import ModalCreateKhachHang from './ModalCreateKhachHang';
 import ModalEditKhachHang from "./ModalEditKhachHang"
 import ModalDeleteKhachHang from "./ModalDeleteKhachHang"
-import { toast, Slide, Zoom, Flip, Bounce } from 'react-toastify';
-class KhachHang extends Component {
+import { toast } from 'react-toastify';
+import { LuTrash2 } from "react-icons/lu";
+import { FiEdit } from "react-icons/fi";
 
+
+
+class KhachHang extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -281,9 +284,9 @@ class KhachHang extends Component {
                                             <td className='tienno'>{item.tienNo}</td>
                                             <td style={{ textAlign: 'center' }}>
                                                 <button className='btn-edit'
-                                                    onClick={() => this.openEditKhachHang(item)}><i class="fas fa-pencil-alt"></i></button>
+                                                    onClick={() => this.openEditKhachHang(item)}><FiEdit /></button>
                                                 <button className='btn-del'
-                                                    onClick={() => this.openDeleteKhachHang(item.sdt)}><i class="fas fa-trash"></i></button>
+                                                    onClick={() => this.openDeleteKhachHang(item.sdt)}><LuTrash2 /></button>
                                             </td>
                                         </tr>
                                     </>

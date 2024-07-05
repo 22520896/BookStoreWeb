@@ -13,7 +13,9 @@ class Sach extends Component {
             type: "",
             keyword: "",
         }
-
+    }
+    async componentDidMount() { 
+        await this.getDSSach()
     }
     async componentDidMount() { 
         await this.getDSSach()

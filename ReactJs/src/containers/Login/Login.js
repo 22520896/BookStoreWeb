@@ -37,6 +37,7 @@ class Login extends Component {
         })
 
         try {
+            console.log('hu oi ne')
             let data = await taiKhoanService.handleLogin(this.state.username, this.state.password)
             if (data && data.errCode !== 0) {
                 this.setState({

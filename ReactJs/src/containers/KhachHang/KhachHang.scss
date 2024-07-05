@@ -3,11 +3,12 @@ body{
     overflow: auto;
 }
 .btn-edit {
+    font-size: 110%;
     width: 50px;
     border: none;
     outline: none;
-    background: transparent;
-    color: orange;
+    background: transparent;   
+    color: black;
 
     &:hover {
         background-color: transparent !important;
@@ -16,6 +17,7 @@ body{
 }
 
 .btn-del {
+    font-size: 110%;
     width: 50px;
     border: none;
     outline: none;
@@ -205,10 +207,6 @@ body{
             background-color: #fff; /* Màu nền cho tất cả các hàng */
         }
         
-        // tbody tr:hover {
-        //     background-color: #eaeaea; /* Màu nền khi hover */
-        // }
-
         /* Tùy chọn thêm kiểu cho ô cuối cùng */
         td:last-child {
             text-align: center; /* Canh giữa nội dung */

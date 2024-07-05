@@ -19,6 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     idSach: {
       type: DataTypes.INTEGER, 
       primaryKey: true,
+      autoIncrement: true,
     },
     tenSach: DataTypes.STRING,
     tacGia: DataTypes.STRING,

@@ -9,7 +9,7 @@ let getDSSach = () => {
             resolve(DSSach)
         } catch (e) {
             reject(e)
-        }
+        } 
     })
 }
 

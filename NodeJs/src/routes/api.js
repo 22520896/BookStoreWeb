@@ -32,7 +32,8 @@ router.get('/get-ds-phieunhap', phieuNhapController.handleGetDSPhieuNhap) //Lấ
 router.get('/get-chitietphieunhap', phieuNhapController.handleGetCTPN) //Xem chi tiết phiếu nhập
 router.post('/check-chitietphieunhap',phieuNhapController.handleCheckCTPN) //Check chi tiết phiếu nhập
 router.post('/create-phieunhap', phieuNhapController.handleCreatePhieuNhap) //Thêm phiếu nhập mới
-router.get('/search-phieunhap',phieuNhapController.handleSearchPhieuNhap) //Tìm kiếm phiếu nhập
+router.get('/search-phieunhap', phieuNhapController.handleSearchPhieuNhap) //Tìm kiếm phiếu nhập
+router.get('/refer-sach', phieuNhapController.handleReferSach) //Tham chiếu để tim thông tin tương ứng với sách
 
 //QUẢN LÝ BÁN SÁCH
 router.get('/get-ds-hoadon', hoaDonController.handleGetDSHoaDon) //Lấy danh sách hóa đơn

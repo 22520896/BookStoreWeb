@@ -17,6 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     idPT: {
       type: DataTypes.INTEGER, 
       primaryKey: true,
+      autoIncrement: true,
     },
     sdt: DataTypes.STRING,
     hoTen: DataTypes.STRING,

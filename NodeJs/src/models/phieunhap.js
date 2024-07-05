@@ -17,6 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     idPN: {
       type: DataTypes.INTEGER, 
       primaryKey: true,
+      autoIncrement: true,
     },
     ngayLap: DataTypes.DATE,
   }, {

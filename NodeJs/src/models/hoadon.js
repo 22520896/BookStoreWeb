@@ -21,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     idHD: {
       type: DataTypes.INTEGER,
       primaryKey: true,
+      autoIncrement: true,
     },
     ngayLap: DataTypes.DATE,
     sdt: DataTypes.STRING,
