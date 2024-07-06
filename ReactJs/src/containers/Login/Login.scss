@@ -2,18 +2,18 @@
 
 .login-background {
     background: #355353 url('../../assets/images/background_login.png') no-repeat center center;
-    background-size: cover;
+    background-size:cover;
     height: 100vh;
     width: 100vw;
     position: relative;
-
-    display: flex;
+    
+    display: flex; 
     justify-content: center;
     z-index: 0;
 
     //background_people
-    .login-background2 {
-        background: url('../../assets/images/Bookshop-bro2.png') no-repeat;
+    .login-background2{
+    background: url('../../assets/images/Bookshop-bro2.png') no-repeat;
 
         position: absolute;
         width: 100vw;
@@ -22,23 +22,6 @@
         left: 63%;
         z-index: 2;
     }
-
-    .title {
-        position: absolute;
-
-        top: 1%;
-
-        font-family: 'Inter';
-        font-style: normal;
-        font-weight: 1000;
-        font-size: 450%;
-        line-height: 60%;
-        letter-spacing: 0.04em;
-        color: #53421f;
-        text-align: center;
-        z-index: 3;
-    }
-
     //khung login
     .login-container {
         position: absolute;
@@ -74,9 +57,8 @@
             text-align: center;
             z-index: 3;
         }
-
         //Khung username
-        .form-control_username {
+        .form-control_username{
             position: absolute;
             width: 80%;
             height: 15%;
@@ -86,13 +68,8 @@
 
             background: rgba(159, 138, 93, 0.38);
             border: 2px solid #856A32;
-            border-radius: 29px;
+            border-radius: 29px;    
             z-index: 3;
-
-        }
-
-        //Chữ username trong khung nhập
-        .form-control_username::placeholder {
 
             font-family: 'Inter';
             font-style: normal;
@@ -100,13 +77,17 @@
             font-size: 220%;
             line-height: 50%;
             text-align: center;
+            color: rgba(133, 106, 50, 0.58);
 
+            }        
+        //Chữ username trong khung nhập
+        .form-control_username::placeholder{
             color: rgba(133, 106, 50, 0.58);
 
             z-index: 4;
-        }
+        }    
 
-        .form-control_password {
+        .form-control_password{
 
             position: absolute;
             width: 80%;
@@ -117,12 +98,8 @@
 
             background: rgba(159, 138, 93, 0.38);
             border: 2px solid #856A32;
-            border-radius: 29px;
+            border-radius: 29px; 
             z-index: 3;
-
-        }
-
-        .form-control_password::placeholder {
 
             font-family: 'Inter';
             font-style: normal;
@@ -132,33 +109,34 @@
             text-align: center;
 
             color: rgba(133, 106, 50, 0.58);
-            z-index: 4;
-
+            
         }
-
+        .form-control_password::placeholder{
+            color: rgba(133, 106, 50, 0.58);
+            z-index: 4;
+        }
         i {
             position: absolute;
-            top: 50%;
-            right: 12%;
+            scale: 1.4;
+            top: 51%;
+            right: 15%;
             cursor: pointer;
             color: rgba(133, 106, 50, 0.58);
             z-index: 5;
-        }
-
-        .message {
+        } 
+        .message{
             position: absolute;
             top: 63%;
         }
-
         .btn-login {
             position: absolute;
             width: 50%;
             height: 10%;
-            top: 70%;
-            left: 25%; 
+            top: 70%;   
+            left: 25%;
             background: #856A32;
             border-radius: 29.5px;
-
+        
             font-family: 'Inter';
             font-style: normal;
             font-weight: 700;
@@ -166,13 +144,12 @@
             line-height: 36%;
             color: rgba(255, 254, 254, 0.98);
         }
-
-        .forgot-password {
+        .forgot-password{
             position: absolute;
             color: rgba(106, 84, 40, 0.58);
             font-weight: 200;
             top: 83%;
-        }
-
+        }  
+        
     }
 }

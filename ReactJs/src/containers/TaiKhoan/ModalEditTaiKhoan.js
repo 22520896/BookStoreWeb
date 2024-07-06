@@ -20,7 +20,7 @@ class ModalEditTaiKhoan extends Component {
                 sdt: ""
             }
         }
-        
+
     }
 
     componentDidMount() {
@@ -78,15 +78,15 @@ class ModalEditTaiKhoan extends Component {
 
     handleKeyDown = (event) => {
         if (event.key === 'Enter') {
-          const inputElements = document.querySelectorAll('.modal-user-container input, .modal-user-container select');
-          const currentIndex = Array.from(inputElements).indexOf(event.target);
-          if (currentIndex < inputElements.length - 1) {
-            inputElements[currentIndex + 1].focus();
-          } else {
-            this.editTaiKhoan();
-          }
+            const inputElements = document.querySelectorAll('.modal-user-container input, .modal-user-container select');
+            const currentIndex = Array.from(inputElements).indexOf(event.target);
+            if (currentIndex < inputElements.length - 1) {
+                inputElements[currentIndex + 1].focus();
+            } else {
+                this.editTaiKhoan();
+            }
         }
-      };
+    };
 
 
     render() {
@@ -118,18 +118,18 @@ class ModalEditTaiKhoan extends Component {
 
                             <div class="form-group mt-3">
                                 <label>Họ Tên</label>
-                                <input type="text" class="form-control" required placeholder="Nguyễn Văn A" onChange={(event) => { this.handleOnChange(event, "hoTen") }} value={this.state.taiKhoan.hoTen} onKeyDown={this.handleKeyDown}/>
+                                <input type="text" class="form-control" required placeholder="Nguyễn Văn A" onChange={(event) => { this.handleOnChange(event, "hoTen") }} value={this.state.taiKhoan.hoTen} onKeyDown={this.handleKeyDown} />
                             </div>
 
                             <div class="form-group mt-3">
                                 <label>Địa Chỉ</label>
                                 <input type="text" className="form-control" required
-                                    placeholder="193/19 Nam Kỳ Khởi Nghĩa, P7, Q3, TP.HCM" onChange={(event) => { this.handleOnChange(event, "diaChi") }} value={this.state.taiKhoan.diaChi} onKeyDown={this.handleKeyDown}/>
+                                    placeholder="193/19 Nam Kỳ Khởi Nghĩa, P7, Q3, TP.HCM" onChange={(event) => { this.handleOnChange(event, "diaChi") }} value={this.state.taiKhoan.diaChi} onKeyDown={this.handleKeyDown} />
                             </div>
 
                             <div class="form-group mt-3">
                                 <label>Số Điện Thoại</label>
-                                <input type="tel" className="form-control" name="sdt" onChange={(event) => { this.handleOnChange(event, "sdt") }} required value={this.state.taiKhoan.sdt} onKeyDown={this.handleKeyDown}/>
+                                <input type="tel" className="form-control" name="sdt" onChange={(event) => { this.handleOnChange(event, "sdt") }} required value={this.state.taiKhoan.sdt} onKeyDown={this.handleKeyDown} />
                             </div>
 
                             <div className='col-12 mt-2' style={{ color: "red" }}>

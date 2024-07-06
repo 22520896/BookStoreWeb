@@ -5,15 +5,13 @@ import moment from 'moment';
 import ReactToPrint from "react-to-print";
 import { FiPrinter } from "react-icons/fi";
 
-
-
 class ModalViewPhieuNhap extends Component {
     constructor(props) {
         super(props);
         this.componentRef = React.createRef();
     }
 
-    componentDidMount() { }
+    componentDidMount() {}
 
     toggle = () => {
         this.props.toggleModalViewPhieuNhap();
@@ -28,43 +26,45 @@ class ModalViewPhieuNhap extends Component {
                     CHI TIẾT PHIẾU NHẬP
                 </ModalHeader>
                 <ModalBody>
-                    <div className='container' ref={this.componentRef}>
-                        <span className="store">Nhà sách ABC</span>
-                        <div classname='tittle'>PHIẾU NHẬP SÁCH</div>
-                        <span className='ngay'>Ngày lập phiếu: {moment(PN.ngayLap).format("DD/MM/YYYY")}</span>
-                        <div className='pn-table mt-4 mx-3'>
-                            <table class="table table-striped mt-3">
-                                <thead>
-                                    <tr>
-                                        <th>STT</th>
-                                        <th>Tên sách</th>
-                                        <th>Tác giả</th>
-                                        <th>Thể loại</th>
-                                        <th>Số lượng</th>
-                                        <th>Đơn giá nhập</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {PN.CTPN && PN.CTPN.map((item, index) => {
-                                        return (
-                                            <>
-                                                <tr key={index}>
-                                                    <td>{index + 1}</td>
-                                                    <td>{item.sach}</td>
-                                                    <td>{item.tacGia}</td>
-                                                    <td>{item.theLoai}</td>
-                                                    <td>{item.soLuong}</td>
-                                                    <td>{item.donGiaNhap}</td>
-                                                </tr>
-                                            </>
-                                        )
-                                    })}
-                                </tbody>
-                            </table>
-                            <div className='sign'>
-                                <div>
-                                    Thủ kho<br />
-                                    <i>(Ký và họ tên)</i>
+                    <div ref={this.componentRef}>
+                        <div className='container'>
+                            <span className="store">Nhà sách ABC</span>
+                            <div classname='tittle'>PHIẾU NHẬP SÁCH</div>
+                            <span className='ngay'>Ngày lập phiếu: {moment(PN.ngayLap).format("DD/MM/YYYY")}</span>
+                            <div className='pn-table mt-4 mx-3'>
+                                <table class="table table-striped mt-3">
+                                    <thead>
+                                        <tr>
+                                            <th>STT</th>
+                                            <th>Tên sách</th>
+                                            <th>Tác giả</th>
+                                            <th>Thể loại</th>
+                                            <th>Số lượng</th>
+                                            <th>Đơn giá nhập</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {PN.CTPN && PN.CTPN.map((item, index) => {
+                                            return (
+                                                <>
+                                                    <tr key={index}>
+                                                        <td>{index + 1}</td>
+                                                        <td>{item.sach}</td>
+                                                        <td>{item.tacGia}</td>
+                                                        <td>{item.theLoai}</td>
+                                                        <td>{item.soLuong}</td>
+                                                        <td>{item.donGiaNhap}</td>
+                                                    </tr>
+                                                </>
+                                            )
+                                        })}
+                                    </tbody>
+                                </table>
+                                <div className='sign'>
+                                    <div>
+                                        Thủ kho<br />
+                                        <i>(Ký và họ tên)</i>
+                                    </div>
                                 </div>
                             </div>
                         </div>

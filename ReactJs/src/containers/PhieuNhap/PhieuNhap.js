@@ -153,6 +153,9 @@ class PhieuNhap extends Component {
     //----------------------------------------------------------------------------------------------
     //RENDER
     render() {
+        if (this.props.userInfo.vaiTro == 3) {
+            return null; // Hide the component if user role is not 1 (Admin)
+        }
         let DSPhieuNhap = this.state.DSPhieuNhap
         return (
             <div className="pn-container">
@@ -235,7 +238,7 @@ class PhieuNhap extends Component {
 
 const mapStateToProps = state => {
     return {
-
+        userInfo: state.user.userInfo
     };
 };
 

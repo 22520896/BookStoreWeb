@@ -102,7 +102,7 @@ class Sach extends Component {
                     <div class="search-container">
                         <div className='mt-1 mx-3'>
                             <button className='btn px-3'
-                                onClick={() => this.getDSSach()}>Tất cả sáchh</button>
+                                onClick={() => this.getDSSach()}>Tất cả sách</button>
                         </div>
                         <div class="form-group search-div">
                             <div class="search">

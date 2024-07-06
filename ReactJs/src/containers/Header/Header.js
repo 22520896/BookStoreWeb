@@ -14,7 +14,8 @@ class Header extends Component {
         super(props);
         this.state = {
             sidebar: false,
-            activeItem: ""
+            activeItem: "",
+            vaiTro: ['Admin', 'Thủ Kho', 'Nhân Viên Bán Hàng']
         }
     }
 
@@ -28,7 +29,6 @@ class Header extends Component {
         this.setState(
             {
                 sidebar: !this.state.sidebar
-
             });
     };
 
@@ -63,7 +63,7 @@ class Header extends Component {
                     </span>
                     <div className='nav-menu-items'>
                         <div>
-                            {Sidebar.map((item, index) => {
+                            {Sidebar[userInfo.vaiTro].map((item, index) => {
                                 return (
                                     <div key={index} className={`${item.cName} ${this.state.activeItem === item.path ? 'active' : ''}`} onClick={this.showSidebar} >
                                         <Link to={item.path} onClick={() => this.setActiveItem(item.path)}>

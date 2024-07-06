@@ -204,6 +204,9 @@ class KhachHang extends Component {
     //----------------------------------------------------------------------------------------------
     //RENDER
     render() {
+        if (this.props.userInfo.vaiTro == 2) {
+            return null; // Hide the component if user role is not 1 (Admin)
+        }
         let DSKhachHang = this.state.DSKhachHang
         return (
             <div className="kh-container">
@@ -304,6 +307,7 @@ class KhachHang extends Component {
 
 const mapStateToProps = state => {
     return {
+        userInfo: state.user.userInfo
     };
 };
 

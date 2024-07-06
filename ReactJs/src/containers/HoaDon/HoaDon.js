@@ -159,6 +159,9 @@ class HoaDon extends Component {
     //----------------------------------------------------------------------------------------------
     //RENDER
     render() {
+        if (this.props.userInfo.vaiTro == 2) {
+            return null; // Hide the component if user role is not 1 (Admin)
+        }
         let DSHoaDon = this.state.DSHoaDon
         return (
             <div className="hd-container">
@@ -253,7 +256,7 @@ class HoaDon extends Component {
 
 const mapStateToProps = state => {
     return {
-
+        userInfo: state.user.userInfo
     };
 };
 
