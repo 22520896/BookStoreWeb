@@ -8,7 +8,7 @@
     .background_1{
         background: url('../../assets/b1.png') no-repeat center bottom;
         background-size: contain;
-        width: 120vw;
+        width: 100%;
         height: 110vh;
         position: absolute;
         z-index: 0;
@@ -16,16 +16,17 @@
     .background_2{
         background: url('../../assets/b2.png') no-repeat right top;
         background-size: contain;
-        width: 100vw;
+        width: 100%;
         height: 50vh;
         position: absolute;
         z-index: 1;
     }
     .img {
+        margin-top: 30px;
         background: url('../../assets/Home.png') no-repeat center top;
         background-size: contain;
         width: 90vw;
-        height: 92vh;
+        height: 95vh;
         position: relative; 
         z-index: 2;
     }
