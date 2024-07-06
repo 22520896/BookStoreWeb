@@ -12,7 +12,7 @@ let handleGetDSHoaDon = async (req, res) => {
 
 //XEM CHI TIẾT HÓA ĐƠN
 let handleGetCTHD = async (req, res) => {
-    let data = await hoaDonService.getCTHD(req.body.idHD);
+    let data = await hoaDonService.getCTHD(req.query.idHD);
     return res.status(200).json(data)   
 }
 

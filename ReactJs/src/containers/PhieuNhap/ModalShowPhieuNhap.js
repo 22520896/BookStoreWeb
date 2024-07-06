@@ -27,6 +27,7 @@ class ModalShowPhieuNhap extends Component {
                     IN PHIẾU NHẬP
                 </ModalHeader>
                 <ModalBody>
+                <div ref={this.componentRef}>
                     <div className='container'ref={this.componentRef}>
                         <div className="store">Nhà sách ABC</div>
                         <div className='tittle'>PHIẾU NHẬP SÁCH</div>
@@ -58,11 +59,12 @@ class ModalShowPhieuNhap extends Component {
                             </table>
                             <div className='sign'>
                                 <div>
-                                    <div>Thủ kho</div>
-                                    <div><i>(Ký và họ tên)</i></div>
+                                    Thủ kho<br/>
+                                    <i>(Ký và họ tên)</i>
                                 </div>
                             </div>
                         </div>
+                    </div>
                     </div>
                 </ModalBody>
                 <ModalFooter>

@@ -24,7 +24,7 @@ const checkCTHD = (data) => {
 
 //CHECK KHÁCH HÀNG
 const checkKhachHang = (data) => {
-    return axios.post('/check-chitiethoadon', data)
+    return axios.post('/check-khachhang', data)
 }
 
 
@@ -44,7 +44,7 @@ const searchHoaDon = (type, keyword) => {
     })
 }
 
-export {
+export default {
     getDSHoaDon,
     getCTHD,
     checkCTHD,

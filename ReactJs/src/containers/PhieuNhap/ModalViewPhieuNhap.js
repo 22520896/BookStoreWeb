@@ -63,21 +63,22 @@ class ModalViewPhieuNhap extends Component {
                             </table>
                             <div className='sign'>
                                 <div>
-                                    <div>Thủ kho</div>
-                                    <div><i>(Ký và họ tên)</i></div>
+                                    Thủ kho<br />
+                                    <i>(Ký và họ tên)</i>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </ModalBody>
                 <ModalFooter>
-                <ReactToPrint
+                    <ReactToPrint
                         content={() => this.componentRef.current}
                         trigger={() => (
                             <Button type="submit" color="primary" className="print px-2" >
                                 <FiPrinter/> In
                             </Button>
                         )}
+                        onAfterPrint={this.toggle}
                     />
                     {' '}<Button color="secondary" className='exit px-2' onClick={this.toggle}>
                         Thoát
