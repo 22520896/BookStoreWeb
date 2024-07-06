@@ -11,7 +11,7 @@ const getBaoCao = (month, year, type) => {
     })
 }
 
-export {
+export default{
     getBaoCao
 }
 

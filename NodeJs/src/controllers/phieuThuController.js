@@ -13,7 +13,7 @@ let handleGetDSPhieuThu = async (req, res) => {
 
 //LẤY CHI TIẾT PHIẾU THU
 let handleGetCTPT = async (req, res) => {
-    let data = await phieuThuService.getCTPT(req.body.idPT);
+    let data = await phieuThuService.getCTPT(req.query.idPT);
     return res.status(200).json(data)
 }
 

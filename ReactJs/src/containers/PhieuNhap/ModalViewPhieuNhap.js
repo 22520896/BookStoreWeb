@@ -28,7 +28,8 @@ class ModalViewPhieuNhap extends Component {
                     CHI TIẾT PHIẾU NHẬP
                 </ModalHeader>
                 <ModalBody>
-                    <div className='container' ref={this.componentRef}>
+                <div ref={this.componentRef}>
+                    <div className='container'>
                         <div className="store">Nhà sách ABC</div>
                         <div className='tittle'>PHIẾU NHẬP SÁCH</div>
                         <span className='ngay'>Ngày lập phiếu: {moment(PN.ngayLap).format("DD/MM/YYYY")}</span>
@@ -69,6 +70,7 @@ class ModalViewPhieuNhap extends Component {
                             </div>
                         </div>
                     </div>
+                </div>
                 </ModalBody>
                 <ModalFooter>
                     <ReactToPrint

@@ -193,7 +193,7 @@ class HoaDon extends Component {
                                         <option value="idHD">Mã Hóa Đơn</option>
                                         <option value="ngayLap">Ngày Lập</option>
                                         <option value="sdt">Số Điện Thoại</option>
-                                        <option value="hoTen">Họ Tên</option>
+                                        <option value="hoTen">Khách Hàng</option>
                                     </select>
                                 </span>
                                 <input type={this.state.type == 'ngayLap' ? 'date' : 'text'} placeholder="Nhập từ khóa tìm kiếm" class="form-control keyword" value={this.state.type == 'ngayLap' ? this.state.date : this.state.keyword}

@@ -27,6 +27,7 @@ class ModalViewHoaDon extends Component {
                     IN HÓA ĐƠN
                 </ModalHeader>
                 <ModalBody>
+                <div ref={this.componentRef}>
                     <div className='container' ref={this.componentRef}>
                         <span className="store">Nhà sách ABC</span>
                         <div className='title'>HÓA ĐƠN</div>
@@ -86,6 +87,7 @@ class ModalViewHoaDon extends Component {
                             </div>
                         </div>
                     </div>
+                </div>
                 </ModalBody>
                 <ModalFooter>
                     <ReactToPrint

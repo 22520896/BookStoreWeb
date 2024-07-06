@@ -37,7 +37,7 @@ const searchPhieuThu = (type, keyword) => {
     })
 }
 
-export {
+export default {
     getDSPhieuThu,
     getCTPT,
     checkCTPT,

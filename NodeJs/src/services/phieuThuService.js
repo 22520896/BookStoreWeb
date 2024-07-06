@@ -17,13 +17,25 @@ let getDSPhieuThu = () => {
 let searchPhieuThu = (type, keyword) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let DSPhieuThu = await db.PhieuThu.findAll({
-                where: {
-                    [type]: {
-                        [Op.like]: `%${keyword}%`
+            let DSPhieuThu = ""
+            if (type == 'ngayThuTien') {
+                DSPhieuThu = await db.PhieuThu.findAll({
+                    where: {
+                        ngayThuTien: {
+                            [Op.eq]: new Date(keyword)
+                        }
                     }
-                }
-            })
+                })
+            }
+            else {
+                DSPhieuThu = await db.PhieuThu.findAll({
+                    where: {
+                        [type]: {
+                            [Op.like]: `%${keyword}%`
+                        }
+                    }
+                })
+            }
             data = {}
 
             if (DSPhieuThu.length != 0) {
@@ -45,12 +57,12 @@ let searchPhieuThu = (type, keyword) => {
 //CHECK CHI TIẾT PHIẾU THU 
 let checkCTPT = (data) => {
     return new Promise(async (resolve, reject) => {
-        try { 
+        try {
             let khachHang = await db.KhachHang.findOne({
                 where: { sdt: data.sdt },
             })
             if (khachHang) {
-                if (process.env.MIN_SL_SAU_BAN == 'true' && data.soTienThu > khachHang.tienNo) {
+                if (process.env.MIN_SL_SAU_BAN == 'true' && Number(data.soTienThu) > khachHang.tienNo) {
                     resolve({
                         errCode: 2,
                         message: `Khách hàng đang nợ ${khachHang.tienNo}, số tiền thu không được vượt quá số tiền khách nợ!`
@@ -82,21 +94,21 @@ let checkCTPT = (data) => {
 let getCTPT = (idPT) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let CTPT = await db.PhieuThu.findOne({
+            let PT = await db.PhieuThu.findOne({
                 where: { idPT: idPT },
                 raw: false
             })
 
             data = {}
-            if (CTPT) {
+            if (PT) {
                 data.errCode = 0
                 data.message = 'OK'
-                data.CTPT = CTPT
+                data.PT = PT
             }
             else {
                 data.errCode = 2
                 data.message = 'Không tìm thấy phiếu thu!'
-                data.CTPT = []
+                data.PT = {}
             }
             resolve(data)
         } catch (e) {
@@ -130,8 +142,8 @@ let createPhieuThu = (data) => {
                 raw: false
             })
             if (congNo) {
-                await db.CongNo.update({
-                    phatSinh: congNo.phatSinh - data.soTienThu,
+                await congNo.update({
+                    phatSinh: congNo.phatSinh - Number(data.soTienThu),
                 })
             }
             else {
@@ -140,13 +152,13 @@ let createPhieuThu = (data) => {
                     thang: thangLap,
                     nam: namLap,
                     noDau: khachHang.tienNo,
-                    phatSinh: - data.soTienThu,
+                    phatSinh: - umber(data.soTienThu),
                 })
             }
 
             //Cập nhật KhachHang
-            await db.khachHang.update({
-                tienNo: khachHang.tienNo - data.soTienThu
+            await khachHang.update({
+                tienNo: khachHang.tienNo - Number(data.soTienThu)
             })
 
             //Thêm phiếu thu
@@ -155,7 +167,7 @@ let createPhieuThu = (data) => {
                 hoTen: data.hoTen,
                 email: data.email,
                 diaChi: data.diaChi,
-                soTienThu: data.soTienThu,
+                soTienThu: Number(data.soTienThu),
                 ngayThuTien: data.ngayThuTien
             })
 

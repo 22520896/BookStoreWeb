@@ -6,6 +6,7 @@ body{
         font-size: 30px;
         font-weight: bold;
         color: #856A32;
+        margin-top: 80px;
         margin-bottom: 20px;
     }
     &.text-center{
@@ -62,12 +63,16 @@ body{
     margin-top: 4rem; /* Khoảng cách trên */
     margin-left: 1.5rem; /* Khoảng cách trái */
     margin-right: 1.5rem; /* Khoảng cách phải */
-    
+    overflow: auto !important;
     table {
         width: 100%; /* Độ rộng của bảng */
         border-collapse: collapse; /* Loại bỏ khoảng cách giữa các ô */
         margin-top: 1.5rem; /* Khoảng cách trên của bảng */
-        
+        thead {
+            position: sticky; /* Giữ đầu bảng cố định khi cuộn */
+            top: 0; /* Vị trí cố định của đầu bảng */
+            z-index: 1; /* Giúp đầu bảng hiển thị lên trên */
+          }
         th, td {
             padding: 0.75rem; /* Khoảng cách giữa nội dung và đường biên */
             text-align: left; /* Canh lề trái nội dung */
@@ -76,21 +81,22 @@ body{
         th.hd, td.hd {
             text-align: center;
         }
-        
         th {
             color: #856A32;
             font-weight: bold; /* In đậm chữ */
         }
-        
-        tbody tr {
+        tbody td{
+            //display: inline-block;
             background-color: #fff; /* Màu nền cho tất cả các hàng */
+            max-height: 500px; /* Bạn có thể thay đổi chiều cao này */
+            overflow-y: auto;
         }
-        
         td:last-child {
             text-align: center; /* Canh giữa nội dung */
         }
     }
 }
+
 
 //Thêm hóa đơn
 .modal-hd-container{
@@ -161,7 +167,6 @@ body{
                 }
             }
         }
-
     }
     .modal-footer{
         .submit{
@@ -234,6 +239,7 @@ body{
                     text-align: center;
                 }
                 th {
+                    color: #000 !important;
                     font-weight: bold; 
                 }
                 tbody tr {

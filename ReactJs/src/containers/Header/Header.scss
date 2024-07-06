@@ -3,9 +3,13 @@
 .navbar {
     background-color: #B6A37B;
     height: 60px;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    top: 0px;
+    position: fixed;
+    z-index: 999;
 
     .right-menu {
         font-size: 18px;
@@ -66,8 +70,9 @@
     justify-content: start;
     align-items: center;
     padding: 10px 0px 5px 16px;
+    margin-top: 5px;
     list-style: none;
-    height: 59px;
+    height: 54px;
     &:hover{
         background-color: #856A32;
     }
