@@ -267,3 +267,47 @@ body{
         }
     }
 }
+
+@media print{
+    .container{
+        text-align: center;
+        .store{
+            font-size: 15px;
+            text-align: left;
+            width: 100%;
+        }
+        .ngay{
+            margin: auto;
+            font-size: 15px;
+        }
+        .title
+        {
+            font-size: 25px;
+            font-weight: bold;
+        }
+        .kh{
+            padding: 20px;
+            font-size: 15px;
+            p {
+                display: flex;
+                justify-content: space-between;
+            }
+            .left {
+                float: left;
+            }
+            .right {
+                float: right;
+            }
+            p span {                    
+                display: inline-block;
+            }
+        }
+        .sign{
+            padding-left: 40px;
+            padding-right: 40px;                
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 45px;
+        }
+    }
+}

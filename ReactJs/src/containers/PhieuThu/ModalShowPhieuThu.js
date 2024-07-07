@@ -32,12 +32,12 @@ class ModalShowPhieuThu extends Component {
                             <div className='title'>PHIẾU THU TIỀN</div>
                             <span className='ngay'>Ngày thu tiền: {moment(PT.ngayThuTien).format("DD/MM/YYYY")}</span>
                             <div className='kh'>
-                                <p><span>Họ tên khách hàng: {PT.hoTen}</span>
-                                    <span>Số điện thoại: {PT.sdt}</span></p>
+                                <p><span className='left'>Họ tên khách hàng: {PT.hoTen}</span>
+                                    <span className='right'>Số điện thoại: {PT.sdt}</span></p>
                                 <p>Địa chỉ: {PT.diaChi}</p>
                                 <p>Email: {PT.email}</p>
                                 <p>Số tiền thu: {Number(PT.soTienThu).toLocaleString('vi-VN')}</p>
-                            </div>
+                        </div>
                             <div className='sign'>
                                 <div>
                                     Nhân viên<br />
