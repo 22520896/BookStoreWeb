@@ -284,7 +284,7 @@ class KhachHang extends Component {
                                             <td className='stt'>{item.sdt}</td>
                                             <td>{item.diaChi}</td>
                                             <td>{item.email}</td>
-                                            <td className='tienno'>{item.tienNo}</td>
+                                            <td className='tienno'>{item.tienNo.toLocaleString('vi-VN')}</td>
                                             <td style={{ textAlign: 'center' }}>
                                                 <button className='btn-edit'
                                                     onClick={() => this.openEditKhachHang(item)}><FiEdit /></button>
