@@ -92,7 +92,7 @@ let checkKhachHang = (data) => {
                 if (khachHang.tienNo > process.env.MAX_NO) {
                     resolve({
                         errCode: 1,
-                        message: `Không thể bán vì khách hàng này đang nợ quá ${process.env.MIN_SL_SAU_BAN}!`
+                        message: `Không thể bán vì khách hàng này đang nợ quá ${process.env.MAX_NO}!`
                     })
                 }
                 else {

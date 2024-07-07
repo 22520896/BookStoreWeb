@@ -14,10 +14,10 @@ class Sach extends Component {
             keyword: "",
         }
     }
-    async componentDidMount() { 
+    async componentDidMount() {
         await this.getDSSach()
     }
-    async componentDidMount() { 
+    async componentDidMount() {
         await this.getDSSach()
     }
 
@@ -26,8 +26,8 @@ class Sach extends Component {
             position: toast.POSITION.TOP_CENTER,
             autoClose: 2000,
             closeButton: false,
-            className: 'custom-toast', 
-            bodyClassName: 'custom-toast-body' 
+            className: 'custom-toast',
+            bodyClassName: 'custom-toast-body'
         }
         if (errCode === 0) {
             toast.success(message, prop)
@@ -58,7 +58,7 @@ class Sach extends Component {
         }
     }
 
-        //----------------------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------------------
     //GỌI API TÌM KIẾM TÀI KHOẢN
     searchSach = async (type, keyword) => {
         try {
@@ -86,17 +86,17 @@ class Sach extends Component {
 
     handleKeyDown = (event) => {
         if (event.key === 'Enter') {
-          const inputElements = document.querySelectorAll('.search input, .search select');
-          const currentIndex = Array.from(inputElements).indexOf(event.target);
-          if (currentIndex < inputElements.length - 1) {
-            inputElements[currentIndex + 1].focus();
-          } else {
-            this.searchSach(this.state.type, this.state.keyword)
-          }
+            const inputElements = document.querySelectorAll('.search input, .search select');
+            const currentIndex = Array.from(inputElements).indexOf(event.target);
+            if (currentIndex < inputElements.length - 1) {
+                inputElements[currentIndex + 1].focus();
+            } else {
+                this.searchSach(this.state.type, this.state.keyword)
+            }
         }
-      }
+    }
 
-      render() {
+    render() {
         let DSSach = this.state.DSSach
         return (
             <div className="sach-container">
@@ -118,11 +118,11 @@ class Sach extends Component {
                                         <option value="tacGia">Tác Giả</option>
                                         <option value="soLuong">Số Lượng</option>
                                         <option value="donGiaBan">Đơn Giá Bán</option>
-                                        
+
                                     </select>
                                 </span>
                                 <input type="text" placeholder="Nhập từ khóa tìm kiếm" class="form-control keyword" onChange={(event) => { this.handleOnChange(event, "keyword") }}
-                                onKeyDown={this.handleKeyDown} />
+                                    onKeyDown={this.handleKeyDown} />
                             </div>
                             <div class="search-btn">
                                 <button type="submit" class="btn btn-base" onClick={() => { this.searchSach(this.state.type, this.state.keyword) }}> <i class="fas fa-search"></i> </button>
@@ -154,7 +154,7 @@ class Sach extends Component {
                                             <td>{item.theLoai}</td>
                                             <td>{item.tacGia}</td>
                                             <td className="soluong">{item.soLuong}</td>
-                                            <td className="dongiaban">{item.donGiaBan.toLocaleString('vi-VN')}</td>
+                                            <td className="dongiaban">{Number(item.donGiaBan).toLocaleString('vi-VN')}</td>
                                         </tr>
                                     </>
                                 )
