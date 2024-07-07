@@ -52,7 +52,7 @@ class ModalShowPhieuNhap extends Component {
                                                 <td>{item.tacGia}</td>
                                                 <td>{item.theLoai}</td>
                                                 <td className='sl'>{item.soLuong}</td>
-                                                <td className='dgn'>{item.donGiaNhap.toLocaleString('vi-VN')}</td>
+                                                <td className='dgn'>{Number(item.donGiaNhap).toLocaleString('vi-VN')}</td>
                                             </tr>
                                         ))}
                                     </tbody>
@@ -72,7 +72,7 @@ class ModalShowPhieuNhap extends Component {
                         content={() => this.componentRef.current}
                         trigger={() => (
                             <Button type="submit" color="primary" className="print px-2" >
-                                Lưu (In)
+                                In (Lưu)
                             </Button>
                         )}
                         onAfterPrint={this.createPhieuNhap}

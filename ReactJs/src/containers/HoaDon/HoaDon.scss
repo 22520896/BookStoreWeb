@@ -241,9 +241,9 @@ body{
                 display: flex;
                 justify-content: space-between;
             }
-            .table{
-                width: 100%; 
+            .cthd-table{
                 border-collapse: collapse; 
+                font-size: 15px;
                 th.stt, td.stt, th.sl, td.sl, th.dgb, td.dgb {
                     text-align: center;
                 }
@@ -254,7 +254,8 @@ body{
                 }
                 tbody td {
                     background-color: #fff; 
-                    border: 1px solid #000;  
+                    border: 1px solid #000;
+                    text-align: left;  
                 }
             }
             .sign{
@@ -264,6 +265,7 @@ body{
             }
             .tonghd{
                 text-align: left;
+                font-weight: bold;
             }
         }
     }

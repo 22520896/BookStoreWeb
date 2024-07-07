@@ -32,12 +32,12 @@ class ModalViewHoaDon extends Component {
                         <div className="store">Nhà sách ABC</div>
                         <div className='title'>HÓA ĐƠN</div>
                         <span className='ngay'>Ngày lập hóa đơn: {moment(HD.ngayLap).format("DD/MM/YYYY")}</span>
-                        <div className='hd-table mt-4 mx-3'>
+                        <div className='cthd-table mt-4 mx-3'>
                             <div className="kh">
                                 <span>Họ tên khách hàng: {HD.hoTen}</span>
                                 <span>Số điện thoại: {HD.sdt}</span>
                             </div>
-                            <table className="table table-striped mt-3">
+                            <table className="table mt-3">
                                 <thead>
                                     <tr>
                                         <th className='stt'>STT</th>
@@ -59,19 +59,19 @@ class ModalViewHoaDon extends Component {
                                     ))}
                                     <tr>
                                         <td colSpan="4"></td>
-                                        <td class='tonghd'>Tổng tiền: {HD.tongTien}</td>
+                                        <td class='tonghd'>Tổng tiền: {Number(HD.tongTien).toLocaleString('vi-VN')}</td>
                                     </tr>
                                     <tr>
                                         <td colSpan="4"></td>
-                                        <td class='tonghd'>Số tiền trả: {HD.soTienTra}</td>
+                                        <td class='tonghd'>Số tiền trả: {Number(HD.soTienTra).toLocaleString('vi-VN')}</td>
                                     </tr>
                                     <tr>
                                         <td colSpan="4"></td>
-                                        <td class='tonghd'>Tiền trả lại: {HD.tienTraLai}</td>
+                                        <td class='tonghd'>Tiền trả lại: {Number(HD.tienTraLai).toLocaleString('vi-VN')}</td>
                                     </tr>
                                     <tr>
                                         <td colSpan="4"></td>
-                                        <td class='tonghd'>Nợ: {HD.no}</td>
+                                        <td class='tonghd'>Nợ: {Number(HD.no).toLocaleString('vi-VN')}</td>
                                     </tr>
                                 </tbody>
                             </table>

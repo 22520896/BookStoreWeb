@@ -38,7 +38,7 @@ class ModalShowBaoCao extends Component {
                             <span>Năm: {baoCao.nam}</span>
                         </div>
                         <div className='bc-table mt-4 mx-3'>
-                            <table className="table table-striped mt-3">
+                            <table className="table mt-3">
                                 {baoCao.loai === 'ton' && (
                                     <>
                                         <thead>
@@ -80,9 +80,9 @@ class ModalShowBaoCao extends Component {
                                               <tr key={index}>
                                                   <td className='bc'>{index + 1}</td>
                                                   <td>{item.hoTen}</td>
-                                                  <td className='bc'>{item.noDau}</td>
-                                                  <td className='bc'>{item.phatSinh}</td>
-                                                  <td className='bc'>{item.noCuoi}</td>
+                                                  <td className='bc'>{item.noDau.toLocaleString('vi-VN')}</td>
+                                                  <td className='bc'>{item.phatSinh.toLocaleString('vi-VN')}</td>
+                                                  <td className='bc'>{item.noCuoi.toLocaleString('vi-VN')}</td>
                                               </tr>
                                           ))}
                                       </tbody>

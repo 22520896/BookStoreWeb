@@ -32,12 +32,12 @@ class ModalShowHoaDon extends Component {
                         <div className="store">Nhà sách ABC</div>
                         <div className='title'>HÓA ĐƠN</div>
                         <span className='ngay'>Ngày lập hóa đơn: {moment(this.props.ngayLap).format("DD/MM/YYYY")}</span>
-                        <div className='hd-table mt-4 mx-3'>
+                        <div className='cthd-table mt-4 mx-3'>
                             <div className="kh">
                                 <span>Họ tên khách hàng: {this.props.hoTen}</span>
                                 <span>Số điện thoại: {this.props.sdt}</span>
                             </div>
-                            <table className="table table-striped mt-3">
+                            <table className="table mt-3">
                                 <thead>
                                     <tr>
                                         <th className='stt'>STT</th>
@@ -59,19 +59,19 @@ class ModalShowHoaDon extends Component {
                                     ))}
                                     <tr>
                                         <td colSpan="4"></td>
-                                        <td class='tonghd'>Tổng tiền: {this.props.tongTien.toLocaleString('vi-VN')}</td>
+                                        <td class='tonghd'>Tổng tiền: {Number(this.props.tongTien).toLocaleString('vi-VN')}</td>
                                     </tr>
                                     <tr>
                                         <td colSpan="4"></td>
-                                        <td class='tonghd'>Số tiền trả: {this.props.soTienTra.toLocaleString('vi-VN')}</td>
+                                        <td class='tonghd'>Số tiền trả: {Number(this.props.soTienTra).toLocaleString('vi-VN')}</td>
                                     </tr>
                                     <tr>
                                         <td colSpan="4"></td>
-                                        <td class='tonghd'>Tiền trả lại: {this.props.tienTraLai.toLocaleString('vi-VN')}</td>
+                                        <td class='tonghd'>Tiền trả lại: {Number(this.props.tienTraLai).toLocaleString('vi-VN')}</td>
                                     </tr>
                                     <tr>
                                         <td colSpan="4"></td>
-                                        <td class='tonghd'>Nợ: {this.props.no.toLocaleString('vi-VN')}</td>
+                                        <td class='tonghd'>Nợ: {Number(this.props.no).toLocaleString('vi-VN')}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -93,7 +93,7 @@ class ModalShowHoaDon extends Component {
                         content={() => this.componentRef.current}
                         trigger={() => (
                             <Button type="submit" color="primary" className="print px-2" >
-                                Lưu (In)
+                                In (Lưu)
                             </Button>
                         )}
                         onAfterPrint={this.createHoaDon}

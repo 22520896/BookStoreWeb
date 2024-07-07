@@ -82,17 +82,18 @@ body{
                 th.bc, td.bc{
                     text-align: center;
                 }
-                th {
+                th{
                     font-weight: bold; 
                     border: 1px solid #000;  
                 }
                 tbody td {
                     background-color: #fff; 
-                    border: 1px solid #000;  
-                }
+                    border: 1px solid #000; 
+                    text-align: left; 
+                }                
             }
             .sign{
-                margin-bottom: 45px;
+                margin: 0px 50px 45px 0px;
                 float: right;
             }
         }

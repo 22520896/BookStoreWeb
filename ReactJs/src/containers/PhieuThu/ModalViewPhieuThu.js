@@ -37,7 +37,7 @@ class ModalViewPhieuThu extends Component {
                                     <span className='right'>Số điện thoại: {PT.sdt}</span></p>
                                 <p>Địa chỉ: {PT.diaChi}</p>
                                 <p>Email: {PT.email}</p>
-                                <p>Số tiền thu: {PT.soTienThu}</p>
+                                <p>Số tiền thu: {Number(PT.soTienThu).toLocaleString('vi-VN')}</p>
                             </div>
                             <div className='sign'>
                                 <div>
