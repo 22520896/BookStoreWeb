@@ -204,6 +204,9 @@ class KhachHang extends Component {
     //----------------------------------------------------------------------------------------------
     //RENDER
     render() {
+        if (this.props.userInfo.vaiTro == 2) {
+            return null; // Hide the component if user role is not 1 (Admin)
+        }
         let DSKhachHang = this.state.DSKhachHang
         return (
             <div className="kh-container">
@@ -236,7 +239,7 @@ class KhachHang extends Component {
                     <div class="search-container">
                         <div className='mt-1 mx-3'>
                             <button className='btn px-3'
-                                onClick={() => this.getDSKhachHang()}>Tất cả khách hàng</button>
+                                onClick={() => this.getDSKhachHang()}><u>Tất cả khách hàng</u></button>
                         </div>
                         <div class="form-group search-div">
                             <div class="search">
@@ -264,7 +267,7 @@ class KhachHang extends Component {
                             <tr>
                                 <th className='stt'>STT</th>
                                 <th>Họ Tên</th>
-                                <th>Số Điện Thoại</th>
+                                <th className='stt'>Số Điện Thoại</th>
                                 <th>Địa Chỉ</th>
                                 <th>Email</th>
                                 <th className='tienno'>Tiền Nợ</th>
@@ -278,7 +281,7 @@ class KhachHang extends Component {
                                         <tr key={index}>
                                             <td className='stt'>{index + 1}</td>
                                             <td>{item.ten}</td>
-                                            <td>{item.sdt}</td>
+                                            <td className='stt'>{item.sdt}</td>
                                             <td>{item.diaChi}</td>
                                             <td>{item.email}</td>
                                             <td className='tienno'>{item.tienNo}</td>
@@ -304,6 +307,7 @@ class KhachHang extends Component {
 
 const mapStateToProps = state => {
     return {
+        userInfo: state.user.userInfo
     };
 };
 

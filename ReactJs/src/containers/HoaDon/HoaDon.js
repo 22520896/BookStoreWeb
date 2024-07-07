@@ -159,6 +159,9 @@ class HoaDon extends Component {
     //----------------------------------------------------------------------------------------------
     //RENDER
     render() {
+        if (this.props.userInfo.vaiTro == 2) {
+            return null; // Hide the component if user role is not 1 (Admin)
+        }
         let DSHoaDon = this.state.DSHoaDon
         return (
             <div className="hd-container">
@@ -183,7 +186,7 @@ class HoaDon extends Component {
                     <div class="search-container">
                         <div className='mt-1 mx-3'>
                             <button className='btn px-3'
-                                onClick={() => this.getDSHoaDon()}>Tất cả hóa đơn</button>
+                                onClick={() => this.getDSHoaDon()}><u>Tất cả hóa đơn</u></button>
                         </div>
                         <div class="form-group search-div">
                             <div class="search">
@@ -210,7 +213,7 @@ class HoaDon extends Component {
                         <thead>
                             <tr>
                                 <th className='hd'>STT</th>
-                                <th>Mã Hóa Đơn</th>
+                                <th className='hd'>Mã Hóa Đơn</th>
                                 <th>Ngày Lập</th>
                                 <th className='hd'>Số Điện Thoại</th>
                                 <th>Họ Tên</th>
@@ -227,14 +230,14 @@ class HoaDon extends Component {
                                     <>
                                         <tr key={index}>
                                             <td className='hd'>{index + 1}</td>
-                                            <td>{item.idHD}</td>
+                                            <td className='hd'>{item.idHD}</td>
                                             <td>{moment(item.ngayLap).format("DD/MM/YYYY")}</td>
                                             <td className='hd'>{item.sdt}</td>
                                             <td>{item.hoTen}</td>
-                                            <td className='hd'>{item.tongTien}</td>
-                                            <td className='hd'>{item.soTienTra}</td>
-                                            <td className='hd'>{item.tienTraLai}</td>
-                                            <td className='hd'>{item.no}</td>
+                                            <td className='hd'>{item.tongTien.toLocaleString('vi-VN')}</td>
+                                            <td className='hd'>{item.soTienTra.toLocaleString('vi-VN')}</td>
+                                            <td className='hd'>{item.tienTraLai.toLocaleString('vi-VN')}</td>
+                                            <td className='hd'>{item.no.toLocaleString('vi-VN')}</td>
                                             <td style={{ textAlign: 'center' }}>
                                                 <button className='btn-detail' onClick={() => { this.openModalViewHoaDon(item) }} title='Chi tiết phiếu nhập'> <GoPaste /></button>
                                             </td>
@@ -253,7 +256,7 @@ class HoaDon extends Component {
 
 const mapStateToProps = state => {
     return {
-
+        userInfo: state.user.userInfo
     };
 };
 

@@ -290,10 +290,10 @@ class ModalCreatePhieuNhap extends Component {
                                                     <td>{item.theLoai}</td>
                                                     <td>{item.tacGia}</td>
                                                     <td className = 'sl'>{item.soLuong}</td>
-                                                    <td className = 'dgn'>{item.donGiaNhap}</td>
+                                                    <td className = 'dgn'>{item.donGiaNhap.toLocaleString('vi-VN')}</td>
                                                     <td style={{ textAlign: 'center' }}>
-                                                        <button className='btn-del'
-                                                            onClick={() => this.deleteCTPN(index)}><LuTrash2 /></button>
+                                                        <Button className='btn-del'
+                                                            onClick={() => this.deleteCTPN(index)}><LuTrash2 /></Button>
                                                     </td>
                                                 </tr>
                                             </>

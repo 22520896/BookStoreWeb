@@ -278,7 +278,7 @@ class ModalCreateHoaDon extends Component {
                                 </div>
                             </div>
                             <div className='row mt-3'>
-                                <div className='col-6'>
+                                <div className='col-12'>
                                     <button className='btn-add' onClick={this.addCTHD}>Thêm sách</button>
                                 </div>
                             </div>
@@ -303,7 +303,7 @@ class ModalCreateHoaDon extends Component {
                                                     <td className='stt'>{index + 1}</td>
                                                     <td>{item.sach}</td>
                                                     <td>{item.theLoai}</td>
-                                                    <td className='dgb'>{item.donGiaBan}</td>
+                                                    <td className='dgb'>{item.donGiaBan.toLocaleString('vi-VN')}</td>
                                                     <td className='sl'>{item.soLuong}</td>
                                                     <td style={{ textAlign: 'center' }}>
                                                         <button className='btn-del'
@@ -321,10 +321,10 @@ class ModalCreateHoaDon extends Component {
                                     <label>Số tiền trả</label>
                                     <input type="number" className='form-control' value={this.state.soTienTra} onChange={(event) => { this.handleOnChange(event, "soTienTra") }} onKeyDown={(event) => { this.handleKeyDown(event, 4) }} />
                                 </div>
-                                <div className='col-6'>
-                                    Tổng tiền    : {this.state.tongTien}<br />
-                                    Tiền trả lại : {this.state.tienTraLai}<br />
-                                    Nợ           : {this.state.no}
+                                <div className='tien col-6'>
+                                    Tổng tiền    : {this.state.tongTien.toLocaleString('vi-VN')}<br />
+                                    Tiền trả lại : {this.state.tienTraLai.toLocaleString('vi-VN')}<br />
+                                    Nợ           : {this.state.no.toLocaleString('vi-VN')}
                                 </div>
                             </div>
                         </div>

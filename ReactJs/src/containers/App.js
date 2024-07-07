@@ -19,8 +19,6 @@ import PhieuThu from './PhieuThu/PhieuThu.js';
 import KhachHang from './KhachHang/KhachHang.js';
 import PhieuNhap from './PhieuNhap/PhieuNhap.js';
 import HoaDon from './HoaDon/HoaDon.js';
-
-
 import BaoCao from './BaoCao/BaoCao.js';
 
 import { CustomToastCloseButton } from '../components/CustomToast';
@@ -32,6 +30,7 @@ class App extends Component {
         const { persistor, isLoggedIn } = this.props;
         let { bootstrapped } = persistor.getState();
         if (bootstrapped) {
+            persistor.purge()
             if (this.props.onBeforeLift) {
                 Promise.resolve(this.props.onBeforeLift())
                     .then(() => this.setState({ bootstrapped: true }))
@@ -62,15 +61,14 @@ class App extends Component {
                             <Route path={path.PHIEUNHAP} component={userIsAuthenticated(PhieuNhap)} />
                             <Route path={path.SACH} component={userIsAuthenticated(Sach)} />
                             <Route path={path.BAOCAO} component={userIsAuthenticated(BaoCao)} />
-
                         </Switch>
                     </span>
 
                     <ToastContainer
-                        className="toast-container" toastClassName="toast-item" bodyClassName="toast-item-body"
-                        autoClose={false} hideProgressBar={true} pauseOnHover={false}
-                        pauseOnFocusLoss={true} closeOnClick={false} draggable={false}
-                        closeButton={<CustomToastCloseButton />}
+                        // className="toast-container" toastClassName="toast-item" bodyClassName="toast-item-body"
+                        // autoClose={false} hideProgressBar={true} pauseOnHover={false}
+                        // pauseOnFocusLoss={true} closeOnClick={false} draggable={false}
+                        // closeButton={<CustomToastCloseButton />}
                     />
                     {/* </div> */}
                 </Router>

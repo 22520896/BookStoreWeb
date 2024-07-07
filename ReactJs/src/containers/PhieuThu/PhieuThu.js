@@ -150,6 +150,9 @@ class PhieuThu extends Component {
     //----------------------------------------------------------------------------------------------
     //RENDER
     render() {
+        if (this.props.userInfo.vaiTro == 3) {
+            return null; // Hide the component if user role is not 1 (Admin)
+        }
         let DSPhieuThu = this.state.DSPhieuThu
         return (
             <div className="pt-container">
@@ -174,7 +177,7 @@ class PhieuThu extends Component {
                     <div class="search-container">
                         <div className='mt-1 mx-3'>
                             <button className='btn px-3'
-                                onClick={() => this.getDSPhieuThu()}>Tất cả phiếu thu</button>
+                                onClick={() => this.getDSPhieuThu()}><u>Tất cả phiếu thu</u></button>
                         </div>
                         <div class="form-group search-div">
                             <div class="search">
@@ -201,7 +204,7 @@ class PhieuThu extends Component {
                         <thead>
                             <tr>
                                 <th className="pt">STT</th>
-                                <th>Mã Phiếu</th>
+                                <th className='pt'>Mã Phiếu</th>
                                 <th>Ngày Thu Tiền</th>
                                 <th>Khách Hàng</th>
                                 <th className="pt">Số Điện Thoại</th>
@@ -215,11 +218,11 @@ class PhieuThu extends Component {
                                     <>
                                         <tr key={index}>
                                             <td className="pt">{index + 1}</td>
-                                            <td>{item.idPT}</td>
+                                            <td className='pt'>{item.idPT}</td>
                                             <td>{moment(item.ngayThuTien).format("DD/MM/YYYY")}</td>
                                             <td>{item.hoTen}</td>
                                             <td className='pt'>{item.sdt}</td>
-                                            <td className='pt'>{item.soTienThu}</td>
+                                            <td className='pt'>{item.soTienThu.toLocaleString('vi-VN')}</td>
                                         
                                             <td style={{ textAlign: 'center' }}>
                                                 <button className='btn-detail' onClick={() => { this.openModalViewPhieuThu(item.idPT) }} title='Chi tiết phiếu thu'> <GoPaste /></button>
@@ -239,7 +242,7 @@ class PhieuThu extends Component {
 
 const mapStateToProps = state => {
     return {
-
+        userInfo: state.user.userInfo
     };
 };
 

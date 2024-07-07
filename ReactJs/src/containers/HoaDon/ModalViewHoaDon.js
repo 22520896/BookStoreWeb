@@ -29,7 +29,7 @@ class ModalViewHoaDon extends Component {
                 <ModalBody>
                 <div ref={this.componentRef}>
                     <div className='container' ref={this.componentRef}>
-                        <span className="store">Nhà sách ABC</span>
+                        <div className="store">Nhà sách ABC</div>
                         <div className='title'>HÓA ĐƠN</div>
                         <span className='ngay'>Ngày lập hóa đơn: {moment(HD.ngayLap).format("DD/MM/YYYY")}</span>
                         <div className='hd-table mt-4 mx-3'>
@@ -54,7 +54,7 @@ class ModalViewHoaDon extends Component {
                                             <td>{item.sach}</td>                                            
                                             <td>{item.theLoai}</td>
                                             <td className='sl'>{item.soLuong}</td>
-                                            <td className='dgb'>{item.donGiaBan}</td>
+                                            <td className='dgb'>{item.donGiaBan.toLocaleString('vi-VN')}</td>
                                         </tr>
                                     ))}
                                     <tr>

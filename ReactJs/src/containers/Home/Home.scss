@@ -4,7 +4,8 @@
     background-color: #EFF1E6;
     display: flex; 
     justify-content: center;
-    position: relative; 
+    position: relative;
+    overflow: hidden !important; 
     .background_1{
         background: url('../../assets/b1.png') no-repeat center bottom;
         background-size: contain;

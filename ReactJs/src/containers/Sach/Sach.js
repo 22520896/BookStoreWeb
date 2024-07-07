@@ -105,7 +105,7 @@ class Sach extends Component {
                     <div class="search-container">
                         <div className='mt-1 mx-3'>
                             <button className='btn px-3'
-                                onClick={() => this.getDSSach()}>Tất cả sách</button>
+                                onClick={() => this.getDSSach()}><u>Tất cả sách</u></button>
                         </div>
                         <div class="form-group search-div">
                             <div class="search">
@@ -135,7 +135,7 @@ class Sach extends Component {
                         <thead>
                             <tr>
                                 <th className='stt'>STT</th>
-                                <th>Mã Sách</th>
+                                <th className='stt'>Mã Sách</th>
                                 <th>Tên Sách</th>
                                 <th>Thể Loại</th>
                                 <th>Tác Giả</th>
@@ -149,12 +149,12 @@ class Sach extends Component {
                                     <>
                                         <tr key={index}>
                                             <td className="stt">{index + 1}</td>
-                                            <td>{item.idSach}</td>
+                                            <td className='stt'>{item.idSach}</td>
                                             <td>{item.tenSach}</td>
                                             <td>{item.theLoai}</td>
                                             <td>{item.tacGia}</td>
                                             <td className="soluong">{item.soLuong}</td>
-                                            <td className="dongiaban">{item.donGiaBan}</td>
+                                            <td className="dongiaban">{item.donGiaBan.toLocaleString('vi-VN')}</td>
                                         </tr>
                                     </>
                                 )

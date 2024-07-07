@@ -98,11 +98,11 @@ class ModalEditKhachHang extends Component {
                     <div className='container'>
                         <div className='row'>
                             <div className='form-group'>
-                                <label>Họ tên khách hàng</label>
+                                <label>Họ Tên Khách Hàng</label>
                                 <input type="text" className='form-control' required={true} onChange={(event) => { this.handleOnChange(event, "ten") }} onKeyDown={this.handleKeyDown} value={this.state.khachHang.ten} />
                             </div>
                             <div class="form-group mt-3">
-                                <label>Số điện thoại</label>
+                                <label>Số Điện Thoại</label>
                                 <input type="tel" class="form-control" required onChange={(event) => { this.handleOnChange(event, "sdt") }} onKeyDown={this.handleKeyDown} value={this.state.khachHang.sdt} disabled />
                             </div>
                             <div class="form-group mt-3">
@@ -121,10 +121,10 @@ class ModalEditKhachHang extends Component {
                     </div>
                 </ModalBody>
                 <ModalFooter>
-                    <Button type="submit" color="primary" className="px-2" onClick={() => { this.editKhachHang() }}>
+                    <Button type="submit" color="primary" className="btn-submit px-2" onClick={() => { this.editKhachHang() }}>
                         Lưu
                     </Button>{' '}
-                    <Button color="secondary" className='px-2' onClick={() => { this.toggle() }}>
+                    <Button color="secondary" className='btn-exit px-2' onClick={() => { this.toggle() }}>
                         Thoát
                     </Button>
                 </ModalFooter>

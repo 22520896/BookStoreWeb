@@ -29,7 +29,7 @@ class ModalShowHoaDon extends Component {
                 </ModalHeader>
                 <ModalBody>
                     <div className='container' ref={this.componentRef}>
-                        <span className="store">Nhà sách ABC</span>
+                        <div className="store">Nhà sách ABC</div>
                         <div className='title'>HÓA ĐƠN</div>
                         <span className='ngay'>Ngày lập hóa đơn: {moment(this.props.ngayLap).format("DD/MM/YYYY")}</span>
                         <div className='hd-table mt-4 mx-3'>
@@ -54,24 +54,24 @@ class ModalShowHoaDon extends Component {
                                             <td>{item.sach}</td>                                            
                                             <td>{item.theLoai}</td>
                                             <td className='sl'>{item.soLuong}</td>
-                                            <td className='dgb'>{item.donGiaBan}</td>
+                                            <td className='dgb'>{item.donGiaBan.toLocaleString('vi-VN')}</td>
                                         </tr>
                                     ))}
                                     <tr>
                                         <td colSpan="4"></td>
-                                        <td class='tonghd'>Tổng tiền: {this.props.tongTien}</td>
+                                        <td class='tonghd'>Tổng tiền: {this.props.tongTien.toLocaleString('vi-VN')}</td>
                                     </tr>
                                     <tr>
                                         <td colSpan="4"></td>
-                                        <td class='tonghd'>Số tiền trả: {this.props.soTienTra}</td>
+                                        <td class='tonghd'>Số tiền trả: {this.props.soTienTra.toLocaleString('vi-VN')}</td>
                                     </tr>
                                     <tr>
                                         <td colSpan="4"></td>
-                                        <td class='tonghd'>Tiền trả lại: {this.props.tienTraLai}</td>
+                                        <td class='tonghd'>Tiền trả lại: {this.props.tienTraLai.toLocaleString('vi-VN')}</td>
                                     </tr>
                                     <tr>
                                         <td colSpan="4"></td>
-                                        <td class='tonghd'>Nợ: {this.props.no}</td>
+                                        <td class='tonghd'>Nợ: {this.props.no.toLocaleString('vi-VN')}</td>
                                     </tr>
                                 </tbody>
                             </table>

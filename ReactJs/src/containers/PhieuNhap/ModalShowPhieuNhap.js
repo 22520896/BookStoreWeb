@@ -29,30 +29,30 @@ class ModalShowPhieuNhap extends Component {
                 <ModalBody>
                     <div ref={this.componentRef}>
                         <div className='container'>
-                            <span className="store">Nhà sách ABC</span>
-                            <div className='title'>PHIẾU NHẬP SÁCH</div>
+                            <div className="store">Nhà sách ABC</div>
+                            <div className='tittle'>PHIẾU NHẬP SÁCH</div>
                             <span className='ngay'>Ngày lập phiếu: {moment(this.props.ngayLap).format("DD/MM/YYYY")}</span>
-                            <div className='pn-table mt-4 mx-3'>
+                            <div className='ct-pn-table mt-4 mx-3'>
                                 <table className="table table-striped mt-3">
                                     <thead>
                                         <tr>
-                                            <th>STT</th>
+                                            <th className='stt'>STT</th>
                                             <th>Tên sách</th>
                                             <th>Tác giả</th>
                                             <th>Thể loại</th>
-                                            <th>Số lượng</th>
-                                            <th>Đơn giá nhập</th>
+                                            <th className='sl'>Số lượng</th>
+                                            <th className='dgn'>Đơn giá nhập</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {CTPN && CTPN.map((item, index) => (
                                             <tr key={index}>
-                                                <td>{index + 1}</td>
+                                                <td className='stt'>{index + 1}</td>
                                                 <td>{item.sach}</td>
                                                 <td>{item.tacGia}</td>
                                                 <td>{item.theLoai}</td>
-                                                <td>{item.soLuong}</td>
-                                                <td>{item.donGiaNhap}</td>
+                                                <td className='sl'>{item.soLuong}</td>
+                                                <td className='dgn'>{item.donGiaNhap.toLocaleString('vi-VN')}</td>
                                             </tr>
                                         ))}
                                     </tbody>

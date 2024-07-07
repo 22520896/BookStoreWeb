@@ -86,7 +86,7 @@ class ModalCreateTaiKhoan extends Component {
       <Modal isOpen={this.props.isOpen} toggle={() => { this.toggle() }}
         className="modal-user-container" size='lg' centered>
         <ModalHeader toggle={() => { this.toggle() }}>
-          THÊM TÀI KHOẢN MỚI
+          THÊM TÀI KHOẢN
         </ModalHeader>
         <ModalBody>
           <div className='container'>

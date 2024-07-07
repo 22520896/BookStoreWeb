@@ -153,6 +153,9 @@ class PhieuNhap extends Component {
     //----------------------------------------------------------------------------------------------
     //RENDER
     render() {
+        if (this.props.userInfo.vaiTro == 3) {
+            return null; // Hide the component if user role is not 1 (Admin)
+        }
         let DSPhieuNhap = this.state.DSPhieuNhap
         return (
             <div className="pn-container">
@@ -177,7 +180,7 @@ class PhieuNhap extends Component {
                     <div class="search-container">
                         <div className='mt-1 mx-3'>
                             <button className='btn px-3'
-                                onClick={() => this.getDSPhieuNhap()}>Tất cả phiếu nhập</button>
+                                onClick={() => this.getDSPhieuNhap()}><u>Tất cả phiếu nhập</u></button>
                         </div>
                         <div class="form-group search-div">
                             <div class="search">
@@ -202,7 +205,7 @@ class PhieuNhap extends Component {
                         <thead>
                             <tr>
                                 <th className = 'stt'>STT</th>
-                                <th>Mã Phiếu</th>
+                                <th className='stt'>Mã Phiếu</th>
                                 <th>Ngày Lập</th>
                                 <th></th>
                             </tr>
@@ -213,7 +216,7 @@ class PhieuNhap extends Component {
                                     <>
                                         <tr key={index}>
                                             <td className = 'stt'>{index + 1}</td>
-                                            <td>{item.idPN}</td>
+                                            <td className='stt'>{item.idPN}</td>
                                             <td>{moment(item.ngayLap).format("DD/MM/YYYY")}</td>
                                             <td style={{ textAlign: 'center' }}>
                                                 <button className='btn-detail' onClick={() => { this.openModalViewPhieuNhap(item) }} title='Chi tiết phiếu nhập'> <GoPaste /></button>
@@ -235,7 +238,7 @@ class PhieuNhap extends Component {
 
 const mapStateToProps = state => {
     return {
-
+        userInfo: state.user.userInfo
     };
 };
 

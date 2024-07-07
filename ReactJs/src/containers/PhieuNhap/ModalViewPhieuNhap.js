@@ -5,15 +5,13 @@ import moment from 'moment';
 import ReactToPrint from "react-to-print";
 import { FiPrinter } from "react-icons/fi";
 
-
-
 class ModalViewPhieuNhap extends Component {
     constructor(props) {
         super(props);
         this.componentRef = React.createRef();
     }
 
-    componentDidMount() { }
+    componentDidMount() {}
 
     toggle = () => {
         this.props.toggleModalViewPhieuNhap();
@@ -55,7 +53,7 @@ class ModalViewPhieuNhap extends Component {
                                                     <td>{item.tacGia}</td>
                                                     <td>{item.theLoai}</td>
                                                     <td className = 'sl'>{item.soLuong}</td>
-                                                    <td className = 'dgn'>{item.donGiaNhap}</td>
+                                                    <td className = 'dgn'>{item.donGiaNhap.toLocaleString('vi-VN')}</td>
                                                 </tr>
                                             </>
                                         )
@@ -89,7 +87,6 @@ class ModalViewPhieuNhap extends Component {
             </Modal >
         )
     }
-
 }
 
 

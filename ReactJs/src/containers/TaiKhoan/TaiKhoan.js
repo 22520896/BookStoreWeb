@@ -203,7 +203,11 @@ class TaiKhoan extends Component {
     //----------------------------------------------------------------------------------------------
     //RENDER
     render() {
+        if (this.props.userInfo.vaiTro != 1) {
+            return null; // Hide the component if user role is not 1 (Admin)
+        }
         let DSTaiKhoan = this.state.DSTaiKhoan
+        let vaiTro = {1: 'Admin', 2: 'Thủ Kho', 3: 'Nhân Viên Bán Hàng'}
         return (
             <div className="users-container">
                 <div className="title text-center">Quản Lí Tài Khoản</div>
@@ -235,7 +239,7 @@ class TaiKhoan extends Component {
                     <div class="search-container">
                         <div className='mt-1 mx-3'>
                             <button className='btn px-3'
-                                onClick={() => this.getDSTaiKhoan()}>Tất cả tài khoản</button>
+                                onClick={() => this.getDSTaiKhoan()}><u>Tất cả tài khoản</u></button>
                         </div>
                         <div class="form-group search-div">
                             <div class="search">
@@ -244,8 +248,8 @@ class TaiKhoan extends Component {
                                         <option value="">Chọn mục</option>
                                         <option value="username">Username</option>
                                         <option value="hoTen">Họ Tên</option>
-                                        <option value="sdt">Số điện thoại</option>
-                                        <option value="diaChi">Địa chỉ</option>
+                                        <option value="sdt">Số Điện Thoại</option>
+                                        <option value="diaChi">Địa Chỉ</option>
                                         <option value="vaiTro">Vai Trò</option>
                                     </select>
                                 </span>
@@ -265,9 +269,9 @@ class TaiKhoan extends Component {
                                 <th className='stt'>STT</th>
                                 <th>Username</th>
                                 <th>Họ Tên</th>
-                                <th>Số Điện Thoại</th>
+                                <th className='stt'>Số Điện Thoại</th>
                                 <th>Địa Chỉ</th>
-                                <th className='vaitro'>Vai Trò</th>
+                                <th>Vai Trò</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -279,9 +283,9 @@ class TaiKhoan extends Component {
                                             <td className='stt'>{index + 1}</td>
                                             <td>{item.username}</td>
                                             <td>{item.hoTen}</td>
-                                            <td>{item.sdt}</td>
+                                            <td className='stt'>{item.sdt}</td>
                                             <td>{item.diaChi}</td>
-                                            <td className='vaitro'>{item.vaiTro}</td>
+                                            <td>{vaiTro[item.vaiTro]}</td>
                                             <td style={{ textAlign: 'center' }}>
                                                 <button className='btn-edit'
                                                     onClick={() => this.openEditTaiKhoan(item)}><FiEdit /></button>
@@ -304,6 +308,7 @@ class TaiKhoan extends Component {
 
 const mapStateToProps = state => {
     return {
+        userInfo: state.user.userInfo
     };
 };
 

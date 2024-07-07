@@ -81,17 +81,17 @@ class ModalCreateKhachHang extends Component {
             <Modal isOpen={this.props.isOpen} toggle={() => { this.toggle() }}
                 className="modal-kh-container" size='lg' centered>
                 <ModalHeader toggle={() => { this.toggle() }}>
-                    THÊM KHÁCH HÀNG MỚI
+                    THÊM KHÁCH HÀNG
                 </ModalHeader>
                 <ModalBody>
                     <div className='container'>
                         <div className='row'>
                             <div className='form-group'>
-                                <label>Họ tên khách hàng</label>
+                                <label>Họ Tên Khách Hàng</label>
                                 <input type="text" className='form-control' required={true} onChange={(event) => { this.handleOnChange(event, "ten") }} onKeyDown={this.handleKeyDown} />
                             </div>
                             <div class="form-group mt-3">
-                                <label>Số điện thoại</label>
+                                <label>Số Điện Thoại</label>
                                 <input type="tel" class="form-control" required onChange={(event) => { this.handleOnChange(event, "sdt") }} onKeyDown={this.handleKeyDown}/>
                             </div>
                             <div class="form-group mt-3">

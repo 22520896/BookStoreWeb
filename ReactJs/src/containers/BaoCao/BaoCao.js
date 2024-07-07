@@ -99,6 +99,9 @@ class BaoCao extends Component {
 
 
     render() {
+        if (this.props.userInfo.vaiTro == 3) {
+            return null; // Hide the component if user role is not 1 (Admin)
+        }
         return (
             <div className="bc-container">
                 <div className="title text-center">Lập Báo Cáo Tháng</div>
@@ -134,7 +137,7 @@ class BaoCao extends Component {
 
 const mapStateToProps = state => {
     return {
-
+        userInfo: state.user.userInfo
     };
 };
 

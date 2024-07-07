@@ -94,7 +94,7 @@ class Login extends Component {
                         <i className={this.state.isShowPassword ? "far fa-eye-slash" : "far fa-eye"}></i>
                     </span>
                     <div className='col-12 text-center message' style={{ color: "red" }}>
-                        {this.state.message}
+                            {this.state.message}
                     </div>
                     <div className='col-12'>
                         <button className='btn-login' onClick={this.handleLogin}>LOGIN</button>
