@@ -18,7 +18,6 @@ class ModalCreateHoaDon extends Component {
             soTienTra: "",
             tienTraLai: "",
             no: "",
-            message: '',
             CT: {
                 sach: "",
                 soLuong: "",
@@ -38,7 +37,6 @@ class ModalCreateHoaDon extends Component {
             soTienTra: "",
             tienTraLai: "",
             no: "",
-            message: '',
             CT: {
                 sach: "",
                 soLuong: "",
@@ -77,9 +75,7 @@ class ModalCreateHoaDon extends Component {
         let arr = ['Tên sách', 'Số lượng']
         for (let i = 0; i < arrInput.length; i++) {
             if (!this.state.CT[arrInput[i]]) {
-                this.setState({
-                    message: `Vui lòng điền ${arr[i]}!`,
-                });
+                this.thongBao(-1, `Vui lòng điền ${arr[i]}!`)
                 inputElements[i + 2].focus()
                 return false;
             }
@@ -96,7 +92,6 @@ class ModalCreateHoaDon extends Component {
             if (response && (response.errCode == 0)) {
                 this.setState({
                     CTHD: [...this.state.CTHD, response.ct],
-                    message: '',
                     CT: {
                         sach: "",
                         soLuong: "",
@@ -171,8 +166,8 @@ class ModalCreateHoaDon extends Component {
                     inputElements[4].focus()
                 }
                 else {
-                    if (this.state.no > 0 && !this.state.sdt) {
-                        this.thongBao(-1, 'Vì có Nợ nên vui lòng nhập Số điện thoại khách hàng!')
+                    if (!this.state.sdt) {
+                        this.thongBao(-1, 'Vui lòng nhập Số điện thoại khách hàng!')
                         inputElements[1].focus()
                     }
                     else {
@@ -224,7 +219,6 @@ class ModalCreateHoaDon extends Component {
             soTienTra: "",
             tienTraLai: "",
             no: "",
-            message: '',
             CT: {
                 sach: "",
                 soLuong: "",

@@ -57,9 +57,7 @@ class ModalCreatePhieuThu extends Component {
         let arr = ['Ngày thu tiền', 'Số điện thoại', 'Số tiền thu']
         for (let i = 0; i < arrInput.length; i++) {
             if (!this.state.PT[arrInput[i]]) {
-                this.setState({
-                    message: `Vui lòng điền ${arr[i]}!`,
-                });
+                this.thongBao(-1, `Vui lòng chọn ${arr[i]}!`)
                 inputElements[i].focus()
                 return false;
             }
@@ -140,7 +138,6 @@ class ModalCreatePhieuThu extends Component {
                 diaChi: "",
                 soTienThu: "",
             },
-            message: "",
             isOpenModalShowPhieuThu: false
         });
     }

@@ -29,7 +29,6 @@ class ModalCreatePhieuNhap extends Component {
     toggle = () => {
         this.setState({
             ngayLap: new Date().toISOString().slice(0, 10),
-            message: '',
             CT: {
                 sach: "",
                 theLoai: "",
@@ -84,9 +83,7 @@ class ModalCreatePhieuNhap extends Component {
         let arr = ['Tên sách', 'Thể loại', 'Tác giả', 'Đơn giá nhập', 'Số Lượng']
         for (let i = 0; i < arrInput.length; i++) {
             if (!this.state.CT[arrInput[i]]) {
-                this.setState({
-                    message: `Vui lòng điền ${arr[i]}!`,
-                });
+                this.thongBao(-1,`Vui lòng điền ${arr[i]}!`)
                 inputElements[i + 1].focus()
                 return false;
             }

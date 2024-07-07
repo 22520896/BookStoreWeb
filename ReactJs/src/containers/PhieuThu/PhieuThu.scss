@@ -1,28 +1,29 @@
-body{
+body {
     overflow: auto;
 }
 
-.pt-container{
-    .title{
+.pt-container {
+    .title {
         font-size: 35px;
         font-weight: bold;
         color: #856A32;
         margin-top: 80px;
         margin-bottom: 20px;
     }
-    &.text-center{
+
+    &.text-center {
         text-align: center;
     }
 
     .mt-1 {
-        margin-top: 0.25rem; 
+        margin-top: 0.25rem;
     }
-    
+
     .mx-3 {
-        margin-left: 1rem; 
-        margin-right: 1rem; 
+        margin-left: 1rem;
+        margin-right: 1rem;
     }
-    
+
     .btn {
         display: inline-block;
         text-align: center;
@@ -35,146 +36,180 @@ body{
         line-height: 1.4;
         border-radius: 0.4rem;
         transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    
+
         &-primary {
             color: #000;
             background-color: #B3D3A5;
             border-color: B3D3A5;
             font-weight: bold;
-            font-size:15px;
+            font-size: 15px;
+
             &:hover {
                 color: #000;
                 background-color: #70B252;
                 border-color: #70B252;
             }
         }
-    
+
         &.px-2 {
-            padding-left: 0.5rem; 
-            padding-right: 0.5rem; 
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
         }
-    
+
         i {
-            margin-right: 0.5rem; 
+            margin-right: 0.5rem;
         }
     }
 }
 
 .pt-table {
-    margin-top: 4rem; /* Khoảng cách trên */
-    margin-left: 1.5rem; /* Khoảng cách trái */
-    margin-right: 1.5rem; /* Khoảng cách phải */
+    margin-top: 4rem;
+    /* Khoảng cách trên */
+    margin-left: 1.5rem;
+    /* Khoảng cách trái */
+    margin-right: 1.5rem;
+    /* Khoảng cách phải */
     font-size: 15px;
+
     table {
-        width: 100%; /* Độ rộng của bảng */
-        border-collapse: collapse; /* Loại bỏ khoảng cách giữa các ô */
-        margin-top: 1.5rem; /* Khoảng cách trên của bảng */
-        
-        th, td {
+        width: 100%;
+        /* Độ rộng của bảng */
+        border-collapse: collapse;
+        /* Loại bỏ khoảng cách giữa các ô */
+        margin-top: 1.5rem;
+        /* Khoảng cách trên của bảng */
+
+        th,
+        td {
             vertical-align: middle !important;
-            text-align: left; /* Canh lề trái nội dung */
-            border-bottom: 1px solid rgba(0, 0, 0, 0.2); /* Đường viền dưới */
+            text-align: left;
+            /* Canh lề trái nội dung */
+            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+            /* Đường viền dưới */
         }
-        th.pt, td.pt {
+
+        th.pt,
+        td.pt {
             text-align: center;
         }
-        
+
         th {
             color: #856A32;
-            font-weight: bold; /* In đậm chữ */
+            font-weight: bold;
+            /* In đậm chữ */
         }
-        
+
         tbody tr {
-            background-color: #fff; /* Màu nền cho tất cả các hàng */
+            background-color: #fff;
+            /* Màu nền cho tất cả các hàng */
         }
-        
+
         td:last-child {
-            text-align: center; /* Canh giữa nội dung */
+            text-align: center;
+            /* Canh giữa nội dung */
         }
     }
 }
 
 //Thêm phiếu thu
-.modal-pt-container{
-    .modal-content{
+.modal-pt-container {
+    .modal-content {
         border-radius: 15px;
-        .modal-header{
+
+        .modal-header {
             height: 50px !important;
             background-color: #856A32 !important;
             border-bottom: none;
             border-top-left-radius: 15px;
             border-top-right-radius: 15px;
         }
+
         .modal-title {
             font-size: 20px !important;
             width: 100%;
             text-align: center;
             font-weight: bold !important;
         }
+
         .close {
             background-color: transparent;
             color: white;
             border: none;
             font-size: 30px
-        } 
+        }
     }
-    .modal-body{
-        .form-control{
+
+    .modal-body {
+        .form-control {
             border-radius: 15px;
             background-color: #CADFBD;
         }
-        .btn-add{
+
+        .btn-add {
             height: 35px;
             width: 100px;
             font-weight: bold;
             border-radius: 45px;
-            background-color: #856A32 !important; 
+            background-color: #856A32 !important;
             color: #fff;
-            border:none;
+            border: none;
         }
-        .container
-        {
-            position: relative;  
+
+        .container {
+            position: relative;
             font-size: 15px;
-            .ttsb{
+
+            .ttsb {
                 position: absolute;
                 left: 40%;
-                margin: auto;                    
+                margin: auto;
                 font-size: 15px;
                 font-weight: bold;
                 margin-top: 10px;
             }
-            .cthd-container{
-                border: 1px solid #000;     
-                padding: 15px;              // Khoảng cách bên trong khung
+
+            .cthd-container {
+                border: 1px solid #000;
+                padding: 15px; // Khoảng cách bên trong khung
                 padding-top: 5px;
-                margin: 5px;               // Khoảng cách bên ngoài khung
+                margin: 5px; // Khoảng cách bên ngoài khung
                 margin-top: 40px;
             }
-            .hd-container{
-                th.stt, td.stt, th.sl, td.sl, th.dgb, td.dgb {
+
+            .hd-container {
+
+                th.stt,
+                td.stt,
+                th.sl,
+                td.sl,
+                th.dgb,
+                td.dgb {
                     text-align: center;
                 }
+
                 th {
                     color: #856A32;
-                    font-weight: bold; 
+                    font-weight: bold;
                 }
+
                 tbody tr {
-                    background-color: #fff; 
+                    background-color: #fff;
                 }
             }
         }
 
     }
-    .modal-footer{
-        .submit{
+
+    .modal-footer {
+        .submit {
             height: 35px;
             width: 75px;
             border-radius: 45px;
             background-color: #856A32;
             font-size: 15px;
         }
-        .exit{
+
+        .exit {
             height: 35px;
             width: 75px;
             border-radius: 45px;
@@ -183,66 +218,77 @@ body{
     }
 }
 
-.modal-spt-container{
-    .modal-content{
+.modal-spt-container {
+    .modal-content {
         border-radius: 15px;
-        .modal-header{
+
+        .modal-header {
             height: 50px !important;
             background-color: #856A32 !important;
             border-bottom: none;
             border-top-left-radius: 15px;
             border-top-right-radius: 15px;
         }
+
         .modal-title {
             font-size: 20px !important;
             width: 100%;
             text-align: center;
             font-weight: bold !important;
         }
+
         .close {
             background-color: transparent;
             color: white;
             border: none;
             font-size: 30px;
-        } 
-    
-        .modal-body{
-            border: 1px solid #000;     
-            padding: 20px;              
-            margin: 25px;  
+        }
+
+        .modal-body {
+            border: 1px solid #000;
+            padding: 20px;
+            margin: 25px;
             text-align: center;
-            .store{
+
+            .store {
                 font-size: 15px;
                 text-align: left;
                 width: 100%;
             }
-            .ngay{
+
+            .ngay {
                 margin: auto;
                 font-size: 15px;
             }
-            .title
-            {
+
+            .title {
                 font-size: 25px;
                 font-weight: bold;
             }
-            .kh{
+
+            .khs {
                 padding: 20px;
                 font-size: 15px;
+
                 p {
                     display: flex;
                     justify-content: space-between;
                 }
-                .left {
+
+                .lefts {
                     float: left;
                 }
-                .right {
+
+                .rights {
                     float: right;
                 }
+
                 p span {
                     display: inline-block;
                 }
             }
-            .sign{
+
+            .signs {
                 padding-left: 40px;
                 padding-right: 40px;
                 display: flex;
@@ -251,15 +297,17 @@ body{
             }
         }
     }
-    .modal-footer{
-        .print{
+
+    .modal-footer {
+        .print {
             font-size: 15px;
             height: 35px;
             width: 75px;
             border-radius: 45px;
             background-color: #856A32;
         }
-        .exit{
+
+        .exit {
             font-size: 15px;
             height: 35px;
             width: 75px;
@@ -268,43 +316,53 @@ body{
     }
 }
 
-@media print{
-    .container{
+@media print {
+    .container {
+        padding: 20px;
+        margin: 25px;
         text-align: center;
-        .store{
+
+        .store {
             font-size: 15px;
             text-align: left;
             width: 100%;
         }
-        .ngay{
+
+        .ngay {
             margin: auto;
             font-size: 15px;
         }
-        .title
-        {
+
+        .title {
             font-size: 25px;
             font-weight: bold;
         }
-        .kh{
+
+        .khs {
             padding: 20px;
             font-size: 15px;
+
             p {
                 display: flex;
                 justify-content: space-between;
             }
-            .left {
+
+            .lefts {
                 float: left;
             }
-            .right {
+
+            .rights {
                 float: right;
             }
-            p span {                    
+
+            p span {
                 display: inline-block;
             }
         }
-        .sign{
+
+        .signs {
             padding-left: 40px;
-            padding-right: 40px;                
+            padding-right: 40px;
             display: flex;
             justify-content: space-between;
             margin-bottom: 45px;

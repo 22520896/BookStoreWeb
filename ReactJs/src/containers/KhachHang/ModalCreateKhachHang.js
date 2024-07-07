@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { toast } from 'react-toastify';
 
 class ModalCreateKhachHang extends Component {
     constructor(props) {
@@ -52,18 +53,15 @@ class ModalCreateKhachHang extends Component {
     };
 
     checklValidInput = () => {
-        this.setState({
-            message: "",
-        });
         let arrInput = ['ten', 'sdt', 'diaChi', 'email'];
-        let arr = ['Họ tên khách hàng', 'Số điện thoại', 'Họ tên', 'Email'];
+        let arr = ['Họ tên khách hàng', 'Số điện thoại', 'Địa chỉ', 'Email'];
         for (let i = 0; i < arrInput.length; i++) {
-            if (!this.state.khachHang[arrInput[i]]) {
-                this.setState({
-                    message: `Vui lòng điền ${arr[i]}!`,
-                });
-                return false;
-            }
+          if (!this.state.khachHang[arrInput[i]]) {
+            const inputElements = document.querySelectorAll('.modal-kh-container input')
+            this.thongBao(-1,`Vui lòng điền ${arr[i]}!` )
+            inputElements[i].focus()
+            return false;
+          }
         }
         return true;
     };
@@ -75,6 +73,21 @@ class ModalCreateKhachHang extends Component {
         }
     };
 
+    thongBao = (errCode, message) => {
+        let prop = {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 2000,
+            closeButton: false,
+            className: 'custom-toast', // Thêm class tùy chỉnh
+            bodyClassName: 'custom-toast-body' // Thêm class body tùy chỉnh
+        }
+        if (errCode === 0) {
+            toast.success(message, prop)
+        }
+        else {
+            toast.error(message, prop)
+        }
+    }
 
     render() {
         return (
@@ -102,9 +115,7 @@ class ModalCreateKhachHang extends Component {
                                 <label>Email</label>
                                 <input type="email" className="form-control" onChange={(event) => { this.handleOnChange(event, "email") }} required onKeyDown={this.handleKeyDown} />
                             </div>
-                            <div className='col-12 mt-2' style={{ color: "red" }}>
-                                {this.state.message}
-                            </div>
+
                         </div>
                     </div>
                 </ModalBody>

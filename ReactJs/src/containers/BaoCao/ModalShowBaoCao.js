@@ -27,76 +27,78 @@ class ModalShowBaoCao extends Component {
                 </ModalHeader>
                 <ModalBody>
                     <div ref={this.componentRef}>
-                    <div className='container' >
-                        <div className='top'>
-                            <span className="store">Nhà sách ABC</span>
-                            <span className="date">Ngày lập: {moment(this.state.ngayLap).format("DD/MM/YYYY")}</span>
-                        </div>
-                        <div className='title'>BÁO CÁO {baoCao.loai == 'ton' ? "TỒN SÁCH" : "CÔNG NỢ"}</div>
-                        <div className='month'>
-                            <span>Tháng: {baoCao.thang}</span>
-                            <span>Năm: {baoCao.nam}</span>
-                        </div>
-                        <div className='bc-table mt-4 mx-3'>
-                            <table className="table mt-3">
-                                {baoCao.loai === 'ton' && (
-                                    <>
-                                        <thead>
-                                            <tr>
-                                                <th className='bc'>STT</th>
-                                                <th>Tên sách</th>
-                                                <th className='bc'>Tồn đầu</th>
-                                                <th className='bc'>Phát sinh</th>
-                                                <th className='bc'>Tồn cuối</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {baoCao.baoCao.map((item, index) => (
-                                                <tr key={index}>
-                                                    <td className='bc'>{index + 1}</td>
-                                                    <td>{item.tenSach}</td>
-                                                    <td className='bc'>{item.tonDau}</td>
-                                                    <td className='bc'>{item.phatSinh}</td>
-                                                    <td className='bc'>{item.tonCuoi}</td>
-                                                </tr>
-                                            ))}
-                                        </tbody>
-                                    </>
-                                )}
+                        <div className='frame'>
+                            <div className='container' >
+                                <div className='top'>
+                                    <span className="store">Nhà sách ABC</span>
+                                    <span className="date">Ngày lập: {moment(this.state.ngayLap).format("DD/MM/YYYY")}</span>
+                                </div>
+                                <div className='title'>BÁO CÁO {baoCao.loai == 'ton' ? "TỒN SÁCH" : "CÔNG NỢ"}</div>
+                                <div className='month'>
+                                    <span>Tháng: {baoCao.thang}</span>
+                                    <span>Năm: {baoCao.nam}</span>
+                                </div>
+                                <div className='bc-table mt-4 mx-3'>
+                                    <table className="table mt-3">
+                                        {baoCao.loai === 'ton' && (
+                                            <>
+                                                <thead>
+                                                    <tr>
+                                                        <th className='bc'>STT</th>
+                                                        <th>Tên sách</th>
+                                                        <th className='bc'>Tồn đầu</th>
+                                                        <th className='bc'>Phát sinh</th>
+                                                        <th className='bc'>Tồn cuối</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {baoCao.baoCao.map((item, index) => (
+                                                        <tr key={index}>
+                                                            <td className='bc'>{index + 1}</td>
+                                                            <td>{item.tenSach}</td>
+                                                            <td className='bc'>{item.tonDau}</td>
+                                                            <td className='bc'>{item.phatSinh}</td>
+                                                            <td className='bc'>{item.tonCuoi}</td>
+                                                        </tr>
+                                                    ))}
+                                                </tbody>
+                                            </>
+                                        )}
 
-                                {baoCao.loai == 'congNo' && (
-                                      <>
-                                      <thead>
-                                          <tr>
-                                              <th className='bc'>STT</th>
-                                              <th>Khách hàng</th>
-                                              <th className='bc'>Nợ đầu</th>
-                                              <th className='bc'>Phát sinh</th>
-                                              <th className='bc'>Nợ cuối</th>
-                                          </tr>
-                                      </thead>
-                                      <tbody>
-                                          {baoCao.baoCao.map((item, index) => (
-                                              <tr key={index}>
-                                                  <td className='bc'>{index + 1}</td>
-                                                  <td>{item.hoTen}</td>
-                                                  <td className='bc'>{item.noDau.toLocaleString('vi-VN')}</td>
-                                                  <td className='bc'>{item.phatSinh.toLocaleString('vi-VN')}</td>
-                                                  <td className='bc'>{item.noCuoi.toLocaleString('vi-VN')}</td>
-                                              </tr>
-                                          ))}
-                                      </tbody>
-                                  </>
-                                    )}
-                            </table>
-                            <div className='sign'>
-                                <div>
-                                    Người lập báo cáo<br />
-                                    <i>(Ký và họ tên)</i>
+                                        {baoCao.loai == 'congNo' && (
+                                            <>
+                                                <thead>
+                                                    <tr>
+                                                        <th className='bc'>STT</th>
+                                                        <th>Khách hàng</th>
+                                                        <th className='bc'>Nợ đầu</th>
+                                                        <th className='bc'>Phát sinh</th>
+                                                        <th className='bc'>Nợ cuối</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {baoCao.baoCao.map((item, index) => (
+                                                        <tr key={index}>
+                                                            <td className='bc'>{index + 1}</td>
+                                                            <td>{item.hoTen}</td>
+                                                            <td className='bc'>{item.noDau.toLocaleString('vi-VN')}</td>
+                                                            <td className='bc'>{item.phatSinh.toLocaleString('vi-VN')}</td>
+                                                            <td className='bc'>{item.noCuoi.toLocaleString('vi-VN')}</td>
+                                                        </tr>
+                                                    ))}
+                                                </tbody>
+                                            </>
+                                        )}
+                                    </table>
+                                    <div className='sign'>
+                                        <div>
+                                            Người lập báo cáo<br />
+                                            <i>(Ký và họ tên)</i>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                     </div>
                 </ModalBody>
                 <ModalFooter>
@@ -104,7 +106,7 @@ class ModalShowBaoCao extends Component {
                         content={() => this.componentRef.current}
                         trigger={() => (
                             <Button type="submit" color="primary" className="print px-2" >
-                                <FiPrinter/> In
+                                <FiPrinter /> In
                             </Button>
                         )}
                         onAfterPrint={this.toggle}

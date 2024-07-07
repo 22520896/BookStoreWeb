@@ -65,9 +65,7 @@ class BaoCao extends Component {
         let arr = ['Tháng', 'Loại báo cá+o']
         for (let i = 0; i < arrInput.length; i++) {
             if (!this.state[arrInput[i]]) {
-                this.setState({
-                    message: `Vui lòng chọn ${arr[i]}!`,
-                });
+                this.thongBao(-1, `Vui lòng chọn ${arr[i]}!`)
                 inputElements[i].focus()
                 return false;
             }

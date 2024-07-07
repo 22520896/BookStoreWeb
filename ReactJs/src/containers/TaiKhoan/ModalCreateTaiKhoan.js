@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { toast } from 'react-toastify';
 
 class ModalCreateTaiKhoan extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      message: "",
       taiKhoan: {
         username: "",
         password: "",
@@ -22,7 +22,6 @@ class ModalCreateTaiKhoan extends Component {
 
   toggle = () => {
     this.setState({
-      message: "",
       taiKhoan: {
         username: "",
         password: "",
@@ -55,18 +54,30 @@ class ModalCreateTaiKhoan extends Component {
     }
   };
 
-  checklValidInput = () => {
-    this.setState({
-      message: "",
-    });
+  thongBao = (errCode, message) => {
+    let prop = {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 2000,
+        closeButton: false,
+        className: 'custom-toast', // Thêm class tùy chỉnh
+        bodyClassName: 'custom-toast-body' // Thêm class body tùy chỉnh
+    }
+    if (errCode === 0) {
+        toast.success(message, prop)
+    }
+    else {
+        toast.error(message, prop)
+    }
+}
 
+  checklValidInput = () => {
     let arrInput = ['username', 'password', 'vaiTro', 'hoTen', 'diaChi', 'sdt'];
     let arr = ['Username', 'Password', 'Vai Trò', 'Họ Tên', 'Địa Chỉ', 'Số Điện Thoại'];
     for (let i = 0; i < arrInput.length; i++) {
       if (!this.state.taiKhoan[arrInput[i]]) {
-        this.setState({
-          message: `Vui lòng điền ${arr[i]}!`,
-        });
+        const inputElements = document.querySelectorAll('.modal-user-container input, .modal-user-container select');
+        this.thongBao(-1,`Vui lòng điền ${arr[i]}!` )
+        inputElements[i].focus()
         return false;
       }
     }
@@ -119,9 +130,6 @@ class ModalCreateTaiKhoan extends Component {
               <div class="form-group mt-3">
                 <label>Số Điện Thoại</label>
                 <input type="tel" className="form-control" name="sdt" onChange={(event) => { this.handleOnChange(event, "sdt") }} required onKeyDown={this.handleKeyDown} />
-              </div>
-              <div className='col-12 mt-2' style={{ color: "red" }}>
-                {this.state.message}
               </div>
             </div>
           </div>

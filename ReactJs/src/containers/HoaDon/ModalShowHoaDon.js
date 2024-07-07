@@ -75,7 +75,7 @@ class ModalShowHoaDon extends Component {
                                     </tr>
                                 </tbody>
                             </table>
-                            <div className='sign'>
+                            <div className='signs'>
                                 <div>
                                     Nhân viên<br />
                                     <i>(Ký và họ tên)</i>

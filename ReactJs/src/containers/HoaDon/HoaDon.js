@@ -180,7 +180,7 @@ class HoaDon extends Component {
                 <div className='mt-1 mx-3'>
                     <button className='btn btn-primary px-2'
                         onClick={() => this.openCreateHoaDon()}>
-                        <i className='fas fa-plus'></i> Thêm Hóa Đơn</button>
+                        <i className='fas fa-plus'></i> Lập Hóa Đơn</button>
                 </div>
                 <div class="col-12">
                     <div class="search-container">

@@ -62,7 +62,7 @@ let checkCTPT = (data) => {
                 where: { sdt: data.sdt },
             })
             if (khachHang) {
-                if (process.env.MIN_SL_SAU_BAN == 'true' && Number(data.soTienThu) > khachHang.tienNo) {
+                if (process.env.CHECK_TIEN_THU == 'true' && Number(data.soTienThu) > khachHang.tienNo) {
                     resolve({
                         errCode: 2,
                         message: `Khách hàng đang nợ ${khachHang.tienNo}, số tiền thu không được vượt quá số tiền khách nợ!`

@@ -28,25 +28,27 @@ class ModalViewPhieuThu extends Component {
                 </ModalHeader>
                 <ModalBody>
                     <div ref={this.componentRef}>
-                        <div className='container'>
-                            <div className='store'>Nhà sách ABC</div>
-                            <div className='title'>PHIẾU THU TIỀN</div>
-                            <span className='ngay'>Ngày thu tiền: {moment(PT.ngayThuTien).format("DD/MM/YYYY")}</span>
-                            <div className='kh'>
-                                <p><span className='left'>Họ tên khách hàng: {PT.hoTen}</span>
-                                    <span className='right'>Số điện thoại: {PT.sdt}</span></p>
-                                <p>Địa chỉ: {PT.diaChi}</p>
-                                <p>Email: {PT.email}</p>
-                                <p>Số tiền thu: {Number(PT.soTienThu).toLocaleString('vi-VN')}</p>
-                        </div>
-                            <div className='sign'>
-                                <div>
-                                    Nhân viên<br />
-                                    <i>(Ký và họ tên)</i>
+                        <div className='frame'>
+                            <div className='container'>
+                                <div className='store'>Nhà sách ABC</div>
+                                <div className='title'>PHIẾU THU TIỀN</div>
+                                <span className='ngay'>Ngày thu tiền: {moment(PT.ngayThuTien).format("DD/MM/YYYY")}</span>
+                                <div className='khs'>
+                                    <p><span className='lefts'>Họ tên khách hàng: {PT.hoTen}</span>
+                                        <span className='rights'>Số điện thoại: {PT.sdt}</span></p>
+                                    <p>Địa chỉ: {PT.diaChi}</p>
+                                    <p>Email: {PT.email}</p>
+                                    <p>Số tiền thu: {Number(PT.soTienThu).toLocaleString('vi-VN')}</p>
                                 </div>
-                                <div>
-                                    Khách hàng<br />
-                                    <i>(Ký và họ tên)</i>
+                                <div className='signs'>
+                                    <div>
+                                        Nhân viên<br />
+                                        <i>(Ký và họ tên)</i>
+                                    </div>
+                                    <div>
+                                        Khách hàng<br />
+                                        <i>(Ký và họ tên)</i>
+                                    </div>
                                 </div>
                             </div>
                         </div>

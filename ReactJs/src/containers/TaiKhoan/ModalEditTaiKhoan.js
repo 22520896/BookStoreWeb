@@ -4,13 +4,13 @@ import { connect } from 'react-redux';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { emitter } from '../../utils/emitter'
 import _ from 'lodash'
+import { toast } from 'react-toastify';
 
 class ModalEditTaiKhoan extends Component {
 
     constructor(props) {
         super(props) //props = properties - truyền prop từ cha xuống con
         this.state = {
-            message: "",
             taiKhoan: {
                 idTK: "",
                 username: "",
@@ -36,9 +36,6 @@ class ModalEditTaiKhoan extends Component {
     }
 
     toggle = () => {
-        this.setState({
-            message: ""
-        })
         this.props.toggleModalEditTaiKhoan()
     }
 
@@ -51,21 +48,18 @@ class ModalEditTaiKhoan extends Component {
     }
 
     checklValidInput = () => {
-        this.setState({
-            message: ""
-        })
-        let arrInput = ['username', "vaiTro", "hoTen", "diaChi", "sdt"]
-        let arr = ['Username', "Vai Trò", "Họ Tên", "Địa Chỉ", "Số Điện Thoại"]
+        let arrInput = ["vaiTro", "hoTen", "diaChi", "sdt"]
+        let arr = ["Vai Trò", "Họ Tên", "Địa Chỉ", "Số Điện Thoại"]
         for (let i = 0; i < arrInput.length; i++) {
             if (!this.state.taiKhoan[arrInput[i]]) {
-                this.setState({
-                    message: `Vui lòng điền ${arr[i]}!`
-                })
-                return false
+                const inputElements = document.querySelectorAll('.modal-user-container input, .modal-user-container select');
+                this.thongBao(-1, `Vui lòng điền ${arr[i]}!`)
+                inputElements[i + 1].focus()
+                return false;
             }
         }
-        return true
-    }
+        return true;
+    };
 
 
     //GỌI API CHỈNH SỬA THÔNG TIN TÀI KHOẢN
@@ -86,7 +80,23 @@ class ModalEditTaiKhoan extends Component {
                 this.editTaiKhoan();
             }
         }
-    };
+    }
+
+    thongBao = (errCode, message) => {
+        let prop = {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 2000,
+            closeButton: false,
+            className: 'custom-toast', // Thêm class tùy chỉnh
+            bodyClassName: 'custom-toast-body' // Thêm class body tùy chỉnh
+        }
+        if (errCode === 0) {
+            toast.success(message, prop)
+        }
+        else {
+            toast.error(message, prop)
+        }
+    }
 
 
     render() {
@@ -131,11 +141,6 @@ class ModalEditTaiKhoan extends Component {
                                 <label>Số Điện Thoại</label>
                                 <input type="tel" className="form-control" name="sdt" onChange={(event) => { this.handleOnChange(event, "sdt") }} required value={this.state.taiKhoan.sdt} onKeyDown={this.handleKeyDown} />
                             </div>
-
-                            <div className='col-12 mt-2' style={{ color: "red" }}>
-                                {this.state.message}
-                            </div>
-
                         </div>
 
                     </div>
