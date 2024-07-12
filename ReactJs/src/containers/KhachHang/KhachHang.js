@@ -191,15 +191,15 @@ class KhachHang extends Component {
 
     handleKeyDown = (event) => {
         if (event.key === 'Enter') {
-          const inputElements = document.querySelectorAll('.search input, .search select');
-          const currentIndex = Array.from(inputElements).indexOf(event.target);
-          if (currentIndex < inputElements.length - 1) {
-            inputElements[currentIndex + 1].focus();
-          } else {
-            this.searchKhachHang(this.state.type, this.state.keyword)
-          }
+            const inputElements = document.querySelectorAll('.search input, .search select');
+            const currentIndex = Array.from(inputElements).indexOf(event.target);
+            if (currentIndex < inputElements.length - 1) {
+                inputElements[currentIndex + 1].focus();
+            } else {
+                this.searchKhachHang(this.state.type, this.state.keyword)
+            }
         }
-      }
+    }
 
     //----------------------------------------------------------------------------------------------
     //RENDER
@@ -253,7 +253,7 @@ class KhachHang extends Component {
                                     </select>
                                 </span>
                                 <input type="text" placeholder="Nhập từ khóa tìm kiếm" class="form-control keyword" onChange={(event) => { this.handleOnChange(event, "keyword") }}
-                                onKeyDown={this.handleKeyDown} />
+                                    onKeyDown={this.handleKeyDown} />
                             </div>
                             <div class="search-btn">
                                 <button type="submit" class="btn btn-base" onClick={() => { this.searchKhachHang(this.state.type, this.state.keyword) }}> <i class="fas fa-search"></i> </button>
