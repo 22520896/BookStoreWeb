@@ -33,7 +33,7 @@ class ModalShowPhieuNhap extends Component {
                             <div className='tittle'>PHIẾU NHẬP SÁCH</div>
                             <span className='ngay'>Ngày lập phiếu: {moment(this.props.ngayLap).format("DD/MM/YYYY")}</span>
                             <div className='ct-pn-table mt-4 mx-3'>
-                                <table className="table table-striped mt-3">
+                                <table className="table mt-3">
                                     <thead>
                                         <tr>
                                             <th className='stt'>STT</th>

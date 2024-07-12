@@ -149,10 +149,10 @@ let createPhieuThu = (data) => {
             else {
                 await db.CongNo.create({
                     sdt: khachHang.sdt,
-                    thang: thangLap,
-                    nam: namLap,
+                    thang: thangThu,
+                    nam: namThu,
                     noDau: khachHang.tienNo,
-                    phatSinh: - umber(data.soTienThu),
+                    phatSinh: - Number(data.soTienThu),
                 })
             }
 
@@ -189,3 +189,4 @@ module.exports = {
     searchPhieuThu,
     createPhieuThu
 }
+

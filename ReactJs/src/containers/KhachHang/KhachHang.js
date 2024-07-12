@@ -246,7 +246,7 @@ class KhachHang extends Component {
                                 <span>
                                     <select className='form-select type' onChange={(event) => { this.handleOnChange(event, "type") }} onKeyDown={this.handleKeyDown}>
                                         <option value="">Chọn mục</option>
-                                        <option value="hoTen">Họ Tên</option>
+                                        <option value="ten">Họ Tên</option>
                                         <option value="sdt">Số điện thoại</option>
                                         <option value="diaChi">Địa chỉ</option>
                                         <option value="email">Email</option>

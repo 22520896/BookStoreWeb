@@ -154,7 +154,7 @@ class Sach extends Component {
                                             <td>{item.theLoai}</td>
                                             <td>{item.tacGia}</td>
                                             <td className="soluong">{item.soLuong}</td>
-                                            <td className="dongiaban">{item.donGiaBan.toLocaleString('vi-VN')}</td>
+                                            <td className="dongiaban">{Number(item.donGiaBan).toLocaleString('vi-VN')}</td>
                                         </tr>
                                     </>
                                 )
