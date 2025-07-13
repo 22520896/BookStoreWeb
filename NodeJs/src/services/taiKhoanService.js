@@ -214,8 +214,6 @@ let deleteTaiKhoan = (idTK) => {
 }
 
 
-
-
 module.exports = {
     handleLogin,
     getDSTaiKhoan,
