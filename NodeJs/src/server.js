@@ -7,7 +7,7 @@ const api = require('./routes/api')
 const connectDB = require('./config/connectDB')
 
 const corsOptions = {
-  origin: 'http://localhost:3000', 
+  origin: ['http://localhost:3000', 'https://book-store-web-two.vercel.app'],
   credentials: true, // Cho phép gửi cookie
 };
 
