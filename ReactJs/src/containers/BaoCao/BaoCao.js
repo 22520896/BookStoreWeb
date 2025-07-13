@@ -62,7 +62,7 @@ class BaoCao extends Component {
     checklValidInput = () => {
         const inputElements = document.querySelectorAll('.bc-container input, .bc-container select')
         let arrInput = ['month', 'type']
-        let arr = ['Tháng', 'Loại báo cá+o']
+        let arr = ['Tháng', 'Loại báo cáo']
         for (let i = 0; i < arrInput.length; i++) {
             if (!this.state[arrInput[i]]) {
                 this.thongBao(-1, `Vui lòng chọn ${arr[i]}!`)
