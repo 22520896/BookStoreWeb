@@ -100,8 +100,6 @@ class Login extends Component {
                     <div className='col-12'>
                         <button className='btn-login' onClick={() => { this.handleLogin() }}>LOGIN</button>
                     </div>
-                    <div className='col-12 text-center forgot-password'>Forgot password?</div>
-
                 </div>
                 <div className='login-background2'> </div>
             </div>
