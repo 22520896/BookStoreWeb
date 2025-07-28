@@ -25,6 +25,7 @@ services:
     command: >
       /bin/sh -c "
         npm install &&
+        npx wait-on tcp:mysql:3306 &&
         cd src &&
         npx sequelize-cli db:migrate &&
         node createAdmin.js &&
@@ -41,7 +42,7 @@ services:
       - ./ReactJs:/app
     ports:
       - "3000:3000"
-    command: /bin/sh -c "npm install && npm start"
+    command: /bin/sh -c "npm install --legacy-peer-deps && npm start"
     depends_on:
       - backend
 
