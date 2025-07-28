@@ -28,7 +28,7 @@ services:
         npx wait-on tcp:mysql:3306 &&
         cd src &&
         npx sequelize-cli db:migrate &&
-        node createAdmin.js &&
+        node initAdmin.js &&
         cd .. &&
         npm start
       "
