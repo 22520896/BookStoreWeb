@@ -13,7 +13,7 @@ const corsOptions = {
 
 
 const app = express() // app của express
-const port = process.env.PORT || 3000 // port
+const port = process.env.PORT || 8083 // port
 const hostname = process.env.HOST_NAME
 
 
