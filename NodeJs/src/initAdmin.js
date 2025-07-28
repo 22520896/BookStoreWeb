@@ -1,22 +1,35 @@
-const bcrypt = require("bcrypt");
+const db = require('../models');
+const bcrypt = require('bcrypt');
+
 const salt = bcrypt.genSaltSync(10);
 
-const { taikhoan } = require("./models");
+const hashPassword = (password) => {
+  return bcrypt.hashSync(password, salt);
+};
 
-async function createAdmin() {
-  const count = await taikhoan.count(); 
-  if (count === 0) {
-    const hashedPassword = bcrypt.hashSync("123", salt);
-    await taikhoan.create({
-      username: "admin",
-      password: hashedPassword,
-      vaitro: 1,
+const createDefaultAccount = async () => {
+  try {
+    const count = await db.TaiKhoan.count();
+
+    if (count > 0) {
+      console.log('✔ Bảng TaiKhoan đã có dữ liệu, không thêm tài khoản mặc định.');
+      return;
+    }
+
+    const defaultUsername = 'admin';
+    const defaultPassword = '123';
+
+    await db.TaiKhoan.create({
+      username: defaultUsername,
+      password: hashPassword(defaultPassword),
+      vaiTro: '1',
+      hoTen: 'Quản trị viên',
     });
-    console.log("✅ Admin created (username: admin, password: 123)");
-  } 
-}
 
-createAdmin().then(() => process.exit()).catch(err => {
-  console.error("❌ Error creating admin:", err);
-  process.exit(1);
-});
+    console.log('✔ Tài khoản mặc định đã được tạo.');
+  } catch (error) {
+    console.error('✖ Lỗi khi tạo tài khoản mặc định:', error);
+  }
+};
+
+createDefaultAccount();
