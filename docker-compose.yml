@@ -1,0 +1,49 @@
+services:
+  mysql:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: qlnhasach
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+  backend:
+    image: node:18-alpine
+    working_dir: /app
+    volumes:
+      - ./NodeJs:/app
+    ports:
+      - "8083:8083"
+    environment:
+      DB_HOST: mysql
+      DB_USER: root
+      DB_PASSWORD: root
+      DB_NAME: qlnhasach
+    command: >
+      /bin/sh -c "
+        npm install &&
+        cd src &&
+        npx sequelize-cli db:migrate &&
+        node createAdmin.js &&
+        cd .. &&
+        npm start
+      "
+    depends_on:
+      - mysql
+
+  frontend:
+    image: node:18-alpine
+    working_dir: /app
+    volumes:
+      - ./ReactJs:/app
+    ports:
+      - "3000:3000"
+    command: /bin/sh -c "npm install && npm start"
+    depends_on:
+      - backend
+
+volumes:
+  db_data:
