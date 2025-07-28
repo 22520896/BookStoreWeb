@@ -1,4 +1,4 @@
-const db = require('../models');
+const db = require('./models');
 const bcrypt = require('bcrypt');
 
 const salt = bcrypt.genSaltSync(10);
