@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "root",
-    "database": "QLNhaSach",
+    "database": "qlnhasach",
     "host": "mysql",
     "dialect": "mysql",
     "logging": false,
