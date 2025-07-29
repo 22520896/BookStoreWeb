@@ -76,3 +76,34 @@ INSERT INTO taikhoan (username, password, vaitro) VALUES ('admin', '$2b$10$fDmkj
 Access the login page from the homepage, enter the created username and password '123' to log in.
 
 Use this account to log in and create new users.
+
+---
+
+## 🚀 Quick Start with Docker
+
+### 🧰 Requirements
+- [Docker](https://www.docker.com/)
+- [Docker Compose](https://docs.docker.com/compose/)
+
+### 📦 Setup Steps
+
+1. **Clone the project**
+```bash
+git clone https://github.com/22520896/BookStoreWeb.git
+cd BookStoreWeb
+```
+
+2. **Start the entire app**
+```bash
+docker-compose up --build
+```
+
+3. **Access the app**
+- Frontend: [http://localhost:3000](http://localhost:3000)
+- Backend API: [http://localhost:8000](http://localhost:8000)
+
+4. **Login with**:
+- **Username:** `admin`
+- **Password:** `123`
+
+---
